@@ -1,0 +1,1447 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "BadChapter",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BadDifficulty",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BadMember",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BadPair",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BadPlan",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BadTeam",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Blackout",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ChapterLocked",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidKMSSignatures",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NoFavorsLeft",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NoJobsLeft",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NoRumour",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NoWiretap",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "WiretapUsed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "WrongStage",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ZamaProtocolUnsupported",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "member",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "right",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "bag",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "heat",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Accused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "chapter",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "crew",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "jobs",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "hasSkimmer",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "hasWiretap",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "rules",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "recruitAt",
+        "type": "uint8"
+      }
+    ],
+    "name": "ChapterAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "job",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "team",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "rung",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "takeBps",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "tipped",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "bag",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "heat",
+        "type": "bytes32"
+      }
+    ],
+    "name": "JobRun",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32[]",
+        "name": "handlesList",
+        "type": "bytes32[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "abiEncodedCleartexts",
+        "type": "bytes"
+      }
+    ],
+    "name": "PublicDecryptionVerified",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "member",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "heard",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Rumoured",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "chapter",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "difficulty",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "payout",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "bag",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "snitch",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "heat",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "skimmer",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "second",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "stars",
+        "type": "uint8"
+      }
+    ],
+    "name": "Settled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "chapter",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "difficulty",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "favors",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "bag",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "heat",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Started",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "member",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "favorsLeft",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "seen",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Tailed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "jobsDone",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "payout",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "snitch",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "heat",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "skimmer",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "second",
+        "type": "bytes32"
+      }
+    ],
+    "name": "WalkedAway",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "pair",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "tapped",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Wiretapped",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "BPS",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "FLAG_DARK",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "FLAG_HOT",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "GREED_BASE_BPS",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "GREED_STEP_BPS",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_CREW",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_JOBS",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_RUNG",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_TAKE_BPS",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_TOTAL",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MIN_TAKE_BPS",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "NO_SKIMMER",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "NO_SNITCH",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RAID_HEAT",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RULE_ALLIN",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RULE_OUTSIDE",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RULE_RECRUIT",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RULE_TWO",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "member",
+        "type": "uint8"
+      }
+    ],
+    "name": "accuse",
+    "outputs": [
+      {
+        "internalType": "ebool",
+        "name": "right",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "uint8",
+        "name": "crew",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8[]",
+        "name": "teams",
+        "type": "uint8[]"
+      },
+      {
+        "internalType": "uint32[]",
+        "name": "takes",
+        "type": "uint32[]"
+      },
+      {
+        "internalType": "uint8[]",
+        "name": "flags",
+        "type": "uint8[]"
+      },
+      {
+        "internalType": "uint16[]",
+        "name": "needs",
+        "type": "uint16[]"
+      },
+      {
+        "internalType": "uint16[]",
+        "name": "bans",
+        "type": "uint16[]"
+      },
+      {
+        "internalType": "bool",
+        "name": "hasSkimmer",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "hasWiretap",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint8",
+        "name": "rules",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "recruitAt",
+        "type": "uint8"
+      }
+    ],
+    "name": "addChapter",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "internalType": "uint8",
+        "name": "chapter",
+        "type": "uint8"
+      }
+    ],
+    "name": "bestBag",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "bag",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "bestOf",
+    "outputs": [
+      {
+        "internalType": "uint8[]",
+        "name": "stars",
+        "type": "uint8[]"
+      },
+      {
+        "internalType": "uint32[]",
+        "name": "bags",
+        "type": "uint32[]"
+      },
+      {
+        "internalType": "uint32[]",
+        "name": "payouts",
+        "type": "uint32[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "internalType": "uint8",
+        "name": "chapter",
+        "type": "uint8"
+      }
+    ],
+    "name": "bestPayout",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "payout",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "internalType": "uint8",
+        "name": "chapter",
+        "type": "uint8"
+      }
+    ],
+    "name": "bestStars",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "stars",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "chapterCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "id",
+        "type": "uint8"
+      }
+    ],
+    "name": "chapterOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "uint8",
+            "name": "crew",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSkimmer",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasWiretap",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint32",
+            "name": "total",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "rules",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "recruitAt",
+            "type": "uint8"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "team",
+                "type": "uint8"
+              },
+              {
+                "internalType": "uint32",
+                "name": "take",
+                "type": "uint32"
+              },
+              {
+                "internalType": "bool",
+                "name": "hot",
+                "type": "bool"
+              },
+              {
+                "internalType": "bool",
+                "name": "dark",
+                "type": "bool"
+              },
+              {
+                "internalType": "uint16",
+                "name": "need",
+                "type": "uint16"
+              },
+              {
+                "internalType": "uint16",
+                "name": "ban",
+                "type": "uint16"
+              }
+            ],
+            "internalType": "struct Snitch.Job[]",
+            "name": "jobs",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct Snitch.Chapter",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "confidentialProtocolId",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "difficulty",
+        "type": "uint8"
+      }
+    ],
+    "name": "difficultyOf",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "favors",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "tailWrongBound",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "baseRung",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "multiplier",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "handlesOf",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "bag",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "heat",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "tipped",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "seen",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "tapped",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "right",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "heard",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "revealHandles",
+    "outputs": [
+      {
+        "internalType": "bytes32[]",
+        "name": "",
+        "type": "bytes32[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "member",
+        "type": "uint8"
+      }
+    ],
+    "name": "rumour",
+    "outputs": [
+      {
+        "internalType": "ebool",
+        "name": "heard",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "team",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint8",
+        "name": "rung",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint16",
+        "name": "takeBps",
+        "type": "uint16"
+      }
+    ],
+    "name": "runJob",
+    "outputs": [
+      {
+        "internalType": "ebool",
+        "name": "tipped",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "runOf",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "run",
+        "type": "uint32"
+      },
+      {
+        "internalType": "uint8",
+        "name": "chapter",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "difficulty",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "job",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "favors",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint16",
+        "name": "out",
+        "type": "uint16"
+      },
+      {
+        "internalType": "bool",
+        "name": "wiretapUsed",
+        "type": "bool"
+      },
+      {
+        "internalType": "enum Snitch.Stage",
+        "name": "stage",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bool",
+        "name": "rumourReady",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "runsSettled",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "runs",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "clears",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "proof",
+        "type": "bytes"
+      }
+    ],
+    "name": "settle",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "chapter",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "difficulty",
+        "type": "uint8"
+      }
+    ],
+    "name": "start",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "member",
+        "type": "uint8"
+      }
+    ],
+    "name": "tail",
+    "outputs": [
+      {
+        "internalType": "ebool",
+        "name": "seen",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "totalScore",
+    "outputs": [
+      {
+        "internalType": "uint64",
+        "name": "score",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "totalStars",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "stars",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "walkAway",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "pair",
+        "type": "uint16"
+      }
+    ],
+    "name": "wiretap",
+    "outputs": [
+      {
+        "internalType": "ebool",
+        "name": "tapped",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

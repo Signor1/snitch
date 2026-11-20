@@ -1,0 +1,14 @@
+{
+  "11155111": {
+    "network": "sepolia",
+    "Snitch": "0x783b0Fffe2162E7d558963A0DEB8526de4fDB5A0",
+    "snitchBlock": 12171103,
+    "SnitchRooms": "0xE834cDE9324fEB2093E3f37a2D9fff84e53302F3",
+    "snitchRoomsBlock": 12171109,
+    "SnitchPass": "0x6970c6E0806F54FfF0b80dBfF63914E67f2c18e3",
+    "SnitchWardrobe": "0x9E6a9e46Af57a8ae46DdbaFd1779F040cF9c914a",
+    "SnitchPots": "0xba1A7644f68820D39Ea0569fdF6D1A7a297e1c96",
+    "Dollar": "0x4E7B06D78965594eB5EF5414c357ca21E1554491",
+    "shopBlock": 12171173
+  }
+}
