@@ -67,9 +67,12 @@ function liveryTexture() {
   return livery;
 }
 
+// a different van every job, the way a crew never uses the same vehicle twice
+const VAN_PAINTS = ["#e6e4de", "#3b4048", "#1f2a3c", "#5a2126", "#c4bca6", "#2e3a2d"];
+
 export type CarKind = "crew" | "patrol" | "unmarked" | "swat";
 
-/** The crew's SUV, a marked patrol car, an unmarked detective car, or a black SWAT van. */
+/** The crew's van, a marked patrol car, an unmarked detective car, or a black SWAT van. */
 export function Car({ police = false, kind = police ? "patrol" : "crew", carRef, lit = true }: { police?: boolean; kind?: CarKind; carRef: React.RefObject<THREE.Group | null>; lit?: boolean }) {
   const red = useRef<THREE.MeshStandardMaterial>(null);
   const blue = useRef<THREE.MeshStandardMaterial>(null);
@@ -81,14 +84,16 @@ export function Car({ police = false, kind = police ? "patrol" : "crew", carRef,
     if (blue.current) blue.current.emissiveIntensity = k * (on ? 0.3 : 7);
     if (dash.current) dash.current.emissiveIntensity = k * (Math.floor(st.clock.elapsedTime * 8) % 2 ? 9 : 0);
   });
+  const job = useSnitch((s) => s.cut?.job);
   const sedan = kind === "patrol" || kind === "unmarked";
-  const len = sedan ? 4.6 : kind === "swat" ? 5.3 : 4.7;
-  const half = sedan ? 0.9 : kind === "swat" ? 1.12 : 1.0;
-  const roof = sedan ? 1.46 : kind === "swat" ? 2.15 : 1.9;
+  const len = sedan ? 4.7 : 5.2;
+  const half = sedan ? 0.9 : 1.0;
+  const roof = sedan ? 1.5 : 2.42;
   const marked = kind === "patrol" || kind === "swat";
+  const paint = kind === "patrol" ? "#eceef1" : kind === "unmarked" ? "#22252c" : kind === "swat" ? "#0f1114" : VAN_PAINTS[seedOf(job ?? "") % VAN_PAINTS.length];
   return (
     <group ref={carRef}>
-      <Prop url={sedan ? "/real/vehicles/sedan.glb" : "/real/vehicles/suv.glb"} depth={len} rotation={[0, sedan ? 0 : Math.PI, 0]} tint={kind === "crew" ? "#2c2c36" : kind === "unmarked" ? "#1a1c22" : kind === "swat" ? "#0d0f12" : undefined} />
+      <Prop url={sedan ? "/real/vehicles/saloon.glb" : "/real/vehicles/van.glb"} depth={len} paint={paint} />
       {kind === "unmarked" && (
         // a blue strobe behind the windscreen, nothing on the roof
         <mesh position={[0, 1.18, 0.55]}>

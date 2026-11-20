@@ -51,8 +51,8 @@ export const SET_MODELS = [
   "/real/vehicles/covered_car.glb",
   "/real/vehicles/hatchback.glb",
   "/real/vehicles/pickup.glb",
-  "/real/vehicles/sedan.glb",
-  "/real/vehicles/suv.glb",
+  "/real/vehicles/saloon.glb",
+  "/real/vehicles/van.glb",
 ];
 
 export const preloadSets = () => SET_MODELS.forEach((u) => useGLTF.preload(u));

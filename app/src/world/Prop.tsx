@@ -14,6 +14,7 @@ export function Prop({
   longest,
   emissive,
   tint,
+  paint,
   hide,
   ...props
 }: {
@@ -26,6 +27,8 @@ export function Prop({
   emissive?: number;
   /** Multiplied over the model's own colours. */
   tint?: string;
+  /** Body colour for a vehicle: replaces the paint, keeps glass, trim and lamps. */
+  paint?: string;
   /** Node names to hide, e.g. a counter's goods once stolen. */
   hide?: string[];
 } & Omit<React.ComponentProps<"group">, "children">) {
@@ -38,6 +41,14 @@ export function Prop({
       if (!m.isMesh) return;
       m.castShadow = true;
       m.receiveShadow = true;
+      if (paint && /paint|body/i.test((m.material as THREE.Material).name)) {
+        // a respray: the old colour and any baked glow go, the panel shape and gloss stay
+        const mat = (m.material = (m.material as THREE.MeshStandardMaterial).clone());
+        mat.map = null;
+        mat.emissiveMap = null;
+        mat.emissive.set("#000000");
+        mat.color.set(paint);
+      }
       if (emissive !== undefined || tint) {
         const mat = (m.material = (m.material as THREE.MeshStandardMaterial).clone());
         if (emissive !== undefined) {
@@ -54,7 +65,7 @@ export function Prop({
     const scale = height ? height / size.y : width ? width / size.x : depth ? depth / size.z : (longest ?? 1) / Math.max(size.x, size.y, size.z);
     const c = box.getCenter(new THREE.Vector3());
     return { object, scale, offset: new THREE.Vector3(-c.x, -box.min.y, -c.z) };
-  }, [gltf.scene, height, width, depth, longest, emissive, tint, hide?.join()]);
+  }, [gltf.scene, height, width, depth, longest, emissive, tint, paint, hide?.join()]);
   return (
     <group {...props}>
       <group scale={scale}>

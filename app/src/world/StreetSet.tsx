@@ -236,7 +236,12 @@ function blocksFor(seed: number, d: District): Block[] {
   return out;
 }
 
-const CARS = ["/real/vehicles/hatchback.glb", "/real/vehicles/pickup.glb", "/real/vehicles/covered_car.glb", "/real/vehicles/sedan.glb"];
+const CARS = ["/real/vehicles/hatchback.glb", "/real/vehicles/pickup.glb", "/real/vehicles/covered_car.glb", "/real/vehicles/saloon.glb", "/real/vehicles/saloon.glb", "/real/vehicles/van.glb"];
+// the street cameras stand on the -x side, where a parked van would fill the shot
+const LOW_CARS = CARS.filter((u) => !u.includes("van"));
+const CAR_LENGTH: Record<string, number> = { pickup: 5.3, saloon: 4.7, van: 5.2 };
+// what real cars come in: silver, black, white, grey, then a few colours
+const PAINTS = ["#b8bcc2", "#16181c", "#e4e5e7", "#5c6168", "#1e2d4a", "#6a1c22", "#c8c0aa"];
 const CAR_TINTS = ["#6d2a2a", "#44505c", "#2b3a2f", "#5a5a5e", "#1d2433", "#7a6a4a", undefined];
 // kerbside spots clear of the van (+x lane, z around -2.6) and the police lanes
 const SLOTS: [number, number][] = [
@@ -263,7 +268,7 @@ export function StreetSet({ name, alarm, venue }: { name: string; alarm: boolean
     const pick = <T,>(xs: T[]) => xs[Math.floor(r() * xs.length)];
     const slots = SLOTS.filter(() => r() < 0.55).slice(0, 4);
     return {
-      cars: slots.map(([x, z]) => ({ x, z, url: pick(CARS), tint: pick(CAR_TINTS), flip: r() < 0.5 })),
+      cars: slots.map(([x, z]) => ({ x, z, url: pick(x < 0 ? LOW_CARS : CARS), tint: pick(CAR_TINTS), paint: pick(PAINTS), flip: r() < 0.5 })),
       shift: (r() - 0.5) * 6,
       signs: [pick(look.signs), pick(look.signs.filter((x) => x !== look.signs[0]))],
       tones: [pick(look.tones), pick(look.tones)],
@@ -330,7 +335,14 @@ export function StreetSet({ name, alarm, venue }: { name: string; alarm: boolean
       <Prop url={P + "traffic_cone.glb"} height={0.7} position={[KERB_X - 0.5, 0, 6.5]} />
       <Prop url={P + "concrete_barrier.glb"} width={2} position={[-(KERB_X + 1.2), 0.15, 9]} rotation={[0, 0.2, 0]} />
       {dressing.cars.map((c, i) => (
-        <Prop key={`${seed}-${i}`} url={c.url} depth={c.url.includes("pickup") ? 5.3 : 4.2} position={[c.x, 0, c.z]} rotation={[0, c.flip ? Math.PI : 0, 0]} tint={c.tint} />
+        <Prop
+          key={`${seed}-${i}`}
+          url={c.url}
+          depth={CAR_LENGTH[c.url.split("/").pop()!.replace(".glb", "")] ?? 4.2}
+          position={[c.x, 0, c.z]}
+          rotation={[0, c.flip ? Math.PI : 0, 0]}
+          {...(/saloon|van/.test(c.url) ? { paint: c.paint } : { tint: c.tint })}
+        />
       ))}
       <Sign text={dressing.signs[0]} color={dressing.tones[0]} width={2.2} position={[-(FRONT_X - 0.1), 3.4, dressing.signZ[0]]} rotation={[0, Math.PI / 2, 0]} />
       <Sign text={dressing.signs[1]} color={dressing.tones[1]} width={1.8} position={[FRONT_X - 0.1, 3.4, dressing.signZ[1]]} rotation={[0, -Math.PI / 2, 0]} />

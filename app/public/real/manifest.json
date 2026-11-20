@@ -1735,53 +1735,6 @@
    "title": "Modular Chainlink Fence"
   },
   {
-   "path": "real/vehicles/suv.glb",
-   "type": "model",
-   "category": "vehicles",
-   "dimensions_m": {
-    "x": 2.541,
-    "y": 2.105,
-    "z": 4.9
-   },
-   "bbox_min": [
-    -1.271,
-    0,
-    -2.45
-   ],
-   "bbox_max": [
-    1.271,
-    2.105,
-    2.45
-   ],
-   "triangles": 1510,
-   "bytes": 206696,
-   "materials": [
-    "SUV_Body",
-    "SUV_Wheels"
-   ],
-   "nodes": [
-    "body",
-    "wheel_FL",
-    "wheel_FR",
-    "wheel_RL",
-    "wheel_RR"
-   ],
-   "up": "+Y",
-   "forward": "+Z",
-   "pivot": "bottom-centre (y=0 is ground)",
-   "textures": [
-    "1024x1024 webp",
-    "1024x1024 webp"
-   ],
-   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
-   "notes": "Low-poly (1.5k tris) photo-textured. Nodes: body, wheel_FL/FR/RL/RR (origins at wheel centres, spin about local X). Silver paint baked in texture; darken via material.color multiply. No light bar.",
-   "source": "Gazebo Fuel",
-   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/SUV",
-   "author": "Open Robotics (OpenRobotics)",
-   "licence": "CC0-1.0",
-   "title": "SUV"
-  },
-  {
    "path": "real/vehicles/hatchback.glb",
    "type": "model",
    "category": "vehicles",
@@ -1827,56 +1780,6 @@
    "author": "Open Robotics (OpenRobotics)",
    "licence": "CC0-1.0",
    "title": "Hatchback"
-  },
-  {
-   "path": "real/vehicles/sedan.glb",
-   "type": "model",
-   "category": "vehicles",
-   "dimensions_m": {
-    "x": 1.982,
-    "y": 1.514,
-    "z": 4.55
-   },
-   "bbox_min": [
-    -0.991,
-    0,
-    -2.275
-   ],
-   "bbox_max": [
-    0.991,
-    1.514,
-    2.275
-   ],
-   "triangles": 2176,
-   "bytes": 160712,
-   "materials": [
-    "Hybrid",
-    "Hybrid_Interior",
-    "Windows",
-    "Wheels3"
-   ],
-   "nodes": [
-    "body",
-    "wheel_FL",
-    "wheel_FR",
-    "wheel_RL",
-    "wheel_RR"
-   ],
-   "up": "+Y",
-   "forward": "+Z",
-   "pivot": "bottom-centre (y=0 is ground)",
-   "textures": [
-    "1024x1024 webp",
-    "1024x1024 webp",
-    "512x512 webp"
-   ],
-   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
-   "notes": "Low-poly photo-textured 4-door hybrid sedan; usable as police car base (add light bar/livery in code). Nodes body + 4 wheels. Shape resembles a real production hybrid; no logos verified at texture level - check close-ups.",
-   "source": "Gazebo Fuel",
-   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Prius%20Hybrid",
-   "author": "Open Robotics (OpenRobotics)",
-   "licence": "CC0-1.0",
-   "title": "Prius Hybrid"
   },
   {
    "path": "real/vehicles/pickup.glb",
