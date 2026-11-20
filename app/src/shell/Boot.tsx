@@ -4,9 +4,16 @@ import { useEffect, useState } from "react";
 import { create } from "zustand";
 import { Logo, Mark } from "../brand/Mark";
 import { audio } from "../fx/audio";
+import { useFilm } from "./film";
 
-/** started = past the loading and title screens. */
-export const useBoot = create<{ started: boolean; start(): void }>((set) => ({ started: false, start: () => set({ started: true }) }));
+/** started = past the loading and title screens. On the home page the intro film starts in the same step, so the menu never flashes first. */
+export const useBoot = create<{ started: boolean; start(): void }>((set) => ({
+  started: false,
+  start: () => {
+    if (location.pathname === "/") useFilm.getState().play();
+    set({ started: true });
+  },
+}));
 
 const TIPS = [
   "Police after a job usually means the snitch was on that team. Usually.",

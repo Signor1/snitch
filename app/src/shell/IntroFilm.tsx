@@ -8,13 +8,11 @@ import { findChapter } from "../game/modes";
 import { useSnitch, type Cut } from "../game/store";
 import { Phone } from "../hud/Feed";
 import { useStage } from "../story/stage";
-import { useBoot } from "./Boot";
 import { useFilm } from "./film";
 
 // The opening film: the night Ash went down, played in the game's own sets by driving the same
 // state a real job uses (crew, cut beats, raid style), then ten years later and Echo's first text.
 
-const SEEN = "snitch:introSeen";
 
 
 type Step = { at: number; caption?: string; run?: () => void };
@@ -71,20 +69,9 @@ function steps(): Step[] {
 
 const LENGTH = 48500;
 
-/** Plays the film once after the first "press any key", and again from the menu. */
+/** Plays after "press any key" (started by useBoot) and from the menu. Skippable at any point. */
 export function IntroFilm() {
   const playing = useFilm((s) => s.playing);
-  const started = useBoot((s) => s.started);
-  useEffect(() => {
-    if (!started) return;
-    try {
-      if (localStorage.getItem(SEEN)) return;
-    } catch {
-      /* private mode: play it */
-    }
-    const t = setTimeout(() => useFilm.getState().play(), 900);
-    return () => clearTimeout(t);
-  }, [started]);
   return <AnimatePresence>{playing && <Film />}</AnimatePresence>;
 }
 
@@ -105,7 +92,9 @@ function Film() {
       .map((s) => setTimeout(() => setCaption((c) => (c === s.caption ? undefined : c)), s.at + 3200));
     const t1 = setTimeout(() => setTitle(true), 44000);
     const t2 = setTimeout(end, LENGTH);
-    const key = (e: KeyboardEvent) => (e.key === "Escape" || e.key === "Enter" || e.key === " ") && end();
+    // ignore the first second, so the key that left the title screen doesn't also skip the film
+    const opened = performance.now();
+    const key = (e: KeyboardEvent) => performance.now() - opened > 1000 && (e.key === "Escape" || e.key === "Enter" || e.key === " ") && end();
     window.addEventListener("keydown", key);
     return () => {
       [...timers, ...fades, t1, t2].forEach(clearTimeout);
@@ -156,11 +145,6 @@ function Film() {
 }
 
 function end() {
-  try {
-    localStorage.setItem(SEEN, "1");
-  } catch {
-    /* private mode */
-  }
   useStage.getState().setSpeaker(undefined);
   useSnitch.getState().leave();
   useFilm.getState().stop();
