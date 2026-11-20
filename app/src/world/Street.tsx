@@ -1,8 +1,9 @@
 import { useFrame } from "@react-three/fiber";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { useSnitch } from "../game/store";
-import { Character } from "./Character";
+import { COP_LOOK } from "../game/looks";
+import { useSnitch, type Cut } from "../game/store";
+import { Character, type Emote } from "./Character";
 import { Prop } from "./Prop";
 import { StreetSet } from "./StreetSet";
 import { Floodlights, Helicopter, Roadblock } from "./Raid";
@@ -147,12 +148,103 @@ export function Car({ police = false, kind = police ? "patrol" : "crew", carRef,
 }
 
 /** Driven only by what the player already knows. */
+const PARK_Z = -2.6;
+const sinceCut = (cut: Cut) => (performance.now() - (cut.state === "go" ? cut.at : cut.beatAt)) / 1000;
+
+/**
+ * One crew member on the street. Going in: van to door. Clean: back to the van and gone.
+ * Tipped: out of the door at a sprint and into the van before the police box it in. In the intro film
+ * they don't make it: they stop short and go down on their knees.
+ */
+function Runner({ i, id }: { i: number; id: number }) {
+  const g = useRef<THREE.Group>(null);
+  const member = useSnitch((s) => s.crew[id]);
+  const [act, setAct] = useState<Emote>("sprint");
+  const van = useMemo(() => new THREE.Vector3(3.9, 0, PARK_Z + 0.6 - i * 0.5), [i]);
+  const door = useMemo(() => new THREE.Vector3(DOOR.x, DOOR.y, DOOR.z - i * 0.1), [i]);
+  useFrame(() => {
+    const o = g.current;
+    const cut = useSnitch.getState().cut;
+    if (!o || !cut) return;
+    const t = sinceCut(cut);
+    const outside = cut.state === "go" ? cut.beat === "arrive" : cut.beat === "exit";
+    let k = 0;
+    let show = false;
+    let want: Emote = "sprint";
+    if (!outside) show = false;
+    else if (cut.state === "go") {
+      k = ease((t - 3.3 - i * 0.25) / 1.3);
+      show = t > 3.3 + i * 0.25 && k < 1;
+    } else if (cut.state === "clean") {
+      k = 1 - ease((t - i * 0.12) / 0.8);
+      show = k > 0.02;
+    } else if (cut.caught) {
+      // boxed in: they stop halfway, drop to their knees and put their hands up
+      const run = ease((t - i * 0.15) / 1.0);
+      k = 1 - run * 0.5;
+      show = true;
+      if (run >= 1) want = "surrender";
+    } else {
+      // make it to the van while the police cars are still braking
+      const run = ease((t - i * 0.18) / 1.1);
+      k = 1 - run;
+      show = run < 0.98;
+    }
+    o.visible = show;
+    o.position.lerpVectors(van, door, k);
+    if (want === "surrender") o.rotation.y = Math.atan2(-1.6 - o.position.x, 3.4 - o.position.z);
+    else {
+      const dir = cut.state === "go" ? door : van;
+      o.rotation.y = Math.atan2(dir.x - o.position.x, dir.z - o.position.z);
+    }
+    if (want !== act) setAct(want);
+  });
+  if (!member) return null;
+  return (
+    <group ref={g} visible={false}>
+      <Suspense fallback={null}>
+        <Character model={member.model} outfit={member.outfit} phase={i} emote={act} pistol={act === "sprint"} />
+      </Suspense>
+    </group>
+  );
+}
+
+/** An officer gets out of each police car once it has stopped, and covers the van. */
+function StreetCop({ i }: { i: number }) {
+  const g = useRef<THREE.Group>(null);
+  const cut = useSnitch((s) => s.cut);
+  const look = COP_LOOK[cut?.bust ?? "patrol"];
+  const from = useMemo(() => (i ? new THREE.Vector3(1.2, 0, -7.0) : new THREE.Vector3(-0.4, 0, 2.6)), [i]);
+  const to = useMemo(() => (i ? new THREE.Vector3(1.9, 0, -5.4) : new THREE.Vector3(0.7, 0, 1.4)), [i]);
+  const [act, setAct] = useState<Emote>("walk");
+  useFrame(() => {
+    const o = g.current;
+    const c = useSnitch.getState().cut;
+    if (!o || !c) return;
+    const t = sinceCut(c) - (c.bust === "ambush" ? 0.7 : 1.2) - i * 0.3;
+    o.visible = t > 0;
+    const k = ease(t / 1.1);
+    o.position.lerpVectors(from, to, k);
+    // cover the van, or the crew kneeling in the street
+    const aim = c.caught ? DOOR : new THREE.Vector3(2.7, 0, PARK_Z);
+    o.rotation.y = Math.atan2(aim.x - o.position.x, aim.z - o.position.z);
+    const want: Emote = k >= 1 ? "aim" : "walk";
+    if (want !== act) setAct(want);
+  });
+  return (
+    <group ref={g} visible={false} position={from}>
+      <Suspense fallback={null}>
+        <Character model={i ? "cop_f" : "cop_m"} outfit={look.outfit} uniform={look.uniform} phase={i + 5} emote={act} pistol />
+      </Suspense>
+    </group>
+  );
+}
+
 export function Street() {
   const cut = useSnitch((s) => s.cut);
   const van = useRef<THREE.Group>(null);
   const copA = useRef<THREE.Group>(null);
   const copB = useRef<THREE.Group>(null);
-  const runners = useRef<(THREE.Group | null)[]>([]);
   const red = useRef<THREE.PointLight>(null);
   const blue = useRef<THREE.PointLight>(null);
     const cash = useRef<THREE.Points>(null);
@@ -163,7 +255,6 @@ export function Street() {
     g.userData.v = [...Array(n)].map(() => new THREE.Vector3((Math.random() - 0.5) * 3, 2 + Math.random() * 4, (Math.random() - 0.5) * 3));
     return g;
   }, []);
-  const team = cut?.team.length ?? 0;
   const bust = cut?.bust ?? "patrol";
   const raiding = cut?.state === "tipped" && cut.beat === "exit";
   const kinds: [CarKind, CarKind] =
@@ -175,7 +266,7 @@ export function Street() {
     const live = cut && (cut.state === "go" || cut.beat === "exit");
     const since = cut ? (performance.now() - (cut.state === "go" ? cut.at : cut.beatAt)) / 1000 : 0;
     const state = live ? cut.state : cut ? "go" : "idle";
-    const parkZ = -2.6;
+    const parkZ = PARK_Z;
     // van: rolls in, waits, then leaves (clean) or is boxed in (tipped)
     if (van.current) {
       let z = -40;
@@ -184,28 +275,6 @@ export function Street() {
       else if (state === "clean") z = parkZ + Math.pow(Math.max(0, since - 0.7), 2) * 9;
       van.current.position.set(2.7, Math.sin(t * 22) * 0.004, z);
     }
-    // the team runs van -> door, waits inside, and runs back on a clean job
-    runners.current.forEach((m, i) => {
-      if (!m) return;
-      const start = new THREE.Vector3(3.9, 0, parkZ + 0.6 - i * 0.5);
-      const end = new THREE.Vector3(DOOR.x, DOOR.y, DOOR.z - i * 0.1);
-      let k = 0;
-      let show = false;
-      if (state === "go") {
-        k = ease((since - 3.3 - i * 0.25) / 1.3);
-        show = since > 3.3 + i * 0.25 && k < 1;
-      } else if (state === "clean") {
-        k = 1 - ease((since - i * 0.12) / 0.8);
-        show = k > 0.02;
-      } else if (state === "tipped") {
-        k = 1 - ease(since / 0.9) * 0.45;
-        show = true;
-      }
-      m.visible = show && i < team;
-      m.position.lerpVectors(start, end, k);
-      const dir = state === "go" ? end : start;
-      m.rotation.y = Math.atan2(dir.x - m.position.x, dir.z - m.position.z);
-    });
     // police: two cars close the street from both ends; in an ambush they were parked there all along
     const arrive = state !== "tipped" ? 0 : bust === "ambush" ? 1 : ease(since / 1.1);
     copA.current?.position.set(-1.6, 0, THREE.MathUtils.lerp(34, 3.4, arrive));
@@ -239,15 +308,8 @@ export function Street() {
       <Floodlights active={bust === "harbour" || bust === "allin"} />
       <Helicopter active={bust === "helicopter" || bust === "allin"} />
       <Roadblock active={bust === "roadblock" || bust === "allin"} />
-      {[0, 1, 2, 3].map((i) => (
-        <group key={i} ref={(m) => void (runners.current[i] = m)} visible={false}>
-          {cut?.team[i] !== undefined && (
-            <Suspense fallback={null}>
-              <Character model={useSnitch.getState().crew[cut.team[i]]?.model ?? "gang_m1"} outfit={useSnitch.getState().crew[cut.team[i]]?.outfit} phase={i} emote="sprint" pistol />
-            </Suspense>
-          )}
-        </group>
-      ))}
+      {cut?.team.slice(0, 4).map((id, i) => <Runner key={id} i={i} id={id} />)}
+      {raiding && [0, 1].map((i) => <StreetCop key={i} i={i} />)}
       <points ref={cash} geometry={cashGeo} visible={false}>
         <pointsMaterial color={CYAN} size={0.12} transparent depthWrite={false} toneMapped={false} />
       </points>

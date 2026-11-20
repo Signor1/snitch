@@ -46,7 +46,7 @@ function steps(): Step[] {
     },
     { at: 13500, run: () => (cut(job("inside", "go")), audio.door()) },
     { at: 19000, caption: "Someone had made a call.", run: () => (cut(job("payoff", "tipped")), audio.setScene("police")) },
-    { at: 27000, caption: "Ash didn't come home.", run: () => cut(job("exit", "tipped")) },
+    { at: 27000, caption: "Ash didn't come home.", run: () => cut({ ...job("exit", "tipped"), caught: true }) },
     {
       at: 34000,
       caption: "Ten years later.",

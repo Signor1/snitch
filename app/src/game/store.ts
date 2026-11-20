@@ -27,6 +27,8 @@ export interface Cut {
   target: Target;
   venue: Venue;
   bust: Bust;
+  /** The crew don't reach the van: they surrender in the street (the intro film). */
+  caught?: boolean;
   at: number;
   team: number[];
   job: string;
