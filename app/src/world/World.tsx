@@ -32,7 +32,7 @@ function Effects({ quality }: { quality: number }) {
   return (
     <EffectComposer multisampling={0} enableNormalPass={false}>
       {high ? <N8AO halfRes aoRadius={0.6} intensity={2.4} distanceFalloff={0.6} color="#000000" /> : <></>}
-      <Bloom mipmapBlur levels={PHONE ? 4 : 8} luminanceThreshold={1} luminanceSmoothing={0.2} intensity={0.95} radius={0.8} />
+      <Bloom mipmapBlur luminanceThreshold={1} luminanceSmoothing={0.2} intensity={0.95} radius={0.8} />
       {high ? <ChromaticAberration offset={ABERRATION} radialModulation={false} modulationOffset={0} /> : <></>}
       <Vignette offset={0.26} darkness={0.72} />
       <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
@@ -94,7 +94,7 @@ export default function World() {
   const later = useLater();
   return (
     <div className="fixed inset-0 -z-0">
-      <Canvas frameloop={PHONE ? "demand" : "always"} shadows={!PHONE} dpr={pref === "low" ? 1 : PHONE ? [1, 1.35] : [1, 1.75]} camera={{ position: [1.4, 2.2, 5.2], fov: 40, near: 0.1, far: 110 }} gl={{ antialias: false, powerPreference: "high-performance", toneMapping: THREE.NoToneMapping }}>
+      <Canvas frameloop={PHONE ? "demand" : "always"} shadows={!PHONE} dpr={pref === "low" ? 1 : PHONE ? [1, 1.35] : [1, 1.75]} camera={{ position: [1.4, 2.2, 5.2], fov: 40, near: 0.1, far: 110 }} gl={{ antialias: false, powerPreference: "high-performance", toneMapping: PHONE ? THREE.ACESFilmicToneMapping : THREE.NoToneMapping }}>
         <color attach="background" args={["#050505"]} />
         <fog attach="fog" args={["#0a0414", 7, 34]} />
         <PerformanceMonitor onDecline={() => setQuality(0.4)} onIncline={() => setQuality(1)} />
@@ -140,7 +140,8 @@ export default function World() {
         </Suspense>
 
         <Director scene={scene} />
-        <Effects quality={quality} />
+        {/* the effect passes each repaint the whole screen; on a phone they cost more than they add */}
+        {!PHONE && <Effects quality={quality} />}
       </Canvas>
     </div>
   );
