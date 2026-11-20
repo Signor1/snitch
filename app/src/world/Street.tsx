@@ -6,6 +6,7 @@ import { useSnitch, type Cut } from "../game/store";
 import { Character, type Emote } from "./Character";
 import { Prop } from "./Prop";
 import { StreetSet } from "./StreetSet";
+import { seedOf } from "./places";
 import { Floodlights, Helicopter, Roadblock } from "./Raid";
 
 /** Street set, far from the hideout. */
@@ -147,7 +148,6 @@ export function Car({ police = false, kind = police ? "patrol" : "crew", carRef,
   );
 }
 
-/** Driven only by what the player already knows. */
 const PARK_Z = -2.6;
 const sinceCut = (cut: Cut) => (performance.now() - (cut.state === "go" ? cut.at : cut.beatAt)) / 1000;
 
@@ -240,6 +240,7 @@ function StreetCop({ i }: { i: number }) {
   );
 }
 
+/** Driven only by what the player already knows. */
 export function Street() {
   const cut = useSnitch((s) => s.cut);
   const van = useRef<THREE.Group>(null);
@@ -256,6 +257,8 @@ export function Street() {
     return g;
   }, []);
   const bust = cut?.bust ?? "patrol";
+  // the weather changes from night to night: about one job in three is dry
+  const wet = !cut || seedOf(cut.job) % 3 !== 0;
   const raiding = cut?.state === "tipped" && cut.beat === "exit";
   const kinds: [CarKind, CarKind] =
     bust === "detectives" ? ["unmarked", "unmarked"] : bust === "swat" || bust === "allin" ? ["swat", "patrol"] : ["patrol", "patrol"];
@@ -300,7 +303,7 @@ export function Street() {
 
   return (
     <group position={[STREET_X, 0, 0]}>
-      <StreetSet name={cut?.job ?? "Pawn shop"} alarm={cut?.state === "tipped" && cut.beat === "exit"} />
+      <StreetSet name={cut?.job ?? "Pawn shop"} venue={cut?.venue} alarm={cut?.state === "tipped" && cut.beat === "exit"} />
 
       <Car carRef={van} />
       <Car kind={kinds[0]} carRef={copA} lit={bust !== "ambush" || raiding} />
@@ -315,7 +318,7 @@ export function Street() {
       </points>
       <pointLight ref={red} position={[-1, 2.2, 3]} color={HEAT} intensity={0} distance={30} />
       <pointLight ref={blue} position={[0.5, 2.2, -7]} color="#1f6bff" intensity={0} distance={30} />
-      <Rain />
+      {wet && <Rain />}
     </group>
   );
 }
