@@ -1,3 +1,4 @@
+import { useProgress } from "@react-three/drei";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Logo, Mark } from "../brand/Mark";
@@ -8,13 +9,11 @@ import { findChapter } from "../game/modes";
 import { useSnitch, type Cut } from "../game/store";
 import { Phone } from "../hud/Feed";
 import { useStage } from "../story/stage";
-import { useBoot } from "./Boot";
 import { useFilm } from "./film";
 
 // The opening film: the night Ash went down, played in the game's own sets by driving the same
 // state a real job uses (crew, cut beats, raid style), then ten years later and Echo's first text.
 
-const SEEN = "snitch:introSeen";
 
 
 type Step = { at: number; caption?: string; run?: () => void };
@@ -48,12 +47,13 @@ function steps(): Step[] {
     },
     { at: 13500, run: () => (cut(job("inside", "go")), audio.door()) },
     { at: 19000, caption: "Someone had made a call.", run: () => (cut(job("payoff", "tipped")), audio.setScene("police")) },
-    { at: 27000, caption: "Ash didn't come home.", run: () => cut(job("exit", "tipped")) },
+    { at: 27000, caption: "Ash didn't come home.", run: () => cut({ ...job("exit", "tipped"), caught: true }) },
     {
       at: 34000,
       caption: "Ten years later.",
       run: () => {
         S.setState({ cut: undefined, busy: null, status: "brief", crew: [] });
+        useFilm.setState({ empty: true });
         audio.setScene("hideout");
       },
     },
@@ -70,20 +70,9 @@ function steps(): Step[] {
 
 const LENGTH = 48500;
 
-/** Plays the film once after the first "press any key", and again from the menu. */
+/** Plays after "press any key" (started by useBoot) and from the menu. Skippable at any point. */
 export function IntroFilm() {
   const playing = useFilm((s) => s.playing);
-  const started = useBoot((s) => s.started);
-  useEffect(() => {
-    if (!started) return;
-    try {
-      if (localStorage.getItem(SEEN)) return;
-    } catch {
-      /* private mode: play it */
-    }
-    const t = setTimeout(() => useFilm.getState().play(), 900);
-    return () => clearTimeout(t);
-  }, [started]);
   return <AnimatePresence>{playing && <Film />}</AnimatePresence>;
 }
 
@@ -92,22 +81,47 @@ function Film() {
   const [title, setTitle] = useState(false);
 
   useEffect(() => {
-    const timers = steps().map((s) =>
-      setTimeout(() => {
-        s.run?.();
-        if (s.caption) setCaption(s.caption);
-      }, s.at),
-    );
-    // captions fade a few seconds after they appear
-    const fades = steps()
-      .filter((s) => s.caption)
-      .map((s) => setTimeout(() => setCaption((c) => (c === s.caption ? undefined : c)), s.at + 3200));
-    const t1 = setTimeout(() => setTitle(true), 44000);
-    const t2 = setTimeout(end, LENGTH);
-    const key = (e: KeyboardEvent) => (e.key === "Escape" || e.key === "Enter" || e.key === " ") && end();
+    // The film's clock stops while a scene is still loading, so a caption never lands on the wrong shot
+    // on a slow connection. When loading ends, the current beat restarts so it plays from the top.
+    const plan = steps();
+    let clock = 0;
+    let last = performance.now();
+    let next = 0;
+    let wasLoading = false;
+    let raf = 0;
+    const shown = new Map<string, number>();
+    const tick = () => {
+      // read the clock here: the rAF timestamp isn't guaranteed to share performance.now's time base
+      const now = performance.now();
+      const loading = useProgress.getState().active;
+      if (!loading) clock += now - last;
+      if (wasLoading && !loading) {
+        const c = useSnitch.getState().cut;
+        if (c) useSnitch.setState({ cut: { ...c, beatAt: now, at: c.state === "go" ? now : c.at } });
+      }
+      wasLoading = loading;
+      last = now;
+      while (next < plan.length && clock >= plan[next].at) {
+        const st = plan[next++];
+        st.run?.();
+        if (st.caption) {
+          setCaption(st.caption);
+          shown.set(st.caption, clock);
+        }
+      }
+      // captions fade a few seconds after they appear
+      setCaption((c) => (c && clock - (shown.get(c) ?? clock) > 3200 ? undefined : c));
+      if (clock >= 44000) setTitle(true);
+      if (clock >= LENGTH) return end();
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    // ignore the first second, so the key that left the title screen doesn't also skip the film
+    const opened = performance.now();
+    const key = (e: KeyboardEvent) => performance.now() - opened > 1000 && (e.key === "Escape" || e.key === "Enter" || e.key === " ") && end();
     window.addEventListener("keydown", key);
     return () => {
-      [...timers, ...fades, t1, t2].forEach(clearTimeout);
+      cancelAnimationFrame(raf);
       window.removeEventListener("keydown", key);
     };
   }, []);
@@ -155,11 +169,6 @@ function Film() {
 }
 
 function end() {
-  try {
-    localStorage.setItem(SEEN, "1");
-  } catch {
-    /* private mode */
-  }
   useStage.getState().setSpeaker(undefined);
   useSnitch.getState().leave();
   useFilm.getState().stop();

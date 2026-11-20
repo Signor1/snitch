@@ -35,7 +35,8 @@ export type Emote =
   | "crouch"
   | "fix"
   | "fall"
-  | "walk";
+  | "walk"
+  | "surrender";
 
 const CLIP: Record<Emote, string> = {
   idle: "Idle_Loop",
@@ -60,8 +61,32 @@ const CLIP: Record<Emote, string> = {
   fix: "Fixing_Kneeling",
   fall: "Death01",
   walk: "Walk_Formal_Loop",
+  surrender: "Fixing_Kneeling",
 };
-const LOOPING = new Set<Emote>(["idle", "talk", "arms", "phone", "no", "dance", "gunIdle", "aim", "shoot", "sprint", "crouch", "fix", "walk"]);
+const LOOPING = new Set<Emote>(["idle", "talk", "arms", "phone", "no", "dance", "gunIdle", "aim", "shoot", "sprint", "crouch", "fix", "walk", "surrender"]);
+
+// No clip has hands on the head, so "surrender" kneels with Fixing_Kneeling and then aims the arm
+// bones after each mixer update. Directions are in the body's own space: x to its left, y up, z forward.
+const SURRENDER: [string, THREE.Vector3][] = [
+  ["upperarm_l", new THREE.Vector3(0.8, 0.55, -0.15)],
+  ["lowerarm_l", new THREE.Vector3(-0.55, 0.5, -0.35)],
+  ["upperarm_r", new THREE.Vector3(-0.8, 0.55, -0.15)],
+  ["lowerarm_r", new THREE.Vector3(0.55, 0.5, -0.35)],
+];
+const tmp = { a: new THREE.Vector3(), b: new THREE.Vector3(), q: new THREE.Quaternion(), p: new THREE.Quaternion(), w: new THREE.Quaternion() };
+
+/** Turns `bone` so the segment to its first child points along `dir` (body space). */
+function aimBone(bone: THREE.Object3D, dir: THREE.Vector3, body: THREE.Quaternion) {
+  const child = bone.children.find((c) => (c as THREE.Bone).isBone);
+  if (!child || !bone.parent) return;
+  bone.updateWorldMatrix(true, true);
+  const from = tmp.a.setFromMatrixPosition(child.matrixWorld).sub(tmp.b.setFromMatrixPosition(bone.matrixWorld)).normalize();
+  const to = tmp.b.copy(dir).normalize().applyQuaternion(body);
+  const turn = tmp.q.setFromUnitVectors(from, to);
+  bone.getWorldQuaternion(tmp.w);
+  bone.parent.getWorldQuaternion(tmp.p);
+  bone.quaternion.copy(tmp.p.invert().multiply(turn.multiply(tmp.w)));
+}
 
 const PISTOL = "/real/props/pistol.glb";
 
@@ -214,7 +239,18 @@ export function Character({
     if (gun) gun.visible = pistol;
   }, [root, pistol]);
   useEffect(() => () => void mixer.stopAllAction(), [mixer]);
-  useFrame((_, dt) => mixer.update(Math.min(dt, 0.05)));
+  const posing = useRef(false);
+  posing.current = (oneShot?.emote ?? emote) === "surrender" || emote === "surrender";
+  const bodyQuat = useMemo(() => new THREE.Quaternion(), []);
+  useFrame((_, dt) => {
+    mixer.update(Math.min(dt, 0.05));
+    if (!posing.current) return;
+    root.getWorldQuaternion(bodyQuat);
+    for (const [name, dir] of SURRENDER) {
+      const b = root.getObjectByName(name);
+      if (b) aimBone(b, dir, bodyQuat);
+    }
+  });
 
   return <primitive object={root} />;
 }

@@ -6,6 +6,7 @@ import { CHAPTERS, castOf, type Member } from "../game/data";
 import { useStage } from "../story/stage";
 import { useSnitch } from "../game/store";
 import { Character, type Emote } from "./Character";
+import { useFilm } from "../shell/film";
 
 /** Arc behind the table, facing the camera. */
 export function spot(i: number, n: number) {
@@ -109,7 +110,9 @@ function Body({ m, i, n }: { m: Member; i: number; n: number }) {
 export function Crew() {
   const crew = useSnitch((s) => s.crew);
   const out = useSnitch((s) => s.out);
-  const shown = crew.length ? crew : castOf(CHAPTERS[1]);
+  const empty = useFilm((s) => s.empty);
+  // with no run going, the menu shows the first chapter's crew; the intro's last scene wants the room empty
+  const shown = empty ? [] : crew.length ? crew : castOf(CHAPTERS[1]);
   return (
     <group>
       {shown.map((m, i) => (out.includes(m.id) ? null : <Body key={m.id} m={m} i={i} n={shown.length} />))}

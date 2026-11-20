@@ -2,6 +2,8 @@ import clsx from "clsx";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { audio } from "../fx/audio";
+import { useBoot } from "./Boot";
+import { useFilm } from "./film";
 
 export interface MenuItem {
   label: string;
@@ -30,6 +32,8 @@ export function Menu({ items, onBack, size = "lg" }: { items: MenuItem[]; onBack
     };
     const key = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement)?.tagName === "INPUT") return;
+      // the key that leaves the title screen (and starts the intro) must not also pick a menu item
+      if (!useBoot.getState().started || useFilm.getState().playing) return;
       if (e.key === "ArrowDown" || e.key === "s") step(1);
       else if (e.key === "ArrowUp" || e.key === "w") step(-1);
       else if (e.key === "Enter") {

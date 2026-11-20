@@ -3,6 +3,8 @@ import * as THREE from "three";
 import { Prop } from "./Prop";
 import { useSurface, type Surface } from "./pbr";
 import { Sign } from "./Venues";
+import type { Venue } from "../game/data";
+import { districtOf, seedOf, type District } from "./places";
 
 // Road runs along Z; the mark is on the +X side at z = 0.
 
@@ -122,8 +124,22 @@ function ShutteredFront({ z, w, side }: { z: number; w: number; side: 1 | -1 }) 
 }
 
 /** The mark's shopfront. */
-function Shopfront({ name, alarm }: { name: string; alarm: boolean }) {
-  const trim = useMemo(() => new THREE.MeshStandardMaterial({ color: "#141316", roughness: 0.5, metalness: 0.5 }), []);
+// what the window shows and how the front is finished, by the kind of place
+const FRONT: Partial<Record<Venue, { goods: string[]; glow: [string, string]; trim: string; sign: string }>> = {
+  pawn: { goods: ["#c8a45a", "#7a8fa8", "#a8553c", "#d9d2c0", "#3f5a4a", "#2a2a30"], glow: ["#5a4326", "#1d140b"], trim: "#141316", sign: "#ff2d6f" },
+  jewel: { goods: ["#f2d27a", "#e8e8f0", "#c9a227", "#9fd8ff", "#f2d27a", "#ffffff"], glow: ["#3a3550", "#0e0c18"], trim: "#1a1a20", sign: "#00e5ff" },
+  cards: { goods: ["#14532d", "#c81e3c", "#e8e2d0", "#2a1710", "#ffc98a", "#14532d"], glow: ["#4a1d1d", "#140808"], trim: "#1c0f0c", sign: "#ff2d6f" },
+  bank: { goods: ["#9a968c", "#d9d5cb", "#5a5a5e", "#c9ccd0", "#3a3d42", "#9a968c"], glow: ["#3a3f48", "#14161a"], trim: "#22252a", sign: "#00e5ff" },
+  casino: { goods: ["#ffc23d", "#c81e3c", "#14532d", "#ffffff", "#ffc23d", "#3a0f1a"], glow: ["#4a2a10", "#1a0c06"], trim: "#2e1d0c", sign: "#ffc23d" },
+  church: { goods: ["#5b3bb0", "#ffcf8f", "#e8e1d2", "#3b2a6b", "#ffb347", "#5b3bb0"], glow: ["#2a2240", "#0c0a14"], trim: "#2a241c", sign: "#ffcf8f" },
+  mint: { goods: ["#e3b341", "#c9ccd0", "#e3b341", "#9a9ea4", "#e3b341", "#ffffff"], glow: ["#3a4048", "#121418"], trim: "#22262c", sign: "#00e5ff" },
+  dock: { goods: ["#7b6a45", "#5a5a52", "#8a3b2a", "#34403a", "#7b6a45", "#2a2a30"], glow: ["#2a2a26", "#0c0c0a"], trim: "#1c1d1f", sign: "#ffa23a" },
+  tunnel: { goods: ["#5a5a52", "#3a3836", "#7a6a4a", "#2a2a30", "#5a5a52", "#3a3836"], glow: ["#1e2024", "#0a0a0c"], trim: "#1c1d1f", sign: "#ff2d6f" },
+};
+
+function Shopfront({ name, alarm, venue }: { name: string; alarm: boolean; venue?: Venue }) {
+  const front = FRONT[venue ?? "pawn"] ?? FRONT.pawn!;
+  const trim = useMemo(() => new THREE.MeshStandardMaterial({ color: front.trim, roughness: 0.5, metalness: 0.5 }), [front]);
   // the room seen through the glass
   const inside = useMemo(() => {
     const c = document.createElement("canvas");
@@ -131,8 +147,8 @@ function Shopfront({ name, alarm }: { name: string; alarm: boolean }) {
     c.height = 336;
     const g = c.getContext("2d")!;
     const bg = g.createLinearGradient(0, 0, 0, 336);
-    bg.addColorStop(0, "#5a4326");
-    bg.addColorStop(1, "#1d140b");
+    bg.addColorStop(0, front.glow[0]);
+    bg.addColorStop(1, front.glow[1]);
     g.fillStyle = bg;
     g.fillRect(0, 0, 512, 336);
     g.filter = "blur(2px)";
@@ -142,7 +158,7 @@ function Shopfront({ name, alarm }: { name: string; alarm: boolean }) {
       for (let i = 0; i < 14; i++) {
         const w = 14 + ((i * 37 + row * 11) % 22);
         const h = 22 + ((i * 53 + row * 7) % 40);
-        g.fillStyle = ["#c8a45a", "#7a8fa8", "#a8553c", "#d9d2c0", "#3f5a4a", "#2a2a30"][(i + row * 2) % 6];
+        g.fillStyle = front.goods[(i + row * 2) % 6];
         g.fillRect(28 + i * 33, 70 + row * 80 - h, w, h);
       }
     }
@@ -152,7 +168,7 @@ function Shopfront({ name, alarm }: { name: string; alarm: boolean }) {
     const t = new THREE.CanvasTexture(c);
     t.colorSpace = THREE.SRGBColorSpace;
     return t;
-  }, []);
+  }, [front]);
   return (
     <group position={[FRONT_X - 0.08, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
       {/* surround */}
@@ -184,7 +200,7 @@ function Shopfront({ name, alarm }: { name: string; alarm: boolean }) {
         <boxGeometry args={[6.4, 0.75, 0.16]} />
         <meshStandardMaterial color="#0d0c10" roughness={0.6} />
       </mesh>
-      <Sign text={name.toUpperCase()} color="#ff2d6f" width={3.6} position={[0, 3.25, 0.18]} />
+      <Sign text={name.toUpperCase()} color={front.sign} width={3.6} position={[0, 3.25, 0.18]} />
       <Prop url={P + "security_camera.glb"} longest={0.4} position={[-2.7, 3.0, 0.3]} rotation={[0.3, 0.6, 0]} />
       <Prop url={P + "aircon_unit.glb"} longest={0.9} position={[2.6, 4.2, 0.25]} />
       <pointLight position={[0.8, 2.0, 1.6]} color={alarm ? "#ff2d6f" : "#ffd29a"} intensity={alarm ? 10 : 16} distance={9} />
@@ -192,25 +208,69 @@ function Shopfront({ name, alarm }: { name: string; alarm: boolean }) {
   );
 }
 
-const BLOCKS: Block[] = (() => {
-  const r = rng(11);
+// Crews don't hit the same street twice: each job gets its own street, seeded by the job's name, in the
+// part of town its target belongs to. Light count never changes between streets (no shader recompiles).
+
+const LOOK: Record<District, { walls: Surface[]; target: Surface; floors: [number, number]; lamp: string; signs: string[]; tones: string[] }> = {
+  oldtown: { walls: ["brick_red", "brick_dark", "plaster_worn", "brick_dark"], target: "brick_dark", floors: [2, 4], lamp: "#ffb46b", signs: ["LIQUOR", "24 HR", "DINER", "CHECKS CASHED", "LAUNDRY", "PAWN"], tones: ["#00e5ff", "#9d5cff", "#ff2d6f", "#ffb347"] },
+  downtown: { walls: ["facade_tiles_dark", "concrete_wall", "plaster_worn", "facade_tiles_dark"], target: "facade_tiles_dark", floors: [3, 6], lamp: "#e8f0ff", signs: ["HOTEL", "BAR", "PARKING", "OPEN LATE", "CLUB", "TAXI"], tones: ["#00e5ff", "#ffffff", "#ffc23d", "#9d5cff"] },
+  industrial: { walls: ["corrugated_iron", "concrete_wall", "corrugated_iron"], target: "concrete_wall", floors: [1, 2], lamp: "#ffa23a", signs: ["BAY 4", "NO ENTRY", "FREIGHT", "GATE 2", "CUSTOMS"], tones: ["#ffa23a", "#ff2d6f", "#e8f0ff"] },
+  parish: { walls: ["plaster_worn", "brick_red", "plaster_worn"], target: "plaster_worn", floors: [2, 3], lamp: "#ffcf8f", signs: ["BAKERY", "FLOWERS", "TAILOR", "CAFE"], tones: ["#ffcf8f", "#9d5cff", "#00e5ff"] },
+};
+
+
+function blocksFor(seed: number, d: District): Block[] {
+  const r = rng(seed);
+  const look = LOOK[d];
   const out: Block[] = [];
-  const kinds: Surface[] = ["brick_red", "brick_dark", "concrete_wall", "plaster_worn", "facade_tiles_dark", "brick_dark"];
+  const [lo, hi] = look.floors;
   for (const side of [1, -1] as const)
     for (let z = -36; z < 30; ) {
       const target = side === 1 && z <= -3.2 && z + 7 > 0;
-      const w = target ? 6.4 : 5 + Math.floor(r() * 3) * 1.2;
+      const w = target ? 6.4 : (d === "industrial" ? 8 : 5) + Math.floor(r() * 3) * 1.2;
       const zz = target ? -3.2 : z;
-      out.push({ z: zz + w / 2, w, h: FLOOR_H * (target ? 3 : 2 + Math.floor(r() * 4)), d: 9, surface: target ? "brick_dark" : kinds[Math.floor(r() * kinds.length)], side });
+      const floors = target ? Math.max(2, lo + 1) : lo + Math.floor(r() * (hi - lo + 1));
+      out.push({ z: zz + w / 2, w, h: FLOOR_H * floors, d: 9, surface: target ? look.target : look.walls[Math.floor(r() * look.walls.length)], side });
       z = zz + w + 0.02;
     }
   return out;
-})();
+}
 
-export function StreetSet({ name, alarm }: { name: string; alarm: boolean }) {
+const CARS = ["/real/vehicles/hatchback.glb", "/real/vehicles/pickup.glb", "/real/vehicles/covered_car.glb", "/real/vehicles/sedan.glb"];
+const CAR_TINTS = ["#6d2a2a", "#44505c", "#2b3a2f", "#5a5a5e", "#1d2433", "#7a6a4a", undefined];
+// kerbside spots clear of the van (+x lane, z around -2.6) and the police lanes
+const SLOTS: [number, number][] = [
+  [-(KERB_X - 1.05), -20],
+  [-(KERB_X - 1.05), -14],
+  [-(KERB_X - 1.05), -9],
+  [-(KERB_X - 1.1), 5.5],
+  [-(KERB_X - 1.05), 13],
+  [KERB_X - 1.05, -16],
+  [KERB_X - 1.05, 14],
+];
+
+export function StreetSet({ name, alarm, venue }: { name: string; alarm: boolean; venue?: Venue }) {
   const road = useSurface("asphalt_road", [8, 90], 4, { roughness: 0.62, envMapIntensity: 1.4 });
   const pave = useSurface("pavement_concrete", [3, 90], 2.5);
-  const { lit, dark, frame } = useMemo(() => ({ lit: [] as THREE.Matrix4[], dark: [] as THREE.Matrix4[], frame: [] as THREE.Matrix4[] }), []);
+  const district = districtOf(venue);
+  const look = LOOK[district];
+  const seed = seedOf(name);
+  const blocks = useMemo(() => blocksFor(seed, district), [seed, district]);
+  // windows are collected per street, so a new street starts from empty lists
+  const { lit, dark, frame } = useMemo(() => ({ lit: [] as THREE.Matrix4[], dark: [] as THREE.Matrix4[], frame: [] as THREE.Matrix4[] }), [blocks]); // eslint-disable-line react-hooks/exhaustive-deps
+  const dressing = useMemo(() => {
+    const r = rng(seed + 7);
+    const pick = <T,>(xs: T[]) => xs[Math.floor(r() * xs.length)];
+    const slots = SLOTS.filter(() => r() < 0.55).slice(0, 4);
+    return {
+      cars: slots.map(([x, z]) => ({ x, z, url: pick(CARS), tint: pick(CAR_TINTS), flip: r() < 0.5 })),
+      shift: (r() - 0.5) * 6,
+      signs: [pick(look.signs), pick(look.signs.filter((x) => x !== look.signs[0]))],
+      tones: [pick(look.tones), pick(look.tones)],
+      signZ: [-13.5 + (r() - 0.5) * 8, 9.5 + (r() - 0.5) * 6],
+      clutter: r(),
+    };
+  }, [seed, look]);
   const paint = useMemo(() => new THREE.MeshStandardMaterial({ color: "#b9b6a8", roughness: 0.75 }), []);
 
   return (
@@ -236,20 +296,20 @@ export function StreetSet({ name, alarm }: { name: string; alarm: boolean }) {
         </group>
       ))}
 
-      {BLOCKS.map((b, i) => (
-        <group key={i}>
+      {blocks.map((b, i) => (
+        <group key={`${seed}-${i}`}>
           <Building b={b} lit={lit} dark={dark} frame={frame} />
-          {!(b.side === 1 && Math.abs(b.z) < 3.3) && <ShutteredFront z={b.z} w={b.w} side={b.side} />}
+          {district !== "industrial" && !(b.side === 1 && Math.abs(b.z) < 3.3) && <ShutteredFront z={b.z} w={b.w} side={b.side} />}
         </group>
       ))}
-      <Windows lit={lit} dark={dark} frame={frame} />
-      <Shopfront name={name} alarm={alarm} />
+      <Windows key={seed} lit={lit} dark={dark} frame={frame} />
+      <Shopfront name={name} alarm={alarm} venue={venue} />
 
       {/* street furniture */}
       {[-22, -6, 12].map((z, i) => (
         <group key={z} position={[(i % 2 ? -1 : 1) * (KERB_X + 0.45), 0.15, z]}>
           <Prop url={P + "street_light_modern.glb"} height={7.2} rotation={[0, i % 2 ? Math.PI / 2 : -Math.PI / 2, 0]} />
-          <pointLight position={[(i % 2 ? 1 : -1) * 1.6, 6.6, 0]} color="#ffb46b" intensity={90} distance={20} decay={1.8} />
+          <pointLight position={[(i % 2 ? 1 : -1) * 1.6, 6.6, 0]} color={look.lamp} intensity={90} distance={20} decay={1.8} />
         </group>
       ))}
       <Prop url={P + "fire_hydrant.glb"} height={0.75} position={[KERB_X + 0.5, 0.15, 3.6]} />
@@ -257,21 +317,25 @@ export function StreetSet({ name, alarm }: { name: string; alarm: boolean }) {
       <Prop url={P + "trash_bag.glb"} longest={0.7} position={[FRONT_X - 0.9, 0.15, -6.6]} />
       <Prop url={P + "trash_bag.glb"} longest={0.6} position={[FRONT_X - 1.5, 0.15, -6.9]} rotation={[0, 1, 0]} />
       <Prop url={P + "trash_can.glb"} height={0.85} position={[KERB_X + 0.6, 0.15, -3.9]} />
-      <Prop url={P + "payphone.glb"} height={1.9} position={[-(KERB_X + 2.3), 0.15, 2.5]} rotation={[0, Math.PI / 2, 0]} />
+      {district !== "industrial" && <Prop url={P + "payphone.glb"} height={1.9} position={[-(KERB_X + 2.3), 0.15, 2.5 + dressing.shift]} rotation={[0, Math.PI / 2, 0]} />}
       <Prop url={P + "utility_box.glb"} height={1.3} position={[-(FRONT_X - 0.5), 0.15, -5.2]} rotation={[0, Math.PI / 2, 0]} />
-      <Prop url={P + "street_bench.glb"} width={1.8} position={[-(KERB_X + 1.8), 0.15, -11]} rotation={[0, Math.PI / 2, 0]} />
+      {district !== "industrial" && <Prop url={P + "street_bench.glb"} width={1.8} position={[-(KERB_X + 1.8), 0.15, -11 - dressing.shift]} rotation={[0, Math.PI / 2, 0]} />}
+      {district === "industrial" &&
+        [-14, -10, -6, -2, 2, 6].map((z) => (
+          <group key={z} position={[-(FRONT_X - 0.6), 0.15, z]}>
+            <Prop url={P + "chainlink_fence_panel.glb"} width={4} rotation={[0, Math.PI / 2, 0]} />
+          </group>
+        ))}
       <Prop url={P + "manhole_cover.glb"} longest={0.8} position={[-1.6, 0.005, -4.5]} />
       <Prop url={P + "traffic_cone.glb"} height={0.7} position={[KERB_X - 0.5, 0, 6.5]} />
       <Prop url={P + "concrete_barrier.glb"} width={2} position={[-(KERB_X + 1.2), 0.15, 9]} rotation={[0, 0.2, 0]} />
-      {/* parked cars */}
-      <Prop url="/real/vehicles/hatchback.glb" depth={4.0} position={[-(KERB_X - 1.05), 0, -9]} tint="#6d2a2a" />
-      <Prop url="/real/vehicles/pickup.glb" depth={5.3} position={[-(KERB_X - 1.1), 0, 5.5]} rotation={[0, Math.PI, 0]} tint="#44505c" />
-      <Prop url="/real/vehicles/covered_car.glb" depth={4.3} position={[KERB_X - 1.05, 0, -16]} />
-      {/* signs down the street */}
-      <Sign text="LIQUOR" color="#00e5ff" width={2.2} position={[-(FRONT_X - 0.1), 3.4, -13.5]} rotation={[0, Math.PI / 2, 0]} />
-      <Sign text="24 HR" color="#9d5cff" width={1.6} position={[FRONT_X - 0.1, 3.4, 9.5]} rotation={[0, -Math.PI / 2, 0]} />
-      <pointLight position={[-(FRONT_X - 1.5), 3.2, -13.5]} color="#00e5ff" intensity={18} distance={10} />
-      <pointLight position={[FRONT_X - 1.5, 3.2, 9.5]} color="#9d5cff" intensity={18} distance={10} />
+      {dressing.cars.map((c, i) => (
+        <Prop key={`${seed}-${i}`} url={c.url} depth={c.url.includes("pickup") ? 5.3 : 4.2} position={[c.x, 0, c.z]} rotation={[0, c.flip ? Math.PI : 0, 0]} tint={c.tint} />
+      ))}
+      <Sign text={dressing.signs[0]} color={dressing.tones[0]} width={2.2} position={[-(FRONT_X - 0.1), 3.4, dressing.signZ[0]]} rotation={[0, Math.PI / 2, 0]} />
+      <Sign text={dressing.signs[1]} color={dressing.tones[1]} width={1.8} position={[FRONT_X - 0.1, 3.4, dressing.signZ[1]]} rotation={[0, -Math.PI / 2, 0]} />
+      <pointLight position={[-(FRONT_X - 1.5), 3.2, dressing.signZ[0]]} color={dressing.tones[0]} intensity={18} distance={10} />
+      <pointLight position={[FRONT_X - 1.5, 3.2, dressing.signZ[1]]} color={dressing.tones[1]} intensity={18} distance={10} />
     </group>
   );
 }

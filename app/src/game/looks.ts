@@ -13,7 +13,8 @@ export function bustFor(chapter: number, job: number): Bust {
   return BY_CHAPTER[chapter] ?? "patrol";
 }
 
-// Cloth colours per chapter. A member wears two of them, picked by seat, so the crew never matches.
+// Cloth colours per chapter. A member wears two of them, picked by seat and job: nobody matches, and
+// nobody turns up to two jobs in the same clothes.
 const WARDROBE: Record<number, string[]> = {
   0: ["#7a5a3a", "#b88a3a", "#3d5a80", "#6b3a2a", "#4f5b3a"], // ten years ago: tan, mustard, denim
   1: ["#4a5263", "#7a5f45", "#3f6650", "#8a3a44", "#5a5a62"], // street hoodies
@@ -26,9 +27,10 @@ const WARDROBE: Record<number, string[]> = {
   8: ["#16181c", "#1b2a3a", "#16181c", "#22262c", "#16181c"], // matching heist blacks
 };
 
-export function outfitFor(chapter: number, seat: number): string[] {
+export function outfitFor(chapter: number, seat: number, job = 0): string[] {
   const p = WARDROBE[chapter] ?? WARDROBE[(chapter % 8) + 1];
-  return [p[seat % p.length], p[(seat + 2) % p.length]];
+  const n = p.length;
+  return [p[(seat + job) % n], p[(seat + 2 + job * 2) % n]];
 }
 
 export interface CopLook {
