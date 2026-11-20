@@ -1,3 +1,4 @@
+import { useProgress } from "@react-three/drei";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Logo, Mark } from "../brand/Mark";
@@ -80,24 +81,45 @@ function Film() {
   const [title, setTitle] = useState(false);
 
   useEffect(() => {
-    const timers = steps().map((s) =>
-      setTimeout(() => {
-        s.run?.();
-        if (s.caption) setCaption(s.caption);
-      }, s.at),
-    );
-    // captions fade a few seconds after they appear
-    const fades = steps()
-      .filter((s) => s.caption)
-      .map((s) => setTimeout(() => setCaption((c) => (c === s.caption ? undefined : c)), s.at + 3200));
-    const t1 = setTimeout(() => setTitle(true), 44000);
-    const t2 = setTimeout(end, LENGTH);
+    // The film's clock stops while a scene is still loading, so a caption never lands on the wrong shot
+    // on a slow connection. When loading ends, the current beat restarts so it plays from the top.
+    const plan = steps();
+    let clock = 0;
+    let last = performance.now();
+    let next = 0;
+    let wasLoading = false;
+    let raf = 0;
+    const shown = new Map<string, number>();
+    const tick = (now: number) => {
+      const loading = useProgress.getState().active;
+      if (!loading) clock += now - last;
+      if (wasLoading && !loading) {
+        const c = useSnitch.getState().cut;
+        if (c) useSnitch.setState({ cut: { ...c, beatAt: now, at: c.state === "go" ? now : c.at } });
+      }
+      wasLoading = loading;
+      last = now;
+      while (next < plan.length && clock >= plan[next].at) {
+        const st = plan[next++];
+        st.run?.();
+        if (st.caption) {
+          setCaption(st.caption);
+          shown.set(st.caption, clock);
+        }
+      }
+      // captions fade a few seconds after they appear
+      setCaption((c) => (c && clock - (shown.get(c) ?? clock) > 3200 ? undefined : c));
+      if (clock >= 44000) setTitle(true);
+      if (clock >= LENGTH) return end();
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
     // ignore the first second, so the key that left the title screen doesn't also skip the film
     const opened = performance.now();
     const key = (e: KeyboardEvent) => performance.now() - opened > 1000 && (e.key === "Escape" || e.key === "Enter" || e.key === " ") && end();
     window.addEventListener("keydown", key);
     return () => {
-      [...timers, ...fades, t1, t2].forEach(clearTimeout);
+      cancelAnimationFrame(raf);
       window.removeEventListener("keydown", key);
     };
   }, []);
