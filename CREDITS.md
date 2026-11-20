@@ -12,8 +12,6 @@ All assets below ship in `app/public/real/`. Everything is CC0 1.0 (public domai
 | `real/props/traffic_light_head.glb` | Stop light | Open Robotics (OpenRobotics) | https://app.gazebosim.org/OpenRobotics/fuel/models/Stop%20light |
 | `real/vehicles/hatchback.glb` | Hatchback | Open Robotics (OpenRobotics) | https://app.gazebosim.org/OpenRobotics/fuel/models/Hatchback |
 | `real/vehicles/pickup.glb` | Pickup | Open Robotics (OpenRobotics) | https://app.gazebosim.org/OpenRobotics/fuel/models/Pickup |
-| `real/vehicles/sedan.glb` | Prius Hybrid | Open Robotics (OpenRobotics) | https://app.gazebosim.org/OpenRobotics/fuel/models/Prius%20Hybrid |
-| `real/vehicles/suv.glb` | SUV | Open Robotics (OpenRobotics) | https://app.gazebosim.org/OpenRobotics/fuel/models/SUV |
 | `real/vehicles/van_ambulance.glb` | Ambulance | Open Robotics (OpenRobotics) | https://app.gazebosim.org/OpenRobotics/fuel/models/Ambulance |
 
 ## MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs - CC0-1.0
