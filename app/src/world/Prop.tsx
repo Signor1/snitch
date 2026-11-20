@@ -34,6 +34,7 @@ export function Prop({
 } & Omit<React.ComponentProps<"group">, "children">) {
   const gltf = useGLTF(url);
   const { object, scale, offset } = useMemo(() => {
+    gltf.scene.traverse(plainGlass);
     const object = gltf.scene.clone(true);
     object.traverse((o) => {
       if (hide?.includes(o.name)) o.visible = false;
@@ -73,4 +74,18 @@ export function Prop({
       </group>
     </group>
   );
+}
+
+/**
+ * Scanned glass uses transmission, which makes three.js draw the whole scene a second time every frame just
+ * to show what's behind it. Plain see-through glass looks the same at this size and costs nothing extra.
+ */
+function plainGlass(o: THREE.Object3D) {
+  const mat = (o as THREE.Mesh).material as THREE.MeshPhysicalMaterial | undefined;
+  if (!mat?.isMeshPhysicalMaterial || !mat.transmission) return;
+  mat.opacity = Math.min(mat.opacity, 0.25 + 0.5 * (1 - mat.transmission));
+  mat.transmission = 0;
+  mat.transparent = true;
+  mat.depthWrite = false;
+  mat.needsUpdate = true;
 }

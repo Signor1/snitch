@@ -38,6 +38,14 @@
     color: var(--color-mist);
     color-scheme: dark;
     -webkit-tap-highlight-color: transparent;
+    /* no double-tap zoom, so taps fire at once */
+    touch-action: manipulation;
+  }
+  /* a pressed button answers the finger in the same frame, before any work it starts */
+  button:not(:disabled):active,
+  a:active {
+    transform: scale(0.97);
+    filter: brightness(1.25);
   }
   body {
     margin: 0;

@@ -4,15 +4,11 @@ import { useEffect, useState } from "react";
 import { create } from "zustand";
 import { Logo, Mark } from "../brand/Mark";
 import { audio } from "../fx/audio";
-import { useFilm } from "./film";
 
-/** started = past the loading and title screens. On the home page the intro film starts in the same step, so the menu never flashes first. */
+/** started = past the loading and title screens. The tap lands straight on the menu; the intro is one of its items. */
 export const useBoot = create<{ started: boolean; start(): void }>((set) => ({
   started: false,
-  start: () => {
-    if (location.pathname === "/") useFilm.getState().play();
-    set({ started: true });
-  },
+  start: () => set({ started: true }),
 }));
 
 const TIPS = [

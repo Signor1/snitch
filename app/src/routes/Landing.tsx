@@ -26,9 +26,11 @@ export default function Landing() {
   useSceneAudio("title");
   const film = useFilm((s) => s.playing);
 
+  const intro: MenuItem = { label: "Watch the intro", hint: "The night Ash went down, ten years ago. Under a minute.", run: () => useFilm.getState().play() };
   const items: MenuItem[] = [
     ...(me && played ? [{ label: "Continue", hint: resume ? `Pick up the story: ${resume.prologue ? "the Prologue" : `Chapter ${resume.id}`}, ${resume.name}.` : `Back to the city as ${me.boss}, boss of ${me.crew}.`, run: () => nav(resume ? `/run/${resume.id}` : "/city") }] : []),
     { label: me ? "Chapters" : "New game", hint: me ? "Replay any chapter you've opened, on any difficulty." : "Ten years ago, someone sold out your partner. Start the story.", run: () => nav(me ? "/city" : "/identity") },
+    ...(played ? [] : [intro]),
     ...(played ? [{ label: "Evidence board", hint: "Every file you've found. Who is Echo?", run: () => nav("/evidence") }] : []),
     { label: "Play with friends", hint: "Open a room and invite friends to sit in your crew. One of them might be the snitch.", run: () => nav("/rooms") },
     { label: `Daily job #${day}`, hint: `Four jobs, the same table and the same snitch for everyone today.${daily ? ` Your best today: ${money(daily.payout)}.` : ""}`, run: () => nav(`/run/${DAILY_ID}`) },
@@ -36,7 +38,7 @@ export default function Landing() {
     { label: "The record", hint: "The leaderboard, written by the contract after it checks every proof.", run: () => nav("/record") },
     { label: "The shop", hint: "The Boss Pass, paid in a confidential dollar, and cosmetics you earn with stars.", run: () => nav("/shop") },
     ...(me ? [{ label: "Identity", hint: "Change your name, your look and your crew.", run: () => nav("/identity") }] : []),
-    { label: "Watch the intro", hint: "The night Ash went down, ten years ago.", run: () => useFilm.getState().play() },
+    ...(played ? [intro] : []),
     { label: "How to play", hint: "The whole game in four lines.", run: () => setPanel("how") },
     { label: "Settings", hint: "Sound, graphics, difficulty and accessibility.", run: () => setPanel("settings") },
     { label: "About the game", hint: "What SNITCH is, and why nobody can cheat, not even us.", run: () => nav("/about") },
