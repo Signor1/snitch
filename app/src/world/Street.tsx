@@ -5,6 +5,7 @@ import { useSnitch } from "../game/store";
 import { Character } from "./Character";
 import { Prop } from "./Prop";
 import { StreetSet } from "./StreetSet";
+import { Floodlights, Helicopter, Roadblock } from "./Raid";
 
 /** Street set, far from the hideout. */
 export const STREET_X = 80;
@@ -64,36 +65,50 @@ function liveryTexture() {
   return livery;
 }
 
-/** The crew's SUV, or a patrol car with a flashing roof bar. */
-export function Car({ police = false, carRef }: { police?: boolean; carRef: React.RefObject<THREE.Group | null> }) {
+export type CarKind = "crew" | "patrol" | "unmarked" | "swat";
+
+/** The crew's SUV, a marked patrol car, an unmarked detective car, or a black SWAT van. */
+export function Car({ police = false, kind = police ? "patrol" : "crew", carRef, lit = true }: { police?: boolean; kind?: CarKind; carRef: React.RefObject<THREE.Group | null>; lit?: boolean }) {
   const red = useRef<THREE.MeshStandardMaterial>(null);
   const blue = useRef<THREE.MeshStandardMaterial>(null);
+  const dash = useRef<THREE.MeshStandardMaterial>(null);
   useFrame((st) => {
     const on = Math.floor(st.clock.elapsedTime * 5) % 2 === 0;
-    if (red.current) red.current.emissiveIntensity = on ? 7 : 0.3;
-    if (blue.current) blue.current.emissiveIntensity = on ? 0.3 : 7;
+    const k = lit ? 1 : 0;
+    if (red.current) red.current.emissiveIntensity = k * (on ? 7 : 0.3);
+    if (blue.current) blue.current.emissiveIntensity = k * (on ? 0.3 : 7);
+    if (dash.current) dash.current.emissiveIntensity = k * (Math.floor(st.clock.elapsedTime * 8) % 2 ? 9 : 0);
   });
-  const len = police ? 4.6 : 4.7;
-  const half = police ? 0.9 : 1.0;
-  const roof = police ? 1.46 : 1.9;
+  const sedan = kind === "patrol" || kind === "unmarked";
+  const len = sedan ? 4.6 : kind === "swat" ? 5.3 : 4.7;
+  const half = sedan ? 0.9 : kind === "swat" ? 1.12 : 1.0;
+  const roof = sedan ? 1.46 : kind === "swat" ? 2.15 : 1.9;
+  const marked = kind === "patrol" || kind === "swat";
   return (
     <group ref={carRef}>
-      <Prop url={police ? "/real/vehicles/sedan.glb" : "/real/vehicles/suv.glb"} depth={len} rotation={[0, police ? 0 : Math.PI, 0]} tint={police ? undefined : "#2c2c36"} />
+      <Prop url={sedan ? "/real/vehicles/sedan.glb" : "/real/vehicles/suv.glb"} depth={len} rotation={[0, sedan ? 0 : Math.PI, 0]} tint={kind === "crew" ? "#2c2c36" : kind === "unmarked" ? "#1a1c22" : kind === "swat" ? "#0d0f12" : undefined} />
+      {kind === "unmarked" && (
+        // a blue strobe behind the windscreen, nothing on the roof
+        <mesh position={[0, 1.18, 0.55]}>
+          <boxGeometry args={[0.7, 0.06, 0.1]} />
+          <meshStandardMaterial ref={dash} color="#1f6bff" emissive="#1f6bff" emissiveIntensity={9} toneMapped={false} />
+        </mesh>
+      )}
       {/* head and tail lamps */}
       {[-0.62, 0.62].map((x) => (
         <group key={x}>
-          <mesh position={[x * half * 1.05, police ? 0.66 : 0.95, len / 2 - 0.02]}>
+          <mesh position={[x * half * 1.05, sedan ? 0.66 : 0.95, len / 2 - 0.02]}>
             <boxGeometry args={[0.3, 0.1, 0.04]} />
             <meshStandardMaterial color="#fff" emissive="#fff3d6" emissiveIntensity={5} toneMapped={false} />
           </mesh>
-          <mesh position={[x * half * 1.05, police ? 0.82 : 1.05, -len / 2 + 0.02]}>
+          <mesh position={[x * half * 1.05, sedan ? 0.82 : 1.05, -len / 2 + 0.02]}>
             <boxGeometry args={[0.26, 0.09, 0.04]} />
             <meshStandardMaterial color={HEAT} emissive="#ff1a2e" emissiveIntensity={2.4} toneMapped={false} />
           </mesh>
         </group>
       ))}
       <spotLight position={[0, 0.8, len / 2]} target-position={[0, 0, len / 2 + 8]} angle={0.5} penumbra={0.6} intensity={60} distance={18} color="#fff1d0" />
-      {police && (
+      {marked && (
         <>
           {[-1, 1].map((side) => (
             <mesh key={side} position={[side * (half + 0.012), 0.74, -0.15]} rotation={[0, (side * Math.PI) / 2, 0]}>
@@ -149,6 +164,10 @@ export function Street() {
     return g;
   }, []);
   const team = cut?.team.length ?? 0;
+  const bust = cut?.bust ?? "patrol";
+  const raiding = cut?.state === "tipped" && cut.beat === "exit";
+  const kinds: [CarKind, CarKind] =
+    bust === "detectives" ? ["unmarked", "unmarked"] : bust === "swat" || bust === "allin" ? ["swat", "patrol"] : ["patrol", "patrol"];
 
   useFrame((st, dt) => {
     const t = st.clock.elapsedTime;
@@ -187,14 +206,14 @@ export function Street() {
       const dir = state === "go" ? end : start;
       m.rotation.y = Math.atan2(dir.x - m.position.x, dir.z - m.position.z);
     });
-    // police: two cars close the street from both ends
-    const arrive = state === "tipped" ? ease(since / 1.1) : 0;
+    // police: two cars close the street from both ends; in an ambush they were parked there all along
+    const arrive = state !== "tipped" ? 0 : bust === "ambush" ? 1 : ease(since / 1.1);
     copA.current?.position.set(-1.6, 0, THREE.MathUtils.lerp(34, 3.4, arrive));
     copB.current?.position.set(0.4, 0, THREE.MathUtils.lerp(-40, -8.2, arrive));
     if (copA.current) copA.current.rotation.y = Math.PI + 0.5 * arrive;
     if (copB.current) copB.current.rotation.y = -0.35 * arrive;
     const flash = Math.floor(t * 5) % 2;
-    const on = state === "tipped" ? 1 : 0;
+    const on = state === "tipped" && (bust !== "ambush" || since > 0.6) ? 1 : 0;
     if (red.current) red.current.intensity = on * (flash ? 90 : 6);
     if (blue.current) blue.current.intensity = on * (flash ? 6 : 90);
     // cash burst on a clean job
@@ -215,13 +234,16 @@ export function Street() {
       <StreetSet name={cut?.job ?? "Pawn shop"} alarm={cut?.state === "tipped" && cut.beat === "exit"} />
 
       <Car carRef={van} />
-      <Car police carRef={copA} />
-      <Car police carRef={copB} />
+      <Car kind={kinds[0]} carRef={copA} lit={bust !== "ambush" || raiding} />
+      <Car kind={kinds[1]} carRef={copB} lit={bust !== "ambush" || raiding} />
+      <Floodlights active={bust === "harbour" || bust === "allin"} />
+      <Helicopter active={bust === "helicopter" || bust === "allin"} />
+      <Roadblock active={bust === "roadblock" || bust === "allin"} />
       {[0, 1, 2, 3].map((i) => (
         <group key={i} ref={(m) => void (runners.current[i] = m)} visible={false}>
           {cut?.team[i] !== undefined && (
             <Suspense fallback={null}>
-              <Character model={useSnitch.getState().crew[cut.team[i]]?.model ?? "gang_m1"} phase={i} emote="sprint" pistol />
+              <Character model={useSnitch.getState().crew[cut.team[i]]?.model ?? "gang_m1"} outfit={useSnitch.getState().crew[cut.team[i]]?.outfit} phase={i} emote="sprint" pistol />
             </Suspense>
           )}
         </group>

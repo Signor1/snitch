@@ -65,7 +65,7 @@ function Body({ m, i, n }: { m: Member; i: number; n: number }) {
   return (
     <group ref={g} position={[p.x, 0, p.z]} rotation={[0, Math.atan2(-p.x, 2.6 - p.z), 0]}>
       <Suspense fallback={null}>
-        <Character model={m.model} phase={m.id} emote={base} oneShot={shot} />
+        <Character model={m.model} outfit={m.outfit} phase={m.id} emote={base} oneShot={shot} />
       </Suspense>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.006, 0]}>
         <ringGeometry args={[0.3, 0.335, 48]} />

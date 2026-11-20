@@ -12,6 +12,7 @@ import type { ChainTable, LiveRun } from "../chain/engine";
 import { revertName } from "../chain/tx";
 import { ACTIONS, type Ask } from "./actions";
 import { DAILY_ID, dailySeed, findChapter, isSideMode, recordBest } from "./modes";
+import { outfitFor, type Bust } from "./looks";
 import { CONTACTS, type ContactId, type GameKind, type Odds, type Plan, type ScoutId } from "./mission";
 import { autoTeam, barred, blackout, teamProblem } from "./tasks";
 
@@ -25,6 +26,7 @@ export interface Cut {
   beatAt: number;
   target: Target;
   venue: Venue;
+  bust: Bust;
   at: number;
   team: number[];
   job: string;
@@ -305,7 +307,7 @@ export const useSnitch = create<State>((set, get) => {
       set({
         chapter,
         mode,
-        crew: dressed(castOf(chapter)),
+        crew: dressed(castOf(chapter)).map((m) => ({ ...m, outfit: outfitFor(chapter.id, m.id) })),
         out: [],
         benched: [],
         loyalty: 70,

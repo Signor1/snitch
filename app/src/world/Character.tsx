@@ -83,6 +83,39 @@ function makePistol(src: THREE.Object3D) {
   return g;
 }
 const GUN_POS: [number, number, number] = [0, 0.13, 0.02];
+
+// Tints multiply the fabric texture, and most of these are dark, so a tint alone comes out near black.
+// Dividing by the texture's average brightness lands on the intended colour and keeps the weave.
+const brightness = new Map<string, number>();
+function textureBrightness(t: THREE.Texture | null): number {
+  const img = t?.image as CanvasImageSource | undefined;
+  if (!t || !img) return 1;
+  const known = brightness.get(t.uuid);
+  if (known !== undefined) return known;
+  let v = 1;
+  try {
+    const c = document.createElement("canvas");
+    c.width = c.height = 16;
+    const g = c.getContext("2d")!;
+    g.drawImage(img, 0, 0, 16, 16);
+    const d = g.getImageData(0, 0, 16, 16).data;
+    let sum = 0;
+    for (let i = 0; i < d.length; i += 4) {
+      const lin = (x: number) => Math.pow(x / 255, 2.2);
+      sum += 0.2126 * lin(d[i]) + 0.7152 * lin(d[i + 1]) + 0.0722 * lin(d[i + 2]);
+    }
+    v = Math.min(1, Math.max(0.25, sum / 256));
+  } catch {
+    /* unreadable image: tint as is */
+  }
+  brightness.set(t.uuid, v);
+  return v;
+}
+function tint(mat: THREE.MeshStandardMaterial, colour: string) {
+  const m = mat.clone();
+  m.color.set(colour).multiplyScalar(1 / textureBrightness(mat.map));
+  return m;
+}
 const GUN_ROT: [number, number, number] = [0, Math.PI / 2, Math.PI / 2];
 
 export function Character({
@@ -91,6 +124,8 @@ export function Character({
   oneShot,
   pistol = false,
   phase = 0,
+  outfit,
+  uniform,
 }: {
   model: Model;
   emote?: Emote;
@@ -98,6 +133,10 @@ export function Character({
   pistol?: boolean;
   /** Offsets looping clips so a group doesn't move in lockstep. */
   phase?: number;
+  /** Clothing colours, applied in order to the cloth materials (shoes keep theirs). */
+  outfit?: string[];
+  /** Colour for police gear (cap, belt, patches). */
+  uniform?: string;
 }) {
   const body = useGLTF(url(model));
   const a1 = useGLTF(ANIMS[0]);
@@ -105,14 +144,23 @@ export function Character({
   const a3 = useGLTF(ANIMS[2]);
   const gunSrc = useGLTF(PISTOL);
 
+  const look = `${outfit?.join(",") ?? ""}|${uniform ?? ""}`;
   const root = useMemo(() => {
     const r = cloneSkinned(body.scene) as THREE.Group;
+    let k = 0;
     r.traverse((o) => {
       const m = o as THREE.SkinnedMesh;
       if (!m.isMesh) return;
       m.castShadow = true;
       m.receiveShadow = true;
       m.frustumCulled = false;
+      // clones share materials, so tint a copy
+      const mat = m.material as THREE.MeshStandardMaterial;
+      const name = mat.name ?? "";
+      const cloth = name.startsWith("cloth_") && !/shoe|boot|stiletto/.test(name);
+      const gear = name.startsWith("uniform_") && !/badge|metal/.test(name);
+      if (outfit?.length && cloth) m.material = tint(mat, outfit[k++ % outfit.length]);
+      else if (uniform && gear) m.material = tint(mat, uniform);
     });
     const hand = r.getObjectByName("hand_r");
     if (hand) {
@@ -122,7 +170,8 @@ export function Character({
       hand.add(gun);
     }
     return r;
-  }, [body.scene, gunSrc.scene]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [body.scene, gunSrc.scene, look]);
 
   const mixer = useMemo(() => new THREE.AnimationMixer(root), [root]);
   const clips = useMemo(() => new Map([...a1.animations, ...a2.animations, ...a3.animations].map((c) => [c.name, c])), [a1.animations, a2.animations, a3.animations]);

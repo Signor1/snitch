@@ -16,6 +16,8 @@ export interface Person {
 /** `id` is the seat, 0..crew-1, the index the contract uses. */
 export interface Member extends Person {
   id: number;
+  /** Cloth colours for this chapter (see game/looks.ts). */
+  outfit?: string[];
 }
 
 export type PersonKey = "vex" | "mara" | "dutch" | "pixel" | "sable" | "rook" | "juno" | "ash" | "gage" | "lola";
