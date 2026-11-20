@@ -91,6 +91,8 @@ export function Character({
   oneShot,
   pistol = false,
   phase = 0,
+  outfit,
+  uniform,
 }: {
   model: Model;
   emote?: Emote;
@@ -98,6 +100,10 @@ export function Character({
   pistol?: boolean;
   /** Offsets looping clips so a group doesn't move in lockstep. */
   phase?: number;
+  /** Clothing colours, applied in order to the cloth materials (shoes keep theirs). */
+  outfit?: string[];
+  /** Colour for police gear (cap, belt, patches). */
+  uniform?: string;
 }) {
   const body = useGLTF(url(model));
   const a1 = useGLTF(ANIMS[0]);
@@ -105,14 +111,28 @@ export function Character({
   const a3 = useGLTF(ANIMS[2]);
   const gunSrc = useGLTF(PISTOL);
 
+  const look = `${outfit?.join(",") ?? ""}|${uniform ?? ""}`;
   const root = useMemo(() => {
     const r = cloneSkinned(body.scene) as THREE.Group;
+    let k = 0;
     r.traverse((o) => {
       const m = o as THREE.SkinnedMesh;
       if (!m.isMesh) return;
       m.castShadow = true;
       m.receiveShadow = true;
       m.frustumCulled = false;
+      // clones share materials, so tint a copy
+      const mat = m.material as THREE.MeshStandardMaterial;
+      const name = mat.name ?? "";
+      const cloth = name.startsWith("cloth_") && !/shoe|boot|stiletto/.test(name);
+      const gear = name.startsWith("uniform_") && !/badge|metal/.test(name);
+      if (outfit?.length && cloth) {
+        m.material = mat.clone();
+        (m.material as THREE.MeshStandardMaterial).color.set(outfit[k++ % outfit.length]);
+      } else if (uniform && gear) {
+        m.material = mat.clone();
+        (m.material as THREE.MeshStandardMaterial).color.set(uniform);
+      }
     });
     const hand = r.getObjectByName("hand_r");
     if (hand) {
@@ -122,7 +142,8 @@ export function Character({
       hand.add(gun);
     }
     return r;
-  }, [body.scene, gunSrc.scene]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [body.scene, gunSrc.scene, look]);
 
   const mixer = useMemo(() => new THREE.AnimationMixer(root), [root]);
   const clips = useMemo(() => new Map([...a1.animations, ...a2.animations, ...a3.animations].map((c) => [c.name, c])), [a1.animations, a2.animations, a3.animations]);
