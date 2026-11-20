@@ -16,7 +16,7 @@ export function bustFor(chapter: number, job: number): Bust {
 // Cloth colours per chapter. A member wears two of them, picked by seat, so the crew never matches.
 const WARDROBE: Record<number, string[]> = {
   0: ["#7a5a3a", "#b88a3a", "#3d5a80", "#6b3a2a", "#4f5b3a"], // ten years ago: tan, mustard, denim
-  1: ["#3a3f4b", "#5b4636", "#2f4a3a", "#6a2e35", "#2b2b30"], // street hoodies
+  1: ["#4a5263", "#7a5f45", "#3f6650", "#8a3a44", "#5a5a62"], // street hoodies
   2: ["#1c1c22", "#e3ddd0", "#2b3a67", "#4a2f4f", "#5c5248"], // uptown tailoring
   3: ["#2f4a5a", "#7b6a45", "#5a5a52", "#8a3b2a", "#34403a"], // dock workwear
   4: ["#111114", "#3a0f1a", "#1d2b3a", "#d8d1c0", "#2a2a2a"], // casino black tie

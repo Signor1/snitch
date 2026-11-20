@@ -83,6 +83,39 @@ function makePistol(src: THREE.Object3D) {
   return g;
 }
 const GUN_POS: [number, number, number] = [0, 0.13, 0.02];
+
+// Tints multiply the fabric texture, and most of these are dark, so a tint alone comes out near black.
+// Dividing by the texture's average brightness lands on the intended colour and keeps the weave.
+const brightness = new Map<string, number>();
+function textureBrightness(t: THREE.Texture | null): number {
+  const img = t?.image as CanvasImageSource | undefined;
+  if (!t || !img) return 1;
+  const known = brightness.get(t.uuid);
+  if (known !== undefined) return known;
+  let v = 1;
+  try {
+    const c = document.createElement("canvas");
+    c.width = c.height = 16;
+    const g = c.getContext("2d")!;
+    g.drawImage(img, 0, 0, 16, 16);
+    const d = g.getImageData(0, 0, 16, 16).data;
+    let sum = 0;
+    for (let i = 0; i < d.length; i += 4) {
+      const lin = (x: number) => Math.pow(x / 255, 2.2);
+      sum += 0.2126 * lin(d[i]) + 0.7152 * lin(d[i + 1]) + 0.0722 * lin(d[i + 2]);
+    }
+    v = Math.min(1, Math.max(0.25, sum / 256));
+  } catch {
+    /* unreadable image: tint as is */
+  }
+  brightness.set(t.uuid, v);
+  return v;
+}
+function tint(mat: THREE.MeshStandardMaterial, colour: string) {
+  const m = mat.clone();
+  m.color.set(colour).multiplyScalar(1 / textureBrightness(mat.map));
+  return m;
+}
 const GUN_ROT: [number, number, number] = [0, Math.PI / 2, Math.PI / 2];
 
 export function Character({
@@ -126,13 +159,8 @@ export function Character({
       const name = mat.name ?? "";
       const cloth = name.startsWith("cloth_") && !/shoe|boot|stiletto/.test(name);
       const gear = name.startsWith("uniform_") && !/badge|metal/.test(name);
-      if (outfit?.length && cloth) {
-        m.material = mat.clone();
-        (m.material as THREE.MeshStandardMaterial).color.set(outfit[k++ % outfit.length]);
-      } else if (uniform && gear) {
-        m.material = mat.clone();
-        (m.material as THREE.MeshStandardMaterial).color.set(uniform);
-      }
+      if (outfit?.length && cloth) m.material = tint(mat, outfit[k++ % outfit.length]);
+      else if (uniform && gear) m.material = tint(mat, uniform);
     });
     const hand = r.getObjectByName("hand_r");
     if (hand) {
