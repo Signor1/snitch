@@ -1,0 +1,14 @@
+# raw source assets (large); the game ships the optimised copies in app/public
+assets-src/
+
+node_modules/
+dist/
+.wrangler/
+.playwright-mcp/
+.DS_Store
+*.log
+
+# secrets
+.env
+.env.*
+*.local
