@@ -54,6 +54,7 @@ function steps(): Step[] {
       caption: "Ten years later.",
       run: () => {
         S.setState({ cut: undefined, busy: null, status: "brief", crew: [] });
+        useFilm.setState({ empty: true });
         audio.setScene("hideout");
       },
     },
