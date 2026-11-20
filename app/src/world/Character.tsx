@@ -255,4 +255,5 @@ export function Character({
   return <primitive object={root} />;
 }
 
-[...MODELS.map(url), ...ANIMS, PISTOL].forEach((u) => useGLTF.preload(u));
+// only the people on the first screen load up front; police come with the street and shop
+[...MODELS.filter((m) => !/^cop_/.test(m)).map(url), ...ANIMS, PISTOL].forEach((u) => useGLTF.preload(u));

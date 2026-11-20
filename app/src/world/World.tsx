@@ -3,7 +3,7 @@ import { preloadSets } from "./assets";
 import { Canvas } from "@react-three/fiber";
 import { Bloom, ChromaticAberration, EffectComposer, N8AO, ToneMapping, Vignette } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import * as THREE from "three";
 import { Crew } from "./Crew";
@@ -13,6 +13,7 @@ import { INSIDE_X, Interior } from "./Interior";
 import { Region } from "./Region";
 import { STREET_X, Street } from "./Street";
 import { useProfile } from "../settings/store";
+import { useBoot } from "../shell/Boot";
 import { useFilm } from "../shell/film";
 
 function sceneFor(path: string): Scene {
@@ -39,9 +40,27 @@ function Effects({ quality }: { quality: number }) {
   );
 }
 
-/** One persistent world behind every screen. */
-preloadSets();
+/**
+ * The street and shop sets mount once the player is past the title screen, so the loader only waits for the
+ * hideout. On a phone, decoding every set up front kept the main thread busy and taps went unanswered.
+ */
+function useLater() {
+  const started = useBoot((s) => s.started);
+  const [later, setLater] = useState(0);
+  useEffect(() => {
+    if (!started) return;
+    // one set at a time: decoding both at once froze taps for half a second on a slow phone
+    const a = setTimeout(() => {
+      setLater(1);
+      preloadSets();
+    }, 400);
+    const b = setTimeout(() => setLater(2), 2400);
+    return () => (clearTimeout(a), clearTimeout(b));
+  }, [started]);
+  return later;
+}
 
+/** One persistent world behind every screen. */
 export default function World() {
   const [auto, setQuality] = useState(1);
   const pref = useProfile((s) => s.settings.quality);
@@ -50,6 +69,7 @@ export default function World() {
   const path = sceneFor(useLocation().pathname);
   // the intro film plays through the job sets, so the camera follows it like a run
   const scene = film ? "run" : path;
+  const later = useLater();
   return (
     <div className="fixed inset-0 -z-0">
       <Canvas shadows dpr={pref === "low" ? 1 : PHONE ? [1, 1.35] : [1, 1.75]} camera={{ position: [1.4, 2.2, 5.2], fov: 40, near: 0.1, far: 110 }} gl={{ antialias: false, powerPreference: "high-performance", toneMapping: THREE.NoToneMapping }}>
@@ -78,16 +98,20 @@ export default function World() {
             <Crew />
           </Suspense>
         </Region>
-        <Region x={STREET_X}>
-          <Suspense fallback={null}>
-            <Street />
-          </Suspense>
-        </Region>
-        <Region x={INSIDE_X}>
-          <Suspense fallback={null}>
-            <Interior />
-          </Suspense>
-        </Region>
+        {later > 0 && (
+          <Region x={STREET_X}>
+            <Suspense fallback={null}>
+              <Street />
+            </Suspense>
+          </Region>
+        )}
+        {later > 1 && (
+          <Region x={INSIDE_X}>
+            <Suspense fallback={null}>
+              <Interior />
+            </Suspense>
+          </Region>
+        )}
         <Suspense fallback={null}>
           <Preload all />
         </Suspense>
