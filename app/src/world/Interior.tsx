@@ -3,6 +3,7 @@ import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { audio } from "../fx/audio";
 import type { Target, Venue as VenueKind } from "../game/data";
+import { COP_LOOK } from "../game/looks";
 import { useSnitch, type Cut } from "../game/store";
 import { Character, type Emote } from "./Character";
 import { Goal, Venue } from "./Venues";
@@ -57,6 +58,7 @@ const WALK = 1.35; // metres per second
 const COPS: [number, number][] = [
   [3.5, 0.5],
   [3.7, 2.0],
+  [2.6, -1.0],
 ];
 
 const since = (cut: Cut) => (performance.now() - cut.beatAt) / 1000;
@@ -92,7 +94,8 @@ function Robber({ i, id }: { i: number; id: number }) {
     if (fight || leave) {
       // fight: hold and shoot, then run for the back. clean: walk out the front.
       if (!fled.current) fled.current = o.position.clone();
-      const dest = fight ? BACK : DOOR;
+      // in an ambush the police come from the back, so the crew breaks out the front
+      const dest = fight && cut.bust !== "ambush" ? BACK : DOOR;
       const delay = fight ? 2.4 + i * 0.15 : 0.6 + i * 0.35;
       const t = since(cut) - delay;
       if (t > 0) {
@@ -147,23 +150,52 @@ function Robber({ i, id }: { i: number; id: number }) {
   );
 }
 
+// In an ambush they were waiting in the back room; every other raid comes through the front door.
+const AMBUSH_SPOTS: [number, number][] = [
+  [-3.2, -1.2],
+  [-2.2, 0.6],
+  [-4.0, 0.9],
+];
+
 function Cop({ i }: { i: number }) {
   const g = useRef<THREE.Group>(null);
   const cut = useSnitch((s) => s.cut)!;
+  const look = COP_LOOK[cut.bust];
+  const ambush = cut.bust === "ambush";
+  const from = ambush ? new THREE.Vector3(BACK.x, 0, BACK.z) : new THREE.Vector3(DOOR.x + 1.5, 0, DOOR.z);
+  const to = ambush ? AMBUSH_SPOTS[i] : COPS[i];
   useFrame(() => {
     const o = g.current;
     if (!o) return;
-    const k = ease((since(cut) - 0.5 - i * 0.25) / 0.9);
-    o.position.lerpVectors(new THREE.Vector3(DOOR.x + 1.5, 0, DOOR.z), new THREE.Vector3(COPS[i][0], 0, COPS[i][1]), k);
-    o.rotation.y = Math.atan2(-1.5 - o.position.x, -0.5 - o.position.z);
+    const k = ease((since(cut) - (ambush ? 0.1 : 0.5) - i * 0.25) / 0.9);
+    o.position.lerpVectors(from, new THREE.Vector3(to[0], 0, to[1]), k);
+    const aim = ambush ? DOOR : new THREE.Vector3(-1.5, 0, -0.5);
+    o.rotation.y = Math.atan2(aim.x - o.position.x, aim.z - o.position.z);
   });
   return (
-    <group ref={g} position={[DOOR.x + 1.5, 0, DOOR.z]}>
+    <group ref={g} position={from}>
       <Suspense fallback={null}>
-        <Character model={i ? "cop_f" : "cop_m"} phase={i} emote="shoot" pistol />
+        <Character model={i % 2 ? "cop_f" : "cop_m"} outfit={look.outfit} uniform={look.uniform} phase={i} emote="shoot" pistol />
       </Suspense>
     </group>
   );
+}
+
+/** A white flash and a bang as the SWAT team comes in. */
+function Flashbang({ on }: { on: boolean }) {
+  const l = useRef<THREE.PointLight>(null);
+  useEffect(() => {
+    if (!on) return;
+    const t = setTimeout(() => {
+      if (l.current) l.current.intensity = 2600;
+      audio.gunshot(false);
+    }, 350);
+    return () => clearTimeout(t);
+  }, [on]);
+  useFrame((_, dt) => {
+    if (l.current) l.current.intensity = THREE.MathUtils.damp(l.current.intensity, 0, 5, dt);
+  });
+  return <pointLight ref={l} position={[2.4, 1.4, 0.6]} color="#ffffff" intensity={0} distance={22} />;
 }
 
 function Firefight({ on }: { on: boolean }) {
@@ -216,10 +248,14 @@ export function Interior() {
   const fight = !!cut && cut.beat === "payoff" && cut.state === "tipped";
   const open = !!cut && cut.beat === "payoff" && cut.state === "clean";
 
+  const bust = cut?.bust ?? "patrol";
+  const cops = COP_LOOK[bust].count;
   useFrame((st) => {
     const flash = Math.floor(st.clock.elapsedTime * 5) % 2;
-    if (red.current) red.current.intensity = fight ? (flash ? 70 : 4) : 0;
-    if (blue.current) blue.current.intensity = fight ? (flash ? 4 : 70) : 0;
+    // an ambush has no sirens outside the door, only red emergency light
+    const ambush = bust === "ambush";
+    if (red.current) red.current.intensity = fight ? (ambush ? 40 + Math.sin(st.clock.elapsedTime * 9) * 12 : flash ? 70 : 4) : 0;
+    if (blue.current) blue.current.intensity = fight && !ambush ? (flash ? 4 : 70) : 0;
   });
 
   return (
@@ -239,10 +275,11 @@ export function Interior() {
               <Character model="gang_m3" emote="crouch" />
             </Suspense>
           </group>
-          {fight && COPS.map((_, i) => <Cop key={i} i={i} />)}
+          {fight && COPS.slice(0, cops).map((_, i) => <Cop key={i} i={i} />)}
         </>
       )}
       <Firefight on={fight} />
+      <Flashbang on={fight && (bust === "swat" || bust === "allin")} />
     </group>
   );
 }

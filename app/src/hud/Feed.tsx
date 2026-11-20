@@ -84,7 +84,7 @@ export function JobBanner() {
             <p className="display text-5xl text-heat sm:text-7xl" style={{ textShadow: "0 0 40px rgb(255 45 111 / 0.7)" }}>
               POLICE
             </p>
-            <p className="display-soft mt-2 text-xl text-mist">{cut.beat === "payoff" ? "They were waiting. The crew shoots its way out the back." : "Someone talked. Or was it bad luck?"}</p>
+            <p className="display-soft mt-2 text-xl text-mist">{cut.beat === "payoff" ? (cut.bust === "ambush" ? "They were already inside. The crew breaks out the front." : "They were waiting. The crew shoots its way out the back.") : "Someone talked. Or was it bad luck?"}</p>
           </motion.div>
         )}
       </AnimatePresence>
