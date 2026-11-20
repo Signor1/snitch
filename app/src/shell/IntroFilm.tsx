@@ -90,7 +90,9 @@ function Film() {
     let wasLoading = false;
     let raf = 0;
     const shown = new Map<string, number>();
-    const tick = (now: number) => {
+    const tick = () => {
+      // read the clock here: the rAF timestamp isn't guaranteed to share performance.now's time base
+      const now = performance.now();
       const loading = useProgress.getState().active;
       if (!loading) clock += now - last;
       if (wasLoading && !loading) {
