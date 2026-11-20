@@ -3,7 +3,7 @@ import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { audio } from "../fx/audio";
 import type { Target, Venue as VenueKind } from "../game/data";
-import { COP_LOOK } from "../game/looks";
+import { COP_LOOK, copModel } from "../game/looks";
 import { useSnitch, type Cut } from "../game/store";
 import { Character, type Emote } from "./Character";
 import { precompile } from "./Region";
@@ -177,7 +177,7 @@ function Cop({ i }: { i: number }) {
   return (
     <group ref={g} position={from}>
       <Suspense fallback={null}>
-        <Character model={i % 2 ? "cop_f" : "cop_m"} outfit={look.outfit} uniform={look.uniform} phase={i} emote="shoot" pistol />
+        <Character model={copModel(cut.bust, i)} outfit={look.outfit} uniform={look.uniform} phase={i} emote="shoot" pistol />
       </Suspense>
     </group>
   );

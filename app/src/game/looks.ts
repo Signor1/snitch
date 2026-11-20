@@ -34,6 +34,8 @@ export function outfitFor(chapter: number, seat: number, job = 0): string[] {
 }
 
 export interface CopLook {
+  /** Who turns up: uniformed officers, a SWAT team, or detectives in plain clothes. */
+  unit: "cop" | "swat" | "det";
   outfit?: string[];
   uniform?: string;
   /** Police who come through the door. */
@@ -41,12 +43,16 @@ export interface CopLook {
 }
 
 export const COP_LOOK: Record<Bust, CopLook> = {
-  patrol: { count: 2 },
-  detectives: { outfit: ["#4a3a2c", "#26262b"], uniform: "#26262b", count: 2 },
-  harbour: { outfit: ["#d4dc3a", "#1d2633"], count: 3 },
-  swat: { outfit: ["#15171a", "#15171a"], uniform: "#0c0d0f", count: 3 },
-  roadblock: { outfit: ["#1d2a44", "#1d2a44"], count: 2 },
-  helicopter: { count: 2 },
-  ambush: { outfit: ["#2a2a2e", "#1e1e22"], uniform: "#1e1e22", count: 3 },
-  allin: { outfit: ["#15171a", "#15171a"], uniform: "#0c0d0f", count: 3 },
+  patrol: { unit: "cop", count: 2 },
+  detectives: { unit: "det", count: 2 },
+  harbour: { unit: "cop", outfit: ["#d4dc3a", "#1d2633"], count: 3 },
+  swat: { unit: "swat", count: 3 },
+  roadblock: { unit: "cop", outfit: ["#1d2a44", "#1d2a44"], count: 2 },
+  helicopter: { unit: "cop", count: 2 },
+  // they were already waiting inside, in plain clothes
+  ambush: { unit: "det", count: 3 },
+  allin: { unit: "swat", count: 3 },
 };
+
+/** The i-th officer of a bust, alternating men and women. */
+export const copModel = (bust: Bust, i: number) => `${COP_LOOK[bust].unit}_${i % 2 ? "f" : "m"}` as const;

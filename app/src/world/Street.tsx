@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { Suspense, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { COP_LOOK } from "../game/looks";
+import { COP_LOOK, copModel } from "../game/looks";
 import { useSnitch, type Cut } from "../game/store";
 import { Character, type Emote } from "./Character";
 import { Prop } from "./Prop";
@@ -239,7 +239,7 @@ function StreetCop({ i }: { i: number }) {
   return (
     <group ref={g} visible={false} position={from}>
       <Suspense fallback={null}>
-        <Character model={i ? "cop_f" : "cop_m"} outfit={look.outfit} uniform={look.uniform} phase={i + 5} emote={act} pistol />
+        <Character model={copModel(cut?.bust ?? "patrol", i)} outfit={look.outfit} uniform={look.uniform} phase={i + 5} emote={act} pistol />
       </Suspense>
     </group>
   );

@@ -9,7 +9,7 @@ import { clone as cloneSkinned } from "three/examples/jsm/utils/SkeletonUtils.js
 // so every animation clip plays on every body.
 
 export type Model = Body;
-const MODELS: Model[] = ["gang_m1", "gang_m2", "gang_m3", "gang_f1", "gang_f2", "gang_f3", "boss", "boss_widow", "boss_kid", "boss_ghost", "cop_m", "cop_f"];
+const MODELS: Model[] = ["gang_m1", "gang_m2", "gang_m3", "gang_f1", "gang_f2", "gang_f3", "boss", "boss_widow", "boss_kid", "boss_ghost", "cop_m", "cop_f", "swat_m", "swat_f", "det_m", "det_f"];
 const url = (m: Model) => `/real/characters/${m}.glb`;
 const ANIMS = ["/models/anims.glb", "/models/anims2.glb", "/models/anims3.glb"];
 
@@ -256,4 +256,4 @@ export function Character({
 }
 
 // only the people on the first screen load up front; police come with the street and shop
-[...MODELS.filter((m) => !/^cop_/.test(m)).map(url), ...ANIMS, PISTOL].forEach((u) => useGLTF.preload(u));
+[...MODELS.filter((m) => !/^(cop|swat|det)_/.test(m)).map(url), ...ANIMS, PISTOL].forEach((u) => useGLTF.preload(u));
