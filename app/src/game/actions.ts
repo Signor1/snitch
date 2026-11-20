@@ -5,6 +5,7 @@ import { fileFor } from "../story/evidence";
 import { HEAT_MAX } from "./data";
 import type { Phase, TableEngine } from "./engine";
 import { GAME_FOR, GAME_SKILL, ROUTES, getaway, hasSkill, money, oddsFor } from "./mission";
+import { bustFor } from "./looks";
 import type { Prompt, State, Tool } from "./store";
 
 /** Resolves to a choice index, a hands-on score (0..100) or a route id. */
@@ -42,7 +43,7 @@ async function runJob({ get, set, engine, alive, on, ask }: Ctx) {
   const seconds = s.mode.think + (known ? 4 : 0);
   audio.engine();
   engine.rollOut?.(team);
-  set({ busy: "job", status: "job", note: undefined, plan, cut: { state: "go", beat: "arrive", beatAt: now(), target: j.target, venue: j.venue, at: now(), team, job: j.name, gained: 0 } });
+  set({ busy: "job", status: "job", note: undefined, plan, cut: { state: "go", beat: "arrive", beatAt: now(), target: j.target, venue: j.venue, bust: bustFor(chapter.id, s.job), at: now(), team, job: j.name, gained: 0 } });
 
   await wait(ESTABLISH_MS);
   if (!alive()) return;

@@ -65,6 +65,7 @@ function Robber({ i, id }: { i: number; id: number }) {
   const g = useRef<THREE.Group>(null);
   const cut = useSnitch((s) => s.cut)!;
   const model = useSnitch((s) => s.crew[id]?.model ?? "gang_m1");
+  const outfit = useSnitch((s) => s.crew[id]?.outfit);
   const round = useMemo(() => [leadRound(cut.target, cut.venue), COVER, LOOT, WATCH][i] ?? COVER, [i, cut.target, cut.venue]);
   const beat = cut.beat;
   const fight = beat === "payoff" && cut.state === "tipped";
@@ -140,7 +141,7 @@ function Robber({ i, id }: { i: number; id: number }) {
   return (
     <group ref={g} position={DOOR}>
       <Suspense fallback={null}>
-        <Character model={model} phase={i} emote={act} pistol={act === "aim" || act === "gunIdle" || act === "shoot" || (act === "walk" && i !== 0 && i !== 2)} />
+        <Character model={model} outfit={outfit} phase={i} emote={act} pistol={act === "aim" || act === "gunIdle" || act === "shoot" || (act === "walk" && i !== 0 && i !== 2)} />
       </Suspense>
     </group>
   );

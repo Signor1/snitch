@@ -221,7 +221,7 @@ export function Street() {
         <group key={i} ref={(m) => void (runners.current[i] = m)} visible={false}>
           {cut?.team[i] !== undefined && (
             <Suspense fallback={null}>
-              <Character model={useSnitch.getState().crew[cut.team[i]]?.model ?? "gang_m1"} phase={i} emote="sprint" pistol />
+              <Character model={useSnitch.getState().crew[cut.team[i]]?.model ?? "gang_m1"} outfit={useSnitch.getState().crew[cut.team[i]]?.outfit} phase={i} emote="sprint" pistol />
             </Suspense>
           )}
         </group>
