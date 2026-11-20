@@ -50,7 +50,7 @@ export default function Lab() {
         <color attach="background" args={["#050505"]} />
         <fog attach="fog" args={["#0a0414", 8, 40]} />
         <Suspense fallback={null}>
-          <Environment files="/real/hdri/night_street_1k.hdr" environmentIntensity={s === "crew" ? 0.25 : 0.6} />
+          <Environment files="/real/hdri/night_street_512.hdr" environmentIntensity={s === "crew" ? 0.25 : 0.6} />
           {s === "crew" && (
             <>
               <ambientLight intensity={0.25} />

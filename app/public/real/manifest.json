@@ -3664,11 +3664,11 @@
    "title": "Concrete Tile Facade"
   },
   {
-   "path": "real/hdri/night_street_1k.hdr",
+   "path": "real/hdri/night_street_512.hdr",
    "type": "hdri",
    "category": "hdri",
    "files": [
-    "real/hdri/night_street_1k.hdr"
+    "real/hdri/night_street_512.hdr"
    ],
    "bytes": 1760191,
    "notes": "Night city street/alley with street lamps. Use for scene.environment (reflections).",

@@ -93,7 +93,8 @@ function Film() {
     const tick = () => {
       // read the clock here: the rAF timestamp isn't guaranteed to share performance.now's time base
       const now = performance.now();
-      const loading = useProgress.getState().active;
+      // the opening shots are in the hideout, which is already loaded; the street may still be on its way
+      const loading = useProgress.getState().active && clock > 6500;
       if (!loading) clock += now - last;
       if (wasLoading && !loading) {
         const c = useSnitch.getState().cut;

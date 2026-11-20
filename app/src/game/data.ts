@@ -1,7 +1,7 @@
 export type Difficulty = 0 | 1 | 2;
 
 /** Model names loaded by the world's Character component. */
-export type Body = "gang_m1" | "gang_m2" | "gang_m3" | "gang_f1" | "gang_f2" | "gang_f3" | "boss" | "boss_widow" | "boss_kid" | "boss_ghost" | "cop_m" | "cop_f";
+export type Body = "gang_m1" | "gang_m2" | "gang_m3" | "gang_f1" | "gang_f2" | "gang_f3" | "boss" | "boss_widow" | "boss_kid" | "boss_ghost" | "cop_m" | "cop_f" | "swat_m" | "swat_f" | "det_m" | "det_f";
 
 export type Skill = "Driver" | "Safecracker" | "Muscle" | "Hacker" | "Lookout" | "Inside";
 
