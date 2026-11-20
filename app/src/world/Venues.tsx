@@ -135,7 +135,7 @@ function Shell({ kind, fight }: { kind: VenueKind; fight: boolean }) {
       {/* window glass and frame */}
       <mesh position={[5.4, 1.6, 3.3]}>
         <boxGeometry args={[0.04, 1.8, 2.3]} />
-        <meshPhysicalMaterial color="#9fc4e8" transmission={0.92} roughness={0.06} thickness={0.04} transparent opacity={0.3} />
+        <meshStandardMaterial color="#9fc4e8" roughness={0.05} metalness={0.6} transparent opacity={0.22} depthWrite={false} />
       </mesh>
       {[2.12, 4.48].map((z) => (
         <mesh key={z} position={[5.4, 1.6, z]} material={dark}>
@@ -346,7 +346,7 @@ export function Goal({ target, venue, open }: { target: Target; venue: VenueKind
           </mesh>
         ))}
         <Prop url={R + "hanging_lamp.glb"} height={1.3} position={[0, 2.3, 0]} emissive={2} />
-        <pointLight position={[0, 2.0, 0]} color="#ffc98a" intensity={22} distance={7} castShadow />
+        <pointLight position={[0, 2.0, 0]} color="#ffc98a" intensity={22} distance={7} />
       </group>
     );
   if (target === "safe") return <Safe open={open} position={[-2.7, 0, -3.0]} />;
