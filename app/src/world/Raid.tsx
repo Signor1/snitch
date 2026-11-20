@@ -13,7 +13,7 @@ const ease = (t: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, t)), 3);
 const VAN = new THREE.Vector3(2.7, 0, -2.6);
 
 /** Seconds since the police showed up on the street, or -1 if they haven't. */
-export function raidTime(cut?: Cut) {
+function raidTime(cut?: Cut) {
   if (!cut || cut.state !== "tipped" || cut.beat !== "exit") return -1;
   return (performance.now() - cut.beatAt) / 1000;
 }
