@@ -1,0 +1,65 @@
+import { useGLTF } from "@react-three/drei";
+import { useMemo } from "react";
+import * as THREE from "three";
+
+/**
+ * Scanned model fitted to a size and stood on the floor. Library models have arbitrary
+ * scale and pivot, so pass one target size in metres (height, width, depth or longest).
+ */
+export function Prop({
+  url,
+  height,
+  width,
+  depth,
+  longest,
+  emissive,
+  tint,
+  hide,
+  ...props
+}: {
+  url: string;
+  height?: number;
+  width?: number;
+  depth?: number;
+  longest?: number;
+  /** Multiplies the model's own emissive. */
+  emissive?: number;
+  /** Multiplied over the model's own colours. */
+  tint?: string;
+  /** Node names to hide, e.g. a counter's goods once stolen. */
+  hide?: string[];
+} & Omit<React.ComponentProps<"group">, "children">) {
+  const gltf = useGLTF(url);
+  const { object, scale, offset } = useMemo(() => {
+    const object = gltf.scene.clone(true);
+    object.traverse((o) => {
+      if (hide?.includes(o.name)) o.visible = false;
+      const m = o as THREE.Mesh;
+      if (!m.isMesh) return;
+      m.castShadow = true;
+      m.receiveShadow = true;
+      if (emissive !== undefined || tint) {
+        const mat = (m.material = (m.material as THREE.MeshStandardMaterial).clone());
+        if (emissive !== undefined) {
+          mat.emissiveIntensity = emissive;
+          if (mat.emissive.getHex() === 0) mat.emissive.set("#ffffff");
+        }
+        // Only opaque paint is tinted, not glass or lamps.
+        if (tint && mat.opacity >= 1 && !(mat as THREE.MeshPhysicalMaterial).transmission && !/glass|window|light|lamp|tire|tyre|wheel/i.test(mat.name)) mat.color.multiply(new THREE.Color(tint));
+      }
+    });
+    // Fit by the whole model so hiding a part never resizes the rest.
+    const box = new THREE.Box3().setFromObject(gltf.scene);
+    const size = box.getSize(new THREE.Vector3());
+    const scale = height ? height / size.y : width ? width / size.x : depth ? depth / size.z : (longest ?? 1) / Math.max(size.x, size.y, size.z);
+    const c = box.getCenter(new THREE.Vector3());
+    return { object, scale, offset: new THREE.Vector3(-c.x, -box.min.y, -c.z) };
+  }, [gltf.scene, height, width, depth, longest, emissive, tint, hide?.join()]);
+  return (
+    <group {...props}>
+      <group scale={scale}>
+        <primitive object={object} position={offset} />
+      </group>
+    </group>
+  );
+}

@@ -1,0 +1,3780 @@
+{
+ "generated": "2026-11-19",
+ "conventions": "All GLBs: metres, +Y up, forward +Z unless stated, pivot bottom-centre unless stated. Textures inside GLBs are WebP (EXT_texture_webp) and geometry uses KHR_mesh_quantization - both handled natively by three.js GLTFLoader, no Draco/Meshopt decoder required. Paths are relative to app/public (serve as /real/...).",
+ "total_bytes": 19573456,
+ "unlisted_files": [],
+ "assets": [
+  {
+   "path": "real/props/barrel.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.563,
+    "y": 0.88,
+    "z": 0.563
+   },
+   "bbox_min": [
+    -0.282,
+    0,
+    -0.282
+   ],
+   "bbox_max": [
+    0.282,
+    0.88,
+    0.282
+   ],
+   "triangles": 2682,
+   "bytes": 153068,
+   "materials": [
+    "Barrel_01"
+   ],
+   "nodes": [
+    "barrel"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/Barrel_01",
+   "author": "Jorge Camacho",
+   "licence": "CC0-1.0",
+   "title": "Barrel_01"
+  },
+  {
+   "path": "real/props/boombox.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.723,
+    "y": 0.47,
+    "z": 0.186
+   },
+   "bbox_min": [
+    -0.362,
+    0,
+    -0.093
+   ],
+   "bbox_max": [
+    0.361,
+    0.47,
+    0.093
+   ],
+   "triangles": 3499,
+   "bytes": 155880,
+   "materials": [
+    "boombox",
+    "boombox_speakers"
+   ],
+   "nodes": [
+    "boombox"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/boombox",
+   "author": "Thomas Paul Mouilleron",
+   "licence": "CC0-1.0",
+   "title": "Boombox"
+  },
+  {
+   "path": "real/props/caged_ceiling_light.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 1.167,
+    "y": 0.75,
+    "z": 0.315
+   },
+   "bbox_min": [
+    -0.584,
+    -0.75,
+    -0.157
+   ],
+   "bbox_max": [
+    0.584,
+    0,
+    0.157
+   ],
+   "triangles": 5000,
+   "bytes": 192020,
+   "materials": [
+    "caged_hanging_light"
+   ],
+   "nodes": [
+    "caged_ceiling_light"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "top-centre (y=0 is ceiling mount)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Pivot at TOP (ceiling mount point), hangs down -Y.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/caged_hanging_light",
+   "author": "Ulan Cabanilla",
+   "licence": "CC0-1.0",
+   "title": "Caged Hanging Light"
+  },
+  {
+   "path": "real/props/cardboard_box.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.387,
+    "y": 0.342,
+    "z": 0.516
+   },
+   "bbox_min": [
+    -0.194,
+    0,
+    -0.258
+   ],
+   "bbox_max": [
+    0.193,
+    0.342,
+    0.258
+   ],
+   "triangles": 2500,
+   "bytes": 111240,
+   "materials": [
+    "cardboard_box_01"
+   ],
+   "nodes": [
+    "cardboard_box"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/cardboard_box_01",
+   "author": "Rahul Chaudhary",
+   "licence": "CC0-1.0",
+   "title": "Cardboard Box 01"
+  },
+  {
+   "path": "real/props/cigarette_pack.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.056,
+    "y": 0.103,
+    "z": 0.029
+   },
+   "bbox_min": [
+    -0.028,
+    0,
+    -0.015
+   ],
+   "bbox_max": [
+    0.028,
+    0.103,
+    0.015
+   ],
+   "triangles": 1498,
+   "bytes": 66752,
+   "materials": [
+    "cigarette_pack"
+   ],
+   "nodes": [
+    "cigarette_pack"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Fictional brand label.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/cigarette_pack",
+   "author": "Ulrich B\u00fcch",
+   "licence": "CC0-1.0",
+   "title": "Cigarette Pack"
+  },
+  {
+   "path": "real/props/concrete_barrier.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 1.544,
+    "y": 0.833,
+    "z": 0.636
+   },
+   "bbox_min": [
+    -0.772,
+    -0.001,
+    -0.318
+   ],
+   "bbox_max": [
+    0.772,
+    0.832,
+    0.318
+   ],
+   "triangles": 3000,
+   "bytes": 124644,
+   "materials": [
+    "concrete_road_barrier"
+   ],
+   "nodes": [
+    "concrete_barrier"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/concrete_road_barrier",
+   "author": "Amal Kumar",
+   "licence": "CC0-1.0",
+   "title": "Concrete Road Barrier"
+  },
+  {
+   "path": "real/vehicles/covered_car.glb",
+   "type": "model",
+   "category": "vehicles",
+   "dimensions_m": {
+    "x": 1.794,
+    "y": 1.413,
+    "z": 4.372
+   },
+   "bbox_min": [
+    -0.895,
+    -0.002,
+    -2.188
+   ],
+   "bbox_max": [
+    0.898,
+    1.411,
+    2.184
+   ],
+   "triangles": 7995,
+   "bytes": 409560,
+   "materials": [
+    "covered_car.001"
+   ],
+   "nodes": [
+    "covered_car",
+    "covered_car_wheel_01",
+    "covered_car_wheel_02",
+    "covered_car_wheel_03",
+    "covered_car_wheel_04"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "1024x1024 webp",
+    "1024x1024 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "High-quality PBR parked car under a tarp. Nodes covered_car + covered_car_wheel_01..04.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/covered_car",
+   "author": "MP",
+   "licence": "CC0-1.0",
+   "title": "Covered Car"
+  },
+  {
+   "path": "real/props/chair_leather.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.433,
+    "y": 0.973,
+    "z": 0.577
+   },
+   "bbox_min": [
+    -0.217,
+    0,
+    -0.288
+   ],
+   "bbox_max": [
+    0.217,
+    0.974,
+    0.288
+   ],
+   "triangles": 4999,
+   "bytes": 152824,
+   "materials": [
+    "dining_chair_02"
+   ],
+   "nodes": [
+    "chair_leather"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/dining_chair_02",
+   "author": "James Ray Cock",
+   "licence": "CC0-1.0",
+   "title": "Dining Chair 02"
+  },
+  {
+   "path": "real/props/chair_plastic.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.642,
+    "y": 0.881,
+    "z": 0.628
+   },
+   "bbox_min": [
+    -0.321,
+    0,
+    -0.314
+   ],
+   "bbox_max": [
+    0.321,
+    0.881,
+    0.314
+   ],
+   "triangles": 2000,
+   "bytes": 97232,
+   "materials": [
+    "plastic_monobloc_chair_01"
+   ],
+   "nodes": [
+    "chair_plastic"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/plastic_monobloc_chair_01",
+   "author": "Kuutti Siitonen",
+   "licence": "CC0-1.0",
+   "title": "Plastic Monobloc Chair 01"
+  },
+  {
+   "path": "real/props/bar_stool.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.352,
+    "y": 0.882,
+    "z": 0.355
+   },
+   "bbox_min": [
+    -0.176,
+    0,
+    -0.177
+   ],
+   "bbox_max": [
+    0.176,
+    0.883,
+    0.177
+   ],
+   "triangles": 2500,
+   "bytes": 83228,
+   "materials": [
+    "metal_stool_01"
+   ],
+   "nodes": [
+    "bar_stool"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/metal_stool_01",
+   "author": "Ulan Cabanilla",
+   "licence": "CC0-1.0",
+   "title": "Metal Stool 01"
+  },
+  {
+   "path": "real/props/aircon_unit.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.8,
+    "y": 0.928,
+    "z": 0.374
+   },
+   "bbox_min": [
+    -0.4,
+    0,
+    -0.187
+   ],
+   "bbox_max": [
+    0.4,
+    0.928,
+    0.187
+   ],
+   "triangles": 5000,
+   "bytes": 180928,
+   "materials": [
+    "exterior_aircon_unit_rusted_01",
+    "exterior_aircon_unit_rusted_02"
+   ],
+   "nodes": [
+    "aircon_unit"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/exterior_aircon_unit",
+   "author": "Monsta3D",
+   "licence": "CC0-1.0",
+   "title": "Exterior Aircon Unit"
+  },
+  {
+   "path": "real/props/fire_hydrant.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.274,
+    "y": 0.8,
+    "z": 0.317
+   },
+   "bbox_min": [
+    -0.137,
+    0,
+    -0.158
+   ],
+   "bbox_max": [
+    0.137,
+    0.8,
+    0.159
+   ],
+   "triangles": 5000,
+   "bytes": 205532,
+   "materials": [
+    "fire_hydrant_aged"
+   ],
+   "nodes": [
+    "fire_hydrant"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/fire_hydrant",
+   "author": "Gon\u00e7alo Fel\u00edcio",
+   "licence": "CC0-1.0",
+   "title": "Fire Hydrant"
+  },
+  {
+   "path": "real/props/hanging_lamp.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.55,
+    "y": 1.356,
+    "z": 0.55
+   },
+   "bbox_min": [
+    -0.275,
+    -1.356,
+    -0.275
+   ],
+   "bbox_max": [
+    0.275,
+    0,
+    0.275
+   ],
+   "triangles": 5000,
+   "bytes": 182004,
+   "materials": [
+    "hanging_industrial_lamp",
+    "hanging_industrial_lamp_glass"
+   ],
+   "nodes": [
+    "hanging_lamp"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "top-centre (y=0 is ceiling mount)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Pivot at TOP of chain; hangs down 1.36 m. Add a point/spot light at approx y=-1.2.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/hanging_industrial_lamp",
+   "author": "Kuutti Siitonen",
+   "licence": "CC0-1.0",
+   "title": "Hanging Industrial Lamp"
+  },
+  {
+   "path": "real/props/payphone.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.399,
+    "y": 0.738,
+    "z": 0.3
+   },
+   "bbox_min": [
+    -0.2,
+    0.002,
+    -0.15
+   ],
+   "bbox_max": [
+    0.199,
+    0.74,
+    0.15
+   ],
+   "triangles": 4000,
+   "bytes": 205360,
+   "materials": [
+    "korean_public_payphone_01"
+   ],
+   "nodes": [
+    "payphone"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/korean_public_payphone_01",
+   "author": "UM JOORIN",
+   "licence": "CC0-1.0",
+   "title": "Korean Public Payphone 01"
+  },
+  {
+   "path": "real/props/metal_desk.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 2,
+    "y": 0.787,
+    "z": 0.947
+   },
+   "bbox_min": [
+    -1,
+    0,
+    -0.474
+   ],
+   "bbox_max": [
+    1,
+    0.787,
+    0.474
+   ],
+   "triangles": 6898,
+   "bytes": 214080,
+   "materials": [
+    "metal_office_desk"
+   ],
+   "nodes": [
+    "metal_desk"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/metal_office_desk",
+   "author": "Ulan Cabanilla",
+   "licence": "CC0-1.0",
+   "title": "Metal Office Desk"
+  },
+  {
+   "path": "real/props/trash_can.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.773,
+    "y": 0.906,
+    "z": 0.548
+   },
+   "bbox_min": [
+    -0.387,
+    0,
+    -0.274
+   ],
+   "bbox_max": [
+    0.387,
+    0.906,
+    0.274
+   ],
+   "triangles": 5000,
+   "bytes": 235184,
+   "materials": [
+    "metal_trash_can_rust"
+   ],
+   "nodes": [
+    "trash_can"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Rusty can with lid leaning on the ground next to it (single mesh).",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/metal_trash_can",
+   "author": "GurJas Studios",
+   "licence": "CC0-1.0",
+   "title": "Metal Trash Can"
+  },
+  {
+   "path": "real/props/street_bench.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 2.453,
+    "y": 0.867,
+    "z": 0.67
+   },
+   "bbox_min": [
+    -1.227,
+    0,
+    -0.335
+   ],
+   "bbox_max": [
+    1.226,
+    0.867,
+    0.335
+   ],
+   "triangles": 5000,
+   "bytes": 191136,
+   "materials": [
+    "modular_street_seating_armrests",
+    "modular_street_seating_supports",
+    "modular_street_seating_timber"
+   ],
+   "nodes": [
+    "street_bench"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Assembled from modular kit: seat, back, legs, armrests.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/modular_street_seating",
+   "author": "Stuart Attenborrow",
+   "licence": "CC0-1.0",
+   "title": "Modular Street Seating"
+  },
+  {
+   "path": "real/props/ceiling_tube_light.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.911,
+    "y": 0.032,
+    "z": 0.042
+   },
+   "bbox_min": [
+    -0.455,
+    -0.032,
+    -0.021
+   ],
+   "bbox_max": [
+    0.455,
+    0,
+    0.021
+   ],
+   "triangles": 1500,
+   "bytes": 90316,
+   "materials": [
+    "mounted_fluorescent_lights",
+    "mounted_fluorescent_lights_glass"
+   ],
+   "nodes": [
+    "ceiling_tube_light"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "top-centre (y=0 is ceiling mount)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Pivot at top; fluorescent tube, set emissive on material *_glass.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/mounted_fluorescent_lights",
+   "author": "Ulan Cabanilla",
+   "licence": "CC0-1.0",
+   "title": "Mounted Fluorescent Lights"
+  },
+  {
+   "path": "real/props/wooden_crate.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.816,
+    "y": 0.301,
+    "z": 0.538
+   },
+   "bbox_min": [
+    -0.408,
+    0,
+    -0.269
+   ],
+   "bbox_max": [
+    0.408,
+    0.301,
+    0.269
+   ],
+   "triangles": 5000,
+   "bytes": 197112,
+   "materials": [
+    "military_crate_m_01"
+   ],
+   "nodes": [
+    "wooden_crate"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/old_military_crate",
+   "author": "Jack Mava",
+   "licence": "CC0-1.0",
+   "title": "Old Military Crate"
+  },
+  {
+   "path": "real/props/tyre.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.6,
+    "y": 0.6,
+    "z": 0.165
+   },
+   "bbox_min": [
+    -0.3,
+    0,
+    -0.083
+   ],
+   "bbox_max": [
+    0.3,
+    0.6,
+    0.083
+   ],
+   "triangles": 2880,
+   "bytes": 83428,
+   "materials": [
+    "old_tyre"
+   ],
+   "nodes": [
+    "tyre"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/old_tyre",
+   "author": "MP",
+   "licence": "CC0-1.0",
+   "title": "Old Tyre"
+  },
+  {
+   "path": "real/props/wooden_bench.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 1.165,
+    "y": 0.889,
+    "z": 0.496
+   },
+   "bbox_min": [
+    -0.582,
+    0,
+    -0.248
+   ],
+   "bbox_max": [
+    0.582,
+    0.889,
+    0.248
+   ],
+   "triangles": 630,
+   "bytes": 63744,
+   "materials": [
+    "painted_wooden_bench"
+   ],
+   "nodes": [
+    "wooden_bench"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/painted_wooden_bench",
+   "author": "Kirill Sannikov",
+   "licence": "CC0-1.0",
+   "title": "Painted Wooden Bench"
+  },
+  {
+   "path": "real/props/plastic_crate.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.299,
+    "y": 0.264,
+    "z": 0.412
+   },
+   "bbox_min": [
+    -0.15,
+    0,
+    -0.206
+   ],
+   "bbox_max": [
+    0.15,
+    0.264,
+    0.206
+   ],
+   "triangles": 2000,
+   "bytes": 128696,
+   "materials": [
+    "plastic_crate_01"
+   ],
+   "nodes": [
+    "plastic_crate"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/plastic_crate_01",
+   "author": "PierreB3D",
+   "licence": "CC0-1.0",
+   "title": "Plastic Crate 01"
+  },
+  {
+   "path": "real/building/shutter_door.glb",
+   "type": "model",
+   "category": "building",
+   "dimensions_m": {
+    "x": 1.08,
+    "y": 2.4,
+    "z": 0.3
+   },
+   "bbox_min": [
+    -0.54,
+    0,
+    -0.15
+   ],
+   "bbox_max": [
+    0.54,
+    2.4,
+    0.15
+   ],
+   "triangles": 552,
+   "bytes": 60388,
+   "materials": [
+    "rollershutter_door"
+   ],
+   "nodes": [
+    "shutter_door"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Roller shutter with housing box, 1.08 x 2.4 m, face towards +Z, back at z=-0.15.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/rollershutter_door",
+   "author": "MP",
+   "licence": "CC0-1.0",
+   "title": "Rollershutter Door"
+  },
+  {
+   "path": "real/building/shutter_door_graffiti.glb",
+   "type": "model",
+   "category": "building",
+   "dimensions_m": {
+    "x": 1.08,
+    "y": 2.4,
+    "z": 0.3
+   },
+   "bbox_min": [
+    -0.54,
+    0,
+    -0.15
+   ],
+   "bbox_max": [
+    0.54,
+    2.4,
+    0.15
+   ],
+   "triangles": 552,
+   "bytes": 215020,
+   "materials": [
+    "rollershutter_door_graffiti"
+   ],
+   "nodes": [
+    "shutter_door_graffiti"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "1024x1024 webp",
+    "1024x1024 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Same geometry as shutter_door with graffiti texture.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/rollershutter_door",
+   "author": "MP",
+   "licence": "CC0-1.0",
+   "title": "Rollershutter Door"
+  },
+  {
+   "path": "real/building/shutter_window.glb",
+   "type": "model",
+   "category": "building",
+   "dimensions_m": {
+    "x": 2.1,
+    "y": 1.851,
+    "z": 0.3
+   },
+   "bbox_min": [
+    -1.05,
+    0,
+    -0.15
+   ],
+   "bbox_max": [
+    1.05,
+    1.851,
+    0.15
+   ],
+   "triangles": 552,
+   "bytes": 55092,
+   "materials": [
+    "rollershutter_window_01"
+   ],
+   "nodes": [
+    "shutter_window"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Roller shutter 2.1 x 1.85 m, face +Z.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/rollershutter_window_01",
+   "author": "MP",
+   "licence": "CC0-1.0",
+   "title": "Rollershutter Window 01"
+  },
+  {
+   "path": "real/building/shutter_window_graffiti.glb",
+   "type": "model",
+   "category": "building",
+   "dimensions_m": {
+    "x": 2.1,
+    "y": 1.851,
+    "z": 0.3
+   },
+   "bbox_min": [
+    -1.05,
+    0,
+    -0.15
+   ],
+   "bbox_max": [
+    1.05,
+    1.851,
+    0.15
+   ],
+   "triangles": 552,
+   "bytes": 195484,
+   "materials": [
+    "rollershutter_window_01_graffiti"
+   ],
+   "nodes": [
+    "shutter_window_graffiti"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "1024x1024 webp",
+    "1024x1024 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Same geometry with graffiti texture.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/rollershutter_window_01",
+   "author": "MP",
+   "licence": "CC0-1.0",
+   "title": "Rollershutter Window 01"
+  },
+  {
+   "path": "real/props/round_table.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 1.399,
+    "y": 1.005,
+    "z": 1.399
+   },
+   "bbox_min": [
+    -0.7,
+    0,
+    -0.7
+   ],
+   "bbox_max": [
+    0.7,
+    1.005,
+    0.7
+   ],
+   "triangles": 5000,
+   "bytes": 152152,
+   "materials": [
+    "round_wooden_table_01"
+   ],
+   "nodes": [
+    "round_table"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/round_wooden_table_01",
+   "author": "Ulan Cabanilla",
+   "licence": "CC0-1.0",
+   "title": "Round Wooden Table 01"
+  },
+  {
+   "path": "real/props/security_camera.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.17,
+    "y": 0.286,
+    "z": 0.554
+   },
+   "bbox_min": [
+    -0.085,
+    0,
+    -0.277
+   ],
+   "bbox_max": [
+    0.085,
+    0.286,
+    0.277
+   ],
+   "triangles": 3000,
+   "bytes": 114484,
+   "materials": [
+    "security_camera_01",
+    "security_camera_01_glass"
+   ],
+   "nodes": [
+    "security_camera"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/security_camera_01",
+   "author": "Alexander Otterbeck, Yann Kervran",
+   "licence": "CC0-1.0",
+   "title": "Security Camera 01"
+  },
+  {
+   "path": "real/props/pistol.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.222,
+    "y": 0.129,
+    "z": 0.032
+   },
+   "bbox_min": [
+    -0.111,
+    -0.065,
+    -0.016
+   ],
+   "bbox_max": [
+    0.111,
+    0.065,
+    0.016
+   ],
+   "triangles": 2500,
+   "bytes": 130236,
+   "materials": [
+    "service_pistol"
+   ],
+   "nodes": [
+    "pistol"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bbox centre",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Pivot at bbox centre; barrel along X.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/service_pistol",
+   "author": "Mateusz Sadek",
+   "licence": "CC0-1.0",
+   "title": "Service Pistol"
+  },
+  {
+   "path": "real/props/steel_shelves.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 1.025,
+    "y": 2,
+    "z": 0.469
+   },
+   "bbox_min": [
+    -0.513,
+    0,
+    -0.235
+   ],
+   "bbox_max": [
+    0.513,
+    2,
+    0.235
+   ],
+   "triangles": 4348,
+   "bytes": 143892,
+   "materials": [
+    "steel_frame_shelves_01"
+   ],
+   "nodes": [
+    "steel_shelves"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Rescaled to 2.0 m tall (source file scale was off).",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/steel_frame_shelves_01",
+   "author": "James Ray Cock",
+   "licence": "CC0-1.0",
+   "title": "Steel Frame Shelves 01"
+  },
+  {
+   "path": "real/props/street_lamp.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.705,
+    "y": 3.871,
+    "z": 0.385
+   },
+   "bbox_min": [
+    -0.352,
+    0,
+    -0.192
+   ],
+   "bbox_max": [
+    0.352,
+    3.871,
+    0.192
+   ],
+   "triangles": 5000,
+   "bytes": 166008,
+   "materials": [
+    "street_lamp_01",
+    "street_lamp_01_glass"
+   ],
+   "nodes": [
+    "street_lamp"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/street_lamp_01",
+   "author": "Josh Dean",
+   "licence": "CC0-1.0",
+   "title": "Street Lamp 01"
+  },
+  {
+   "path": "real/props/wall_lamp.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.385,
+    "y": 1.675,
+    "z": 0.806
+   },
+   "bbox_min": [
+    -0.192,
+    -0.837,
+    -0.403
+   ],
+   "bbox_max": [
+    0.192,
+    0.838,
+    0.403
+   ],
+   "triangles": 4000,
+   "bytes": 162348,
+   "materials": [
+    "street_lamp_02",
+    "street_lamp_02_glass"
+   ],
+   "nodes": [
+    "wall_lamp"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bbox centre",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Wall-mounted lantern, pivot at bbox centre; bracket points to -Z (mount on wall behind).",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/street_lamp_02",
+   "author": "Josh Dean",
+   "licence": "CC0-1.0",
+   "title": "Street Lamp 02"
+  },
+  {
+   "path": "real/props/trash_bag.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.528,
+    "y": 0.575,
+    "z": 0.463
+   },
+   "bbox_min": [
+    -0.264,
+    0,
+    -0.231
+   ],
+   "bbox_max": [
+    0.264,
+    0.575,
+    0.231
+   ],
+   "triangles": 3000,
+   "bytes": 136896,
+   "materials": [
+    "trashbag"
+   ],
+   "nodes": [
+    "trash_bag"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/trashbag",
+   "author": "Benny Weimer",
+   "licence": "CC0-1.0",
+   "title": "Trashbag"
+  },
+  {
+   "path": "real/props/utility_box.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.52,
+    "y": 1.12,
+    "z": 0.432
+   },
+   "bbox_min": [
+    -0.26,
+    0,
+    -0.216
+   ],
+   "bbox_max": [
+    0.26,
+    1.12,
+    0.216
+   ],
+   "triangles": 2999,
+   "bytes": 135880,
+   "materials": [
+    "utility_box_01"
+   ],
+   "nodes": [
+    "utility_box"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/utility_box_01",
+   "author": "James Ray Cock",
+   "licence": "CC0-1.0",
+   "title": "Utility Box 01"
+  },
+  {
+   "path": "real/props/suitcase.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.694,
+    "y": 0.568,
+    "z": 0.239
+   },
+   "bbox_min": [
+    -0.347,
+    0,
+    -0.12
+   ],
+   "bbox_max": [
+    0.347,
+    0.568,
+    0.12
+   ],
+   "triangles": 4000,
+   "bytes": 123940,
+   "materials": [
+    "vintage_suitcase_02"
+   ],
+   "nodes": [
+    "suitcase"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/vintage_suitcase",
+   "author": "Maximilian Schuster",
+   "licence": "CC0-1.0",
+   "title": "Vintage Suitcase"
+  },
+  {
+   "path": "real/props/manhole_cover.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.691,
+    "y": 0.068,
+    "z": 0.691
+   },
+   "bbox_min": [
+    -0.346,
+    0,
+    -0.346
+   ],
+   "bbox_max": [
+    0.346,
+    0.068,
+    0.346
+   ],
+   "triangles": 2500,
+   "bytes": 104532,
+   "materials": [
+    "water_manhole_cover"
+   ],
+   "nodes": [
+    "manhole_cover"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/water_manhole_cover",
+   "author": "Raunox",
+   "licence": "CC0-1.0",
+   "title": "Water Manhole Cover"
+  },
+  {
+   "path": "real/props/bottles.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.676,
+    "y": 0.332,
+    "z": 0.08
+   },
+   "bbox_min": [
+    -0.338,
+    0,
+    -0.04
+   ],
+   "bbox_max": [
+    0.338,
+    0.332,
+    0.04
+   ],
+   "triangles": 4000,
+   "bytes": 138140,
+   "materials": [
+    "wine_bottles_01_glass_orange",
+    "wine_bottles_01_seal_cork",
+    "wine_bottles_01_wine_red",
+    "wine_bottles_01_ftero_vinea_02",
+    "wine_bottles_01_wine_clear",
+    "wine_bottles_01_clearwater",
+    "wine_bottles_01_wine_light_red",
+    "wine_bottles_01_intertwine",
+    "wine_bottles_01_ftero_vinea_01"
+   ],
+   "nodes": [
+    "bottles"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/wine_bottles_01",
+   "author": "Rico Cilliers, Jurita Burger",
+   "licence": "CC0-1.0",
+   "title": "Wine Bottles 01"
+  },
+  {
+   "path": "real/props/chainlink_fence_panel.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 1.914,
+    "y": 2.37,
+    "z": 0.049
+   },
+   "bbox_min": [
+    -0.957,
+    0,
+    -0.024
+   ],
+   "bbox_max": [
+    0.957,
+    2.37,
+    0.024
+   ],
+   "triangles": 3054,
+   "bytes": 292932,
+   "materials": [
+    "modular_chainlink_fence_wire",
+    "modular_chainlink_fence_posts"
+   ],
+   "nodes": [
+    "chainlink_fence_panel"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "1.91 m wide panel, wire material uses alpha (alphaMode MASK/BLEND) - set transparent/alphaTest in three if needed. Pair with chainlink_fence_post every 1.91 m.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/modular_chainlink_fence",
+   "author": "James Ray Cock, Amal Kumar",
+   "licence": "CC0-1.0",
+   "title": "Modular Chainlink Fence"
+  },
+  {
+   "path": "real/props/chainlink_fence_post.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.149,
+    "y": 2.523,
+    "z": 0.149
+   },
+   "bbox_min": [
+    -0.075,
+    0,
+    -0.075
+   ],
+   "bbox_max": [
+    0.075,
+    2.523,
+    0.075
+   ],
+   "triangles": 1134,
+   "bytes": 120472,
+   "materials": [
+    "modular_chainlink_fence_posts"
+   ],
+   "nodes": [
+    "chainlink_fence_post"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/modular_chainlink_fence",
+   "author": "James Ray Cock, Amal Kumar",
+   "licence": "CC0-1.0",
+   "title": "Modular Chainlink Fence"
+  },
+  {
+   "path": "real/vehicles/suv.glb",
+   "type": "model",
+   "category": "vehicles",
+   "dimensions_m": {
+    "x": 2.541,
+    "y": 2.105,
+    "z": 4.9
+   },
+   "bbox_min": [
+    -1.271,
+    0,
+    -2.45
+   ],
+   "bbox_max": [
+    1.271,
+    2.105,
+    2.45
+   ],
+   "triangles": 1510,
+   "bytes": 206696,
+   "materials": [
+    "SUV_Body",
+    "SUV_Wheels"
+   ],
+   "nodes": [
+    "body",
+    "wheel_FL",
+    "wheel_FR",
+    "wheel_RL",
+    "wheel_RR"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "1024x1024 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Low-poly (1.5k tris) photo-textured. Nodes: body, wheel_FL/FR/RL/RR (origins at wheel centres, spin about local X). Silver paint baked in texture; darken via material.color multiply. No light bar.",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/SUV",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "SUV"
+  },
+  {
+   "path": "real/vehicles/hatchback.glb",
+   "type": "model",
+   "category": "vehicles",
+   "dimensions_m": {
+    "x": 2.14,
+    "y": 1.568,
+    "z": 4
+   },
+   "bbox_min": [
+    -1.07,
+    0,
+    -2
+   ],
+   "bbox_max": [
+    1.07,
+    1.568,
+    2
+   ],
+   "triangles": 788,
+   "bytes": 110112,
+   "materials": [
+    "Hatchback",
+    "Wheels3"
+   ],
+   "nodes": [
+    "body",
+    "wheel_FL",
+    "wheel_FR",
+    "wheel_RL",
+    "wheel_RR"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Low-poly photo-textured. Nodes body + 4 wheels (origins at wheel centres).",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Hatchback",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "Hatchback"
+  },
+  {
+   "path": "real/vehicles/sedan.glb",
+   "type": "model",
+   "category": "vehicles",
+   "dimensions_m": {
+    "x": 1.982,
+    "y": 1.514,
+    "z": 4.55
+   },
+   "bbox_min": [
+    -0.991,
+    0,
+    -2.275
+   ],
+   "bbox_max": [
+    0.991,
+    1.514,
+    2.275
+   ],
+   "triangles": 2176,
+   "bytes": 160712,
+   "materials": [
+    "Hybrid",
+    "Hybrid_Interior",
+    "Windows",
+    "Wheels3"
+   ],
+   "nodes": [
+    "body",
+    "wheel_FL",
+    "wheel_FR",
+    "wheel_RL",
+    "wheel_RR"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "1024x1024 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Low-poly photo-textured 4-door hybrid sedan; usable as police car base (add light bar/livery in code). Nodes body + 4 wheels. Shape resembles a real production hybrid; no logos verified at texture level - check close-ups.",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Prius%20Hybrid",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "Prius Hybrid"
+  },
+  {
+   "path": "real/vehicles/pickup.glb",
+   "type": "model",
+   "category": "vehicles",
+   "dimensions_m": {
+    "x": 2.445,
+    "y": 1.844,
+    "z": 5.6
+   },
+   "bbox_min": [
+    -1.222,
+    0,
+    -2.8
+   ],
+   "bbox_max": [
+    1.222,
+    1.844,
+    2.8
+   ],
+   "triangles": 1084,
+   "bytes": 122900,
+   "materials": [
+    "Pickup",
+    "Pickup_Wheels"
+   ],
+   "nodes": [
+    "body",
+    "wheel_FL",
+    "wheel_FR",
+    "wheel_RL",
+    "wheel_RR"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Low-poly photo-textured. Nodes body + 4 wheels.",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Pickup",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "Pickup"
+  },
+  {
+   "path": "real/vehicles/van_ambulance.glb",
+   "type": "model",
+   "category": "vehicles",
+   "dimensions_m": {
+    "x": 2.443,
+    "y": 2.381,
+    "z": 6.2
+   },
+   "bbox_min": [
+    -1.221,
+    0,
+    -3.1
+   ],
+   "bbox_max": [
+    1.221,
+    2.381,
+    3.1
+   ],
+   "triangles": 1080,
+   "bytes": 169544,
+   "materials": [
+    "Ambulance",
+    "Firetruck_Wheels"
+   ],
+   "nodes": [
+    "body",
+    "wheel_FL",
+    "wheel_FR",
+    "wheel_RL",
+    "wheel_RR"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "1024x1024 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Box-van/ambulance body, ambulance livery baked in texture (tint dark or re-texture for a gang van). Nodes body + 4 wheels.",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Ambulance",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "Ambulance"
+  },
+  {
+   "path": "real/props/dumpster.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 2.19,
+    "y": 1.55,
+    "z": 1.342
+   },
+   "bbox_min": [
+    -1.095,
+    0,
+    -0.671
+   ],
+   "bbox_max": [
+    1.095,
+    1.55,
+    0.671
+   ],
+   "triangles": 382,
+   "bytes": 86188,
+   "materials": [
+    "_1_-_Default"
+   ],
+   "nodes": [
+    "dumpster"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Low-poly photo-textured dumpster, diffuse only.",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Dumpster",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "Dumpster"
+  },
+  {
+   "path": "real/props/traffic_light_head.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.333,
+    "y": 1,
+    "z": 0.435
+   },
+   "bbox_min": [
+    -0.167,
+    0,
+    -0.218
+   ],
+   "bbox_max": [
+    0.167,
+    1,
+    0.218
+   ],
+   "triangles": 260,
+   "bytes": 16432,
+   "materials": [
+    "StopLight"
+   ],
+   "nodes": [
+    "traffic_light_head"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Signal head only (1.0 m tall), low-poly; mount on your own pole. Lamps are in the texture - add emissive spheres for lit state.",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Stop%20light",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "Stop light"
+  },
+  {
+   "path": "real/props/street_light_modern.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.368,
+    "y": 7,
+    "z": 2.402
+   },
+   "bbox_min": [
+    -0.184,
+    0,
+    -1.201
+   ],
+   "bbox_max": [
+    0.184,
+    7,
+    1.201
+   ],
+   "triangles": 270,
+   "bytes": 61604,
+   "materials": [
+    "_33"
+   ],
+   "nodes": [
+    "street_light_modern"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Very low-poly modern 7 m street light with arm (untextured look, grey). Arm extends along Z.",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Lamp%20Post",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "Lamp Post"
+  },
+  {
+   "path": "real/props/traffic_cone.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.346,
+    "y": 0.75,
+    "z": 0.346
+   },
+   "bbox_min": [
+    -0.173,
+    0,
+    -0.173
+   ],
+   "bbox_max": [
+    0.173,
+    0.75,
+    0.173
+   ],
+   "triangles": 166,
+   "bytes": 22624,
+   "materials": [
+    "_1_-_Default"
+   ],
+   "nodes": [
+    "traffic_cone"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Gazebo Fuel",
+   "sourceUrl": "https://app.gazebosim.org/OpenRobotics/fuel/models/Construction%20Cone",
+   "author": "Open Robotics (OpenRobotics)",
+   "licence": "CC0-1.0",
+   "title": "Construction Cone"
+  },
+  {
+   "path": "real/shop/cash_register.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.599,
+    "y": 0.621,
+    "z": 0.623
+   },
+   "bbox_min": [
+    -0.3,
+    0,
+    -0.311
+   ],
+   "bbox_max": [
+    0.299,
+    0.621,
+    0.312
+   ],
+   "triangles": 3999,
+   "bytes": 263656,
+   "materials": [
+    "CashRegister_01",
+    "CashRegister_01_glass"
+   ],
+   "nodes": [
+    "cash_register"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Vintage cash register with drawer open (single mesh).",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/CashRegister_01",
+   "author": "Joe Seabuhr",
+   "licence": "CC0-1.0",
+   "title": "Cash Register 01"
+  },
+  {
+   "path": "real/shop/tv_crt.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.4,
+    "y": 0.411,
+    "z": 0.35
+   },
+   "bbox_min": [
+    -0.2,
+    0,
+    -0.175
+   ],
+   "bbox_max": [
+    0.2,
+    0.411,
+    0.175
+   ],
+   "triangles": 2310,
+   "bytes": 109692,
+   "materials": [
+    "television_02"
+   ],
+   "nodes": [
+    "tv_crt"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "CRT TV; overlay an emissive plane on the screen for a lit picture.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/television_02",
+   "author": "Benny Weimer",
+   "licence": "CC0-1.0",
+   "title": "Television 02"
+  },
+  {
+   "path": "real/shop/tv_wood.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.6,
+    "y": 0.457,
+    "z": 0.471
+   },
+   "bbox_min": [
+    -0.3,
+    0,
+    -0.235
+   ],
+   "bbox_max": [
+    0.3,
+    0.457,
+    0.235
+   ],
+   "triangles": 1918,
+   "bytes": 123468,
+   "materials": [
+    "Television_01"
+   ],
+   "nodes": [
+    "tv_wood"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/Television_01",
+   "author": "Gabriel Radi\u0107",
+   "licence": "CC0-1.0",
+   "title": "Television 01"
+  },
+  {
+   "path": "real/shop/wall_clock.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.321,
+    "y": 0.32,
+    "z": 0.047
+   },
+   "bbox_min": [
+    -0.16,
+    -0.16,
+    -0.024
+   ],
+   "bbox_max": [
+    0.16,
+    0.16,
+    0.024
+   ],
+   "triangles": 2500,
+   "bytes": 138352,
+   "materials": [
+    "wall_clock",
+    "wall_clock_glass"
+   ],
+   "nodes": [
+    "wall_clock"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bbox centre",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Pivot bbox centre; dial faces +Z, hang on wall behind (-Z).",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/wall_clock",
+   "author": "PierreB3D",
+   "licence": "CC0-1.0",
+   "title": "Wall Clock"
+  },
+  {
+   "path": "real/shop/ukulele.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.177,
+    "y": 0.527,
+    "z": 0.051
+   },
+   "bbox_min": [
+    -0.088,
+    0,
+    -0.026
+   ],
+   "bbox_max": [
+    0.088,
+    0.527,
+    0.025
+   ],
+   "triangles": 3000,
+   "bytes": 179620,
+   "materials": [
+    "Ukulele_01"
+   ],
+   "nodes": [
+    "ukulele"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Small guitar-like instrument (no CC0 full-size guitar found); scale x1.6 to pass as a guitar at distance. Stands upright.",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/Ukulele_01",
+   "author": "Joseph Burgan",
+   "licence": "CC0-1.0",
+   "title": "Ukulele 01"
+  },
+  {
+   "path": "real/shop/camera.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.215,
+    "y": 0.078,
+    "z": 0.265
+   },
+   "bbox_min": [
+    -0.108,
+    0,
+    -0.131
+   ],
+   "bbox_max": [
+    0.107,
+    0.078,
+    0.133
+   ],
+   "triangles": 3000,
+   "bytes": 170320,
+   "materials": [
+    "Camera_01_strap",
+    "Camera_01_lens_body",
+    "Camera_01_lens",
+    "Camera_01_body"
+   ],
+   "nodes": [
+    "camera"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/Camera_01",
+   "author": "Rajil Jose Macatangay",
+   "licence": "CC0-1.0",
+   "title": "Camera 01"
+  },
+  {
+   "path": "real/shop/laptop.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.653,
+    "y": 0.545,
+    "z": 0.486
+   },
+   "bbox_min": [
+    -0.327,
+    0,
+    -0.243
+   ],
+   "bbox_max": [
+    0.326,
+    0.545,
+    0.243
+   ],
+   "triangles": 3000,
+   "bytes": 200868,
+   "materials": [
+    "classic_laptop",
+    "classic_laptop_screen"
+   ],
+   "nodes": [
+    "laptop"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/classic_laptop",
+   "author": "Arrangemonk",
+   "licence": "CC0-1.0",
+   "title": "Classic Laptop"
+  },
+  {
+   "path": "real/shop/toolbox.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.4,
+    "y": 0.305,
+    "z": 0.271
+   },
+   "bbox_min": [
+    -0.2,
+    0,
+    -0.135
+   ],
+   "bbox_max": [
+    0.2,
+    0.305,
+    0.135
+   ],
+   "triangles": 2999,
+   "bytes": 186424,
+   "materials": [
+    "metal_toolbox"
+   ],
+   "nodes": [
+    "toolbox"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/metal_toolbox",
+   "author": "Mateusz Sadek",
+   "licence": "CC0-1.0",
+   "title": "Metal Toolbox"
+  },
+  {
+   "path": "real/characters/gang_m1.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.811,
+    "z": 0.421
+   },
+   "bbox_min": [
+    -1,
+    -0.906,
+    -0.211
+   ],
+   "bbox_max": [
+    1,
+    0.906,
+    0.211
+   ],
+   "triangles": 16997,
+   "bytes": 503876,
+   "materials": [
+    "skin",
+    "face_low-poly",
+    "face_eyebrow001",
+    "face_eyelashes01",
+    "hair_short04",
+    "cloth_male_casualsuit05",
+    "cloth_shoes03"
+   ],
+   "nodes": [
+    "gang_m1"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: young_african_male, short04, male_casualsuit05, shoes03); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Gang member - young Black man, muscular, dark puffer jacket + jeans + boots"
+  },
+  {
+   "path": "real/characters/gang_m2.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.799,
+    "z": 0.332
+   },
+   "bbox_min": [
+    -1,
+    -0.9,
+    -0.166
+   ],
+   "bbox_max": [
+    1,
+    0.9,
+    0.166
+   ],
+   "triangles": 16995,
+   "bytes": 479552,
+   "materials": [
+    "skin",
+    "face_low-poly",
+    "face_eyebrow003",
+    "face_eyelashes01",
+    "hair_short02",
+    "cloth_male_casualsuit01",
+    "cloth_shoes04"
+   ],
+   "nodes": [
+    "gang_m2"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: middleage_asian_male, short02, male_casualsuit01, shoes04); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Gang member - East Asian man, lean, dark denim shirt + jeans"
+  },
+  {
+   "path": "real/characters/gang_m3.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.81,
+    "z": 0.389
+   },
+   "bbox_min": [
+    -1,
+    -0.905,
+    -0.194
+   ],
+   "bbox_max": [
+    1,
+    0.905,
+    0.194
+   ],
+   "triangles": 16995,
+   "bytes": 532148,
+   "materials": [
+    "skin",
+    "face_low-poly",
+    "face_eyebrow006",
+    "face_eyelashes01",
+    "hair_short01",
+    "cloth_toigo_fisherman_sweater",
+    "cloth_cortu_cargo_pants",
+    "cloth_toigo_ankle_boots_male"
+   ],
+   "nodes": [
+    "gang_m3"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: middleage_caucasian_male, short01, toigo_fisherman_sweater, cortu_cargo_pants, toigo_ankle_boots_male); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Gang member - heavy-set white man, grey sweater, cargo pants"
+  },
+  {
+   "path": "real/characters/gang_f1.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.812,
+    "z": 0.322
+   },
+   "bbox_min": [
+    -1,
+    -0.906,
+    -0.161
+   ],
+   "bbox_max": [
+    1,
+    0.906,
+    0.161
+   ],
+   "triangles": 16997,
+   "bytes": 491036,
+   "materials": [
+    "skin",
+    "face_low-poly",
+    "face_eyebrow001",
+    "face_eyelashes01",
+    "hair_braid01",
+    "cloth_female_casualsuit01",
+    "cloth_toigo_ankle_boots_female"
+   ],
+   "nodes": [
+    "gang_f1"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: young_african_female, braid01, female_casualsuit01, toigo_ankle_boots_female); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Gang member - young Black woman, braid, dark tee + jeans + ankle boots"
+  },
+  {
+   "path": "real/characters/gang_f2.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.8,
+    "z": 0.417
+   },
+   "bbox_min": [
+    -1,
+    -0.9,
+    -0.209
+   ],
+   "bbox_max": [
+    1,
+    0.9,
+    0.209
+   ],
+   "triangles": 16997,
+   "bytes": 500508,
+   "materials": [
+    "skin",
+    "face_low-poly",
+    "face_eyebrow004",
+    "face_eyelashes01",
+    "hair_toigo_inverted_bob_with_bangs",
+    "cloth_toigo_female_suit_2",
+    "cloth_toigo_ankle_boots_female"
+   ],
+   "nodes": [
+    "gang_f2"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: young_caucasian_female, toigo_inverted_bob_with_bangs, toigo_female_suit_2, toigo_ankle_boots_female); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Gang member - white woman, black bob, dark burgundy trouser suit"
+  },
+  {
+   "path": "real/characters/gang_f3.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.79,
+    "z": 0.31
+   },
+   "bbox_min": [
+    -1,
+    -0.895,
+    -0.155
+   ],
+   "bbox_max": [
+    1,
+    0.895,
+    0.155
+   ],
+   "triangles": 16996,
+   "bytes": 521880,
+   "materials": [
+    "skin",
+    "cloth_undershirt",
+    "face_low-poly",
+    "face_eyebrow002",
+    "face_eyelashes01",
+    "hair_ponytail01",
+    "cloth_toigo_fisherman_sweater",
+    "cloth_cortu_cargo_pants",
+    "cloth_toigo_ankle_boots_female"
+   ],
+   "nodes": [
+    "gang_f3"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: young_asian_female, ponytail01, toigo_fisherman_sweater, cortu_cargo_pants, toigo_ankle_boots_female); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Gang member - East Asian woman, ponytail, dark green knit sweater, cargo trousers, black ankle boots"
+  },
+  {
+   "path": "real/characters/boss.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.805,
+    "z": 0.409
+   },
+   "bbox_min": [
+    -1,
+    -0.902,
+    -0.204
+   ],
+   "bbox_max": [
+    1,
+    0.902,
+    0.204
+   ],
+   "triangles": 16993,
+   "bytes": 515996,
+   "materials": [
+    "skin",
+    "face_low-poly",
+    "face_eyebrow008",
+    "face_eyelashes01",
+    "cloth_toigo_male_double-breasted_suit",
+    "cloth_shoes04",
+    "cloth_fedora01"
+   ],
+   "nodes": [
+    "boss"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: old_caucasian_male, toigo_male_double-breasted_suit, shoes04, fedora01); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Boss - older heavy white man, double-breasted suit, fedora"
+  },
+  {
+   "path": "real/characters/cop_m.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.839,
+    "z": 0.445
+   },
+   "bbox_min": [
+    -1,
+    -0.919,
+    -0.223
+   ],
+   "bbox_max": [
+    1,
+    0.919,
+    0.223
+   ],
+   "triangles": 16993,
+   "bytes": 542820,
+   "materials": [
+    "skin",
+    "cloth_undershirt",
+    "face_low-poly",
+    "face_eyebrow001",
+    "face_eyelashes01",
+    "hair_short01",
+    "cloth_namuhekam_male_polo_shirt",
+    "cloth_toigo_wool_pants",
+    "cloth_shoes03",
+    "uniform_leather",
+    "uniform_metal",
+    "uniform_cap",
+    "uniform_badge",
+    "uniform_patch"
+   ],
+   "nodes": [
+    "cop_m"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Uniform accessories (peaked cap + band + visor + cap badge, duty belt with buckle/holster/pouches, chest badge, shoulder patches) are original procedural meshes merged into the same skinned mesh, rigidly weighted to Head / pelvis / spine_03 / upperarm_l|r; materials uniform_cap, uniform_leather, uniform_badge, uniform_metal, uniform_patch. No real force insignia or text. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: young_caucasian_male, short01, namuhekam_male_polo_shirt, toigo_wool_pants, shoes03); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Police officer (generic) - man, navy shirt + trousers, duty belt, peaked cap, badge"
+  },
+  {
+   "path": "real/characters/cop_f.glb",
+   "type": "character",
+   "category": "characters",
+   "dimensions_m": {
+    "x": 2,
+    "y": 1.833,
+    "z": 0.438
+   },
+   "bbox_min": [
+    -1,
+    -0.917,
+    -0.219
+   ],
+   "bbox_max": [
+    1,
+    0.917,
+    0.219
+   ],
+   "triangles": 16994,
+   "bytes": 504792,
+   "materials": [
+    "skin",
+    "cloth_undershirt",
+    "face_low-poly",
+    "face_eyebrow001",
+    "face_eyelashes01",
+    "hair_short04",
+    "cloth_namuhekam_male_polo_shirt",
+    "cloth_toigo_wool_pants",
+    "cloth_shoes03",
+    "uniform_leather",
+    "uniform_metal",
+    "uniform_cap",
+    "uniform_badge",
+    "uniform_patch"
+   ],
+   "nodes": [
+    "cop_f"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "1024x1024 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "512x512 webp",
+    "512x512 webp",
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Single skinned mesh, T-pose rest, faces +Z, feet at y=0, ~1.73 m tall (scale the root for height variety). Skeleton = the 65-bone Quaternius UAL rig copied from /models/anims.glb: identical bone names (root, pelvis, spine_01..03, neck_01, Head, clavicle/upperarm/lowerarm/hand_l|r, fingers *_01..03 + *_04_leaf, thigh/calf/foot/ball_l|r, ball_leaf), hierarchy and rest TRS (verified: translation error 0, rotation error <0.04 deg), so clips from anims.glb/anims2.glb play directly via AnimationMixer with no retargeting (checked in Blender with Idle_Loop, Walk_Formal_Loop, Sitting_Idle_Loop, Idle_FoldArms_Loop). Body proportions were conformed to that skeleton. Node tree: Armature > [mesh, root...]. Materials: skin (1024 webp), face_* (eyes/eyebrows/eyelashes), hair_* (alphaMode MASK, double sided), cloth_<asset> (512 webp; multiply material.color to recolour). Clone with SkeletonUtils.clone for multiple instances. Uniform accessories (peaked cap + band + visor + cap badge, duty belt with buckle/holster/pouches, chest badge, shoulder patches) are original procedural meshes merged into the same skinned mesh, rigidly weighted to Head / pelvis / spine_03 / upperarm_l|r; materials uniform_cap, uniform_leather, uniform_badge, uniform_metal, uniform_patch. No real force insignia or text. Body faces hidden under clothing are deleted; any leftover torso skin uses material cloth_undershirt (flat colour matching the top). Eyebrows: darkened, alpha-boosted, MASK cutoff 0.2.",
+   "skin_joints": [
+    65
+   ],
+   "source": "MakeHuman / MPFB2 2.0.18 (Blender 5.3) generated mesh + MakeHuman CC0 asset packs",
+   "sourceUrl": "https://static.makehumancommunity.org/assets/assetpacks.html",
+   "author": "MakeHuman community (assets: middleage_african_female, short04, namuhekam_male_polo_shirt, toigo_wool_pants, shoes03); generated by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Police officer (generic) - Black woman, navy shirt + trousers, duty belt, peaked cap, badge"
+  },
+  {
+   "path": "real/shop/safe.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.62,
+    "y": 0.95,
+    "z": 0.67
+   },
+   "bbox_min": [
+    -0.31,
+    0,
+    -0.29
+   ],
+   "bbox_max": [
+    0.31,
+    0.95,
+    0.38
+   ],
+   "triangles": 1568,
+   "bytes": 38920,
+   "materials": [
+    "safe_body",
+    "safe_dark",
+    "safe_chrome",
+    "safe_brass"
+   ],
+   "nodes": [
+    "safe"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Door/dial/3-spoke handle face +Z. Untextured PBR materials: safe_body, safe_dark, safe_chrome, safe_brass. Single mesh (door does not open).",
+   "source": "Original procedural model (scripts/13_procedural_shop.py)",
+   "sourceUrl": null,
+   "author": "SNITCH project (generated)",
+   "licence": "CC0-1.0",
+   "title": "Floor safe"
+  },
+  {
+   "path": "real/props/pallet.glb",
+   "type": "model",
+   "category": "props",
+   "dimensions_m": {
+    "x": 0.805,
+    "y": 0.144,
+    "z": 1.2
+   },
+   "bbox_min": [
+    -0.403,
+    0,
+    -0.6
+   ],
+   "bbox_max": [
+    0.401,
+    0.144,
+    0.6
+   ],
+   "triangles": 2160,
+   "bytes": 72880,
+   "materials": [
+    "pallet_wood"
+   ],
+   "nodes": [
+    "pallet"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "512x512 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Long side along Z.",
+   "source": "Original procedural model + Poly Haven texture wood_floor_worn",
+   "sourceUrl": "https://polyhaven.com/a/wood_floor_worn",
+   "author": "SNITCH project (generated); texture by Poly Haven",
+   "licence": "CC0-1.0",
+   "title": "Euro pallet 1.2 x 0.8 m"
+  },
+  {
+   "path": "real/shop/amplifier.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.6,
+    "y": 0.536,
+    "z": 0.298
+   },
+   "bbox_min": [
+    -0.3,
+    0,
+    -0.135
+   ],
+   "bbox_max": [
+    0.3,
+    0.536,
+    0.163
+   ],
+   "triangles": 1220,
+   "bytes": 30172,
+   "materials": [
+    "amp_tolex",
+    "amp_grille",
+    "amp_panel",
+    "amp_knob",
+    "amp_led"
+   ],
+   "nodes": [
+    "amplifier"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Grille/knobs face +Z. Material amp_led is emissive.",
+   "source": "Original procedural model (scripts/13_procedural_shop.py)",
+   "sourceUrl": null,
+   "author": "SNITCH project (generated)",
+   "licence": "CC0-1.0",
+   "title": "Guitar combo amplifier"
+  },
+  {
+   "path": "real/shop/open_sign.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 0.62,
+    "y": 0.32,
+    "z": 0.035
+   },
+   "bbox_min": [
+    -0.31,
+    -0.16,
+    -0.006
+   ],
+   "bbox_max": [
+    0.31,
+    0.16,
+    0.029
+   ],
+   "triangles": 1484,
+   "bytes": 26692,
+   "materials": [
+    "sign_backing",
+    "neon_text",
+    "neon_border"
+   ],
+   "nodes": [
+    "open_sign"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bbox centre",
+   "textures": [],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Pivot at board centre, faces +Z. Emissive materials neon_text (pink-red) and neon_border (blue) with KHR_materials_emissive_strength=6: animate emissiveIntensity for flicker; add bloom.",
+   "source": "Original procedural model (scripts/13_procedural_shop.py)",
+   "sourceUrl": null,
+   "author": "SNITCH project (generated)",
+   "licence": "CC0-1.0",
+   "title": "Neon OPEN sign"
+  },
+  {
+   "path": "real/shop/security_grille.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 2.022,
+    "y": 2.2,
+    "z": 0.05
+   },
+   "bbox_min": [
+    -1.011,
+    0,
+    -0.025
+   ],
+   "bbox_max": [
+    1.011,
+    2.2,
+    0.025
+   ],
+   "triangles": 2604,
+   "bytes": 74752,
+   "materials": [
+    "grille_iron"
+   ],
+   "nodes": [
+    "security_grille"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Flat in the XY plane, thin in Z. Scale X to fit an opening.",
+   "source": "Original procedural model (scripts/13_procedural_shop.py)",
+   "sourceUrl": null,
+   "author": "SNITCH project (generated)",
+   "licence": "CC0-1.0",
+   "title": "Scissor security grille 2.0 x 2.2 m"
+  },
+  {
+   "path": "real/shop/shop_door.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 1.12,
+    "y": 2.16,
+    "z": 0.148
+   },
+   "bbox_min": [
+    -0.56,
+    0,
+    -0.074
+   ],
+   "bbox_max": [
+    0.56,
+    2.16,
+    0.074
+   ],
+   "triangles": 1108,
+   "bytes": 26900,
+   "materials": [
+    "door_metal",
+    "door_glass",
+    "door_chrome"
+   ],
+   "nodes": [
+    "door_frame",
+    "door_leaf"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "Nodes: door_frame (static), door_leaf (origin on hinge axis at x=-0.5; rotate about Y to open). Clear opening ~1.0 x 2.1 m. door_glass is alphaMode BLEND.",
+   "source": "Original procedural model (scripts/13_procedural_shop.py)",
+   "sourceUrl": null,
+   "author": "SNITCH project (generated)",
+   "licence": "CC0-1.0",
+   "title": "Glazed shop door"
+  },
+  {
+   "path": "real/shop/display_counter.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 1.8,
+    "y": 0.95,
+    "z": 0.6
+   },
+   "bbox_min": [
+    -0.9,
+    0,
+    -0.3
+   ],
+   "bbox_max": [
+    0.9,
+    0.95,
+    0.3
+   ],
+   "triangles": 8204,
+   "bytes": 419448,
+   "materials": [
+    "counter_kick",
+    "counter_base",
+    "counter_velvet",
+    "counter_frame",
+    "counter_glass",
+    "vintage_pocket_watch_glass",
+    "vintage_pocket_watch",
+    "vintage_pocket_watch_hands",
+    "digital_wrist_watch",
+    "digital_wrist_watch_glass",
+    "Camera_01_strap",
+    "Camera_01_lens_body",
+    "Camera_01_lens",
+    "Camera_01_body",
+    "binoculars",
+    "binoculars_glass",
+    "vintage_video_camera",
+    "vintage_video_camera_glass",
+    "cassette_player_body",
+    "cassette_player_flap",
+    "cassette_player_tape",
+    "gamepad"
+   ],
+   "nodes": [
+    "display_counter",
+    "display_counter_glass",
+    "display_counter_goods"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp",
+    "128x128 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "1.8 x 0.6 x 0.95 m. Customer side +Z, staff side -Z (back is open). Nodes: display_counter (cabinet, frame, velvet tray), display_counter_glass (alphaMode BLEND - render after opaque, depthWrite off), display_counter_goods (5 pocket watches, 5 wrist watches, camera, binoculars, cine camera on the tray; cassette player + gamepad on the glass shelf).",
+   "source": "Original procedural model + Poly Haven goods (vintage_pocket_watch, digital_wrist_watch, Camera_01, binoculars, vintage_video_camera, cassette_player, gamepad)",
+   "sourceUrl": "https://polyhaven.com/models",
+   "author": "SNITCH project (generated); goods by Poly Haven contributors",
+   "licence": "CC0-1.0",
+   "title": "Glass display counter with watches/jewellery tray"
+  },
+  {
+   "path": "real/shop/shelf_with_goods.glb",
+   "type": "model",
+   "category": "shop",
+   "dimensions_m": {
+    "x": 1.025,
+    "y": 2.357,
+    "z": 0.469
+   },
+   "bbox_min": [
+    -0.513,
+    0,
+    -0.235
+   ],
+   "bbox_max": [
+    0.513,
+    2.357,
+    0.235
+   ],
+   "triangles": 14875,
+   "bytes": 942636,
+   "materials": [
+    "metal_toolbox",
+    "Drill_01",
+    "television_02",
+    "gaming_console",
+    "boombox",
+    "boombox_speakers",
+    "vintage_video_camera",
+    "vintage_video_camera_glass",
+    "classic_laptop",
+    "classic_laptop_screen",
+    "binoculars",
+    "binoculars_glass",
+    "cassette_player_body",
+    "cassette_player_flap",
+    "cassette_player_tape",
+    "Television_01",
+    "steel_frame_shelves_01"
+   ],
+   "nodes": [
+    "shelf_goods",
+    "shelf_unit"
+   ],
+   "up": "+Y",
+   "forward": "+Z",
+   "pivot": "bottom-centre (y=0 is ground)",
+   "textures": [
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp",
+    "256x256 webp"
+   ],
+   "gltf_extensions": "EXT_texture_webp, KHR_mesh_quantization (both native in three GLTFLoader; no decoder needed)",
+   "notes": "1.03 x 0.47 x ~2.4 m. Nodes: shelf_unit, shelf_goods. Front +Z; place against a wall at -Z.",
+   "source": "Poly Haven composite (steel_frame_shelves_01, metal_toolbox, Drill_01, television_02, gaming_console, boombox, vintage_video_camera, classic_laptop, binoculars, cassette_player, Television_01)",
+   "sourceUrl": "https://polyhaven.com/models",
+   "author": "Poly Haven contributors; arranged by SNITCH project",
+   "licence": "CC0-1.0",
+   "title": "Steel shelving stocked with pawned goods"
+  },
+  {
+   "path": "real/textures/asphalt_road",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/asphalt_road_color.webp",
+    "real/textures/asphalt_road_normal.webp",
+    "real/textures/asphalt_road_arm.webp"
+   ],
+   "bytes": 1440068,
+   "notes": "Dark cracked asphalt for the road. For a WET look: multiply roughness by ~0.35-0.5 (or lerp to 0.05 with a puddle mask), darken colour x0.6, envMapIntensity up. Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "2048px color, 1024px normal, 1024px arm",
+   "tile_size_m": [
+    3.0,
+    3.0
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/asphalt_02",
+   "author": "Rob Tuytel",
+   "licence": "CC0-1.0",
+   "title": "Asphalt 02"
+  },
+  {
+   "path": "real/textures/pavement_concrete",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/pavement_concrete_color.webp",
+    "real/textures/pavement_concrete_normal.webp",
+    "real/textures/pavement_concrete_arm.webp"
+   ],
+   "bytes": 406934,
+   "notes": "Concrete paving slabs for sidewalks/kerb. Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    1.8,
+    1.8
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/concrete_pavement",
+   "author": "Charlotte Baglioni",
+   "licence": "CC0-1.0",
+   "title": "Concrete Pavement"
+  },
+  {
+   "path": "real/textures/brick_red",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/brick_red_color.webp",
+    "real/textures/brick_red_normal.webp",
+    "real/textures/brick_red_arm.webp"
+   ],
+   "bytes": 268792,
+   "notes": "Aged red/brown brick wall. Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    3.0,
+    3.0
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/brick_wall_001",
+   "author": "Rob Tuytel, Dimitrios Savva",
+   "licence": "CC0-1.0",
+   "title": "Brick Wall 001"
+  },
+  {
+   "path": "real/textures/brick_dark",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/brick_dark_color.webp",
+    "real/textures/brick_dark_normal.webp",
+    "real/textures/brick_dark_arm.webp"
+   ],
+   "bytes": 430856,
+   "notes": "Dark brick with light mortar. Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    1.05,
+    1.05
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/dark_brick_wall",
+   "author": "Dario Barresi, Dimitrios Savva",
+   "licence": "CC0-1.0",
+   "title": "Dark Brick Wall"
+  },
+  {
+   "path": "real/textures/plaster_worn",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/plaster_worn_color.webp",
+    "real/textures/plaster_worn_normal.webp",
+    "real/textures/plaster_worn_arm.webp"
+   ],
+   "bytes": 122614,
+   "notes": "Peeling painted plaster wall. Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    1.8,
+    1.8
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/worn_plaster_wall",
+   "author": "Dimitrios Savva",
+   "licence": "CC0-1.0",
+   "title": "Worn Plaster Wall"
+  },
+  {
+   "path": "real/textures/concrete_wall",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/concrete_wall_color.webp",
+    "real/textures/concrete_wall_normal.webp",
+    "real/textures/concrete_wall_arm.webp"
+   ],
+   "bytes": 55836,
+   "notes": "Plain cast concrete wall. Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    2.71,
+    2.71
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/concrete_wall_008",
+   "author": "Dario Barresi, Charlotte Baglioni",
+   "licence": "CC0-1.0",
+   "title": "Concrete Wall 008"
+  },
+  {
+   "path": "real/textures/floor_tiles_checker",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/floor_tiles_checker_color.webp",
+    "real/textures/floor_tiles_checker_normal.webp",
+    "real/textures/floor_tiles_checker_arm.webp"
+   ],
+   "bytes": 50000,
+   "notes": "Worn checkered floor tiles (shop interior). Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    3.0,
+    3.0
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/floor_tiles_06",
+   "author": "Rob Tuytel",
+   "licence": "CC0-1.0",
+   "title": "Floor Tiles 06"
+  },
+  {
+   "path": "real/textures/wood_floor_worn",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/wood_floor_worn_color.webp",
+    "real/textures/wood_floor_worn_normal.webp",
+    "real/textures/wood_floor_worn_arm.webp"
+   ],
+   "bytes": 66988,
+   "notes": "Worn varnished wood planks (shop interior). Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    2.0,
+    2.0
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/wood_floor_worn",
+   "author": "Dimitrios Savva",
+   "licence": "CC0-1.0",
+   "title": "Wood Floor Worn"
+  },
+  {
+   "path": "real/textures/metal_shutter",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/metal_shutter_color.webp",
+    "real/textures/metal_shutter_normal.webp",
+    "real/textures/metal_shutter_arm.webp"
+   ],
+   "bytes": 83558,
+   "notes": "Painted roller-shutter slats. Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    2.0,
+    2.0
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/painted_metal_shutter",
+   "author": "Dario Barresi, Rico Cilliers, Charlotte Baglioni",
+   "licence": "CC0-1.0",
+   "title": "Painted Metal Shutter"
+  },
+  {
+   "path": "real/textures/corrugated_iron",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/corrugated_iron_color.webp",
+    "real/textures/corrugated_iron_normal.webp",
+    "real/textures/corrugated_iron_arm.webp"
+   ],
+   "bytes": 130870,
+   "notes": "Corrugated sheet metal. Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    1.12,
+    1.12
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/corrugated_iron",
+   "author": "Jenelle van Heerden, Dimitrios Savva",
+   "licence": "CC0-1.0",
+   "title": "Corrugated Iron"
+  },
+  {
+   "path": "real/textures/facade_tiles_dark",
+   "type": "pbr-texture-set",
+   "category": "textures",
+   "files": [
+    "real/textures/facade_tiles_dark_color.webp",
+    "real/textures/facade_tiles_dark_normal.webp",
+    "real/textures/facade_tiles_dark_arm.webp"
+   ],
+   "bytes": 134774,
+   "notes": "Dark ribbed facade cladding panels (modern/glass-ish facade base). Tileable; set wrapS/wrapT=RepeatWrapping.",
+   "resolution": "1024px color, 1024px normal, 512px arm",
+   "tile_size_m": [
+    2.09,
+    2.09
+   ],
+   "maps": {
+    "color": "sRGB",
+    "normal": "linear, OpenGL (+Y) - three default",
+    "arm": "linear, R=AO G=roughness B=metalness"
+   },
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/concrete_tile_facade",
+   "author": "Charlotte Baglioni",
+   "licence": "CC0-1.0",
+   "title": "Concrete Tile Facade"
+  },
+  {
+   "path": "real/hdri/night_street_1k.hdr",
+   "type": "hdri",
+   "category": "hdri",
+   "files": [
+    "real/hdri/night_street_1k.hdr"
+   ],
+   "bytes": 1760191,
+   "notes": "Night city street/alley with street lamps. Use for scene.environment (reflections).",
+   "resolution": "1024x512 RGBE .hdr (equirectangular)",
+   "source": "Poly Haven",
+   "sourceUrl": "https://polyhaven.com/a/cobblestone_street_night",
+   "author": "Greg Zaal, Jenelle van Heerden",
+   "licence": "CC0-1.0",
+   "title": "Cobblestone Street Night"
+  }
+ ]
+}
