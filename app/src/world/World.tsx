@@ -89,7 +89,7 @@ export default function World() {
         <pointLight position={[0, 3.2, -5.6]} intensity={26} distance={9} color="#9d5cff" />
 
         <Suspense fallback={null}>
-          <Environment files="/real/hdri/night_street_1k.hdr" environmentIntensity={0.55} />
+          <Environment files="/real/hdri/night_street_512.hdr" environmentIntensity={0.55} />
         </Suspense>
         {/* one Suspense per set so a slow model never blanks the others */}
         <Region x={0}>

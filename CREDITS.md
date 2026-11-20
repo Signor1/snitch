@@ -64,7 +64,7 @@ All assets below ship in `app/public/real/`. Everything is CC0 1.0 (public domai
 | `real/building/shutter_door_graffiti.glb` | Rollershutter Door | MP | https://polyhaven.com/a/rollershutter_door |
 | `real/building/shutter_window.glb` | Rollershutter Window 01 | MP | https://polyhaven.com/a/rollershutter_window_01 |
 | `real/building/shutter_window_graffiti.glb` | Rollershutter Window 01 | MP | https://polyhaven.com/a/rollershutter_window_01 |
-| `real/hdri/night_street_1k.hdr` | Cobblestone Street Night | Greg Zaal, Jenelle van Heerden | https://polyhaven.com/a/cobblestone_street_night |
+| `real/hdri/night_street_512.hdr` | Cobblestone Street Night | Greg Zaal, Jenelle van Heerden | https://polyhaven.com/a/cobblestone_street_night |
 | `real/props/aircon_unit.glb` | Exterior Aircon Unit | Monsta3D | https://polyhaven.com/a/exterior_aircon_unit |
 | `real/props/bar_stool.glb` | Metal Stool 01 | Ulan Cabanilla | https://polyhaven.com/a/metal_stool_01 |
 | `real/props/barrel.glb` | Barrel_01 | Jorge Camacho | https://polyhaven.com/a/Barrel_01 |
