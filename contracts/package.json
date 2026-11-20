@@ -87,7 +87,6 @@
     "deploy:localhost": "hardhat deploy --network localhost",
     "deploy:sepolia": "hardhat deploy --network sepolia",
     "verify:sepolia": "hardhat verify --network sepolia",
-    "export:abi": "hardhat run scripts/export-abi.ts",
     "test:snitch": "hardhat test test/snitch/*.ts",
     "test:rules": "hardhat test test/snitch/rules.ts",
     "test:rooms": "hardhat test test/snitch/rooms.ts",

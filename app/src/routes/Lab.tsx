@@ -27,7 +27,7 @@ function Backdrop() {
 }
 
 // Dev-only poster studio: /lab?s=crew|job|law or /lab?s=venue&v=jewel&t=cases&open=1.
-// tools/shoot-art.mjs captures these into public/art.
+// The art in public/art was captured from these views.
 export default function Lab() {
   const [q] = useSearchParams();
   const s = q.get("s") ?? "crew";
