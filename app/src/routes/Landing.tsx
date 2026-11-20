@@ -11,6 +11,7 @@ import { SettingsScreen } from "../settings/SettingsPanel";
 import { useProfile } from "../settings/store";
 import { HowTo } from "../shell/HowTo";
 import { Hints, Menu, type MenuItem } from "../shell/Menu";
+import { useFilm } from "../shell/film";
 
 export default function Landing() {
   const nav = useNavigate();
@@ -23,6 +24,7 @@ export default function Landing() {
   const endless = bestOf(ENDLESS_ID);
   const [panel, setPanel] = useState<"settings" | "how" | "credits" | null>(null);
   useSceneAudio("title");
+  const film = useFilm((s) => s.playing);
 
   const items: MenuItem[] = [
     ...(me && played ? [{ label: "Continue", hint: resume ? `Pick up the story: ${resume.prologue ? "the Prologue" : `Chapter ${resume.id}`}, ${resume.name}.` : `Back to the city as ${me.boss}, boss of ${me.crew}.`, run: () => nav(resume ? `/run/${resume.id}` : "/city") }] : []),
@@ -34,12 +36,14 @@ export default function Landing() {
     { label: "The record", hint: "The leaderboard, written by the contract after it checks every proof.", run: () => nav("/record") },
     { label: "The shop", hint: "The Boss Pass, paid in a confidential dollar, and cosmetics you earn with stars.", run: () => nav("/shop") },
     ...(me ? [{ label: "Identity", hint: "Change your name, your look and your crew.", run: () => nav("/identity") }] : []),
+    { label: "Watch the intro", hint: "The night Ash went down, ten years ago.", run: () => useFilm.getState().play() },
     { label: "How to play", hint: "The whole game in four lines.", run: () => setPanel("how") },
     { label: "Settings", hint: "Sound, graphics, difficulty and accessibility.", run: () => setPanel("settings") },
     { label: "About the game", hint: "What SNITCH is, and why nobody can cheat, not even us.", run: () => nav("/about") },
     { label: "Credits", hint: "The people and free libraries behind this game.", run: () => setPanel("credits") },
   ];
 
+  if (film) return null;
   return (
     <div className="pointer-events-none relative flex min-h-dvh flex-col">
       <div className="fixed inset-0 bg-[linear-gradient(90deg,rgb(5_5_5/0.94)_0%,rgb(5_5_5/0.62)_40%,transparent_70%)] max-lg:bg-[linear-gradient(0deg,rgb(5_5_5/0.96)_0%,rgb(5_5_5/0.6)_60%,rgb(5_5_5/0.3)_100%)]" />

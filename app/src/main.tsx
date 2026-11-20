@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import "./index.css";
 import Landing from "./routes/Landing";
 import { Boot } from "./shell/Boot";
+import { IntroFilm } from "./shell/IntroFilm";
 
 import { Curtain } from "./shell/Curtain";
 import { AssetBadge, ScreenLoader } from "./shell/Loader";
@@ -49,6 +50,7 @@ createRoot(document.getElementById("root")!).render(
           </Routes>
         </Suspense>
       </div>
+      <IntroFilm />
       <Boot />
       <AssetBadge />
     </BrowserRouter>

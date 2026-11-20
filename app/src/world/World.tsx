@@ -12,6 +12,7 @@ import { Hideout, TABLE_H } from "./Hideout";
 import { Interior } from "./Interior";
 import { Street } from "./Street";
 import { useProfile } from "../settings/store";
+import { useFilm } from "../shell/film";
 
 function sceneFor(path: string): Scene {
   if (path === "/") return "title";
@@ -41,7 +42,10 @@ export default function World() {
   const [auto, setQuality] = useState(1);
   const pref = useProfile((s) => s.settings.quality);
   const quality = pref === "low" ? 0.3 : pref === "medium" ? Math.min(auto, 0.6) : auto;
-  const scene = sceneFor(useLocation().pathname);
+  const film = useFilm((s) => s.playing);
+  const path = sceneFor(useLocation().pathname);
+  // the intro film plays through the job sets, so the camera follows it like a run
+  const scene = film ? "run" : path;
   return (
     <div className="fixed inset-0 -z-0">
       <Canvas shadows dpr={pref === "low" ? 1 : [1, 1.75]} camera={{ position: [1.4, 2.2, 5.2], fov: 40, near: 0.1, far: 110 }} gl={{ antialias: false, powerPreference: "high-performance", toneMapping: THREE.NoToneMapping }}>
