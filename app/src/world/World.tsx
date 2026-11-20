@@ -21,6 +21,9 @@ function sceneFor(path: string): Scene {
   return "city";
 }
 
+// Phones get the lighter pipeline from the first frame instead of after they've already stuttered.
+const PHONE = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
+
 const ABERRATION = new THREE.Vector2(0.0006, 0.0006);
 
 function Effects({ quality }: { quality: number }) {
@@ -42,14 +45,14 @@ preloadSets();
 export default function World() {
   const [auto, setQuality] = useState(1);
   const pref = useProfile((s) => s.settings.quality);
-  const quality = pref === "low" ? 0.3 : pref === "medium" ? Math.min(auto, 0.6) : auto;
+  const quality = pref === "low" ? 0.3 : pref === "medium" || PHONE ? Math.min(auto, 0.6) : auto;
   const film = useFilm((s) => s.playing);
   const path = sceneFor(useLocation().pathname);
   // the intro film plays through the job sets, so the camera follows it like a run
   const scene = film ? "run" : path;
   return (
     <div className="fixed inset-0 -z-0">
-      <Canvas shadows dpr={pref === "low" ? 1 : [1, 1.75]} camera={{ position: [1.4, 2.2, 5.2], fov: 40, near: 0.1, far: 110 }} gl={{ antialias: false, powerPreference: "high-performance", toneMapping: THREE.NoToneMapping }}>
+      <Canvas shadows dpr={pref === "low" ? 1 : PHONE ? [1, 1.35] : [1, 1.75]} camera={{ position: [1.4, 2.2, 5.2], fov: 40, near: 0.1, far: 110 }} gl={{ antialias: false, powerPreference: "high-performance", toneMapping: THREE.NoToneMapping }}>
         <color attach="background" args={["#050505"]} />
         <fog attach="fog" args={["#0a0414", 7, 34]} />
         <PerformanceMonitor onDecline={() => setQuality(0.4)} onIncline={() => setQuality(1)} />
@@ -58,7 +61,7 @@ export default function World() {
         <ambientLight intensity={0.3} color="#c9bfe6" />
         {/* soft key from the player's side, for the crew's faces */}
         <spotLight position={[0.5, 3.4, 4.6]} target-position={[0, 1.3, -1.4]} angle={0.75} penumbra={0.9} intensity={110} distance={12} decay={2} color="#ffe2c4" />
-        <spotLight position={[0, 3.15, 0]} angle={0.95} penumbra={0.8} intensity={34} distance={8} decay={2} color="#d9ccff" castShadow shadow-mapSize={[1024, 1024]} shadow-bias={-0.0006} shadow-normalBias={0.05} target-position={[0, TABLE_H, 0]} />
+        <spotLight position={[0, 3.15, 0]} angle={0.95} penumbra={0.8} intensity={34} distance={8} decay={2} color="#d9ccff" castShadow shadow-mapSize={PHONE ? [512, 512] : [1024, 1024]} shadow-bias={-0.0006} shadow-normalBias={0.05} target-position={[0, TABLE_H, 0]} />
         {/* amethyst rim, cool front fill, cyan kick off the table */}
         <directionalLight position={[-4, 5, -6]} intensity={1.6} color="#7a35d6" />
         <directionalLight position={[2, 3, 6]} intensity={0.7} color="#cfc4ee" />
