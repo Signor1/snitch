@@ -6,6 +6,8 @@ import type { Target, Venue as VenueKind } from "../game/data";
 import { COP_LOOK } from "../game/looks";
 import { useSnitch, type Cut } from "../game/store";
 import { Character, type Emote } from "./Character";
+import { precompile } from "./Region";
+import { STREET_X } from "./Street";
 import { Goal, Venue } from "./Venues";
 
 /** Interior set, far from the others. */
@@ -239,7 +241,7 @@ export function Interior() {
   const { gl, scene, camera } = useThree();
   useEffect(() => {
     if (!venue) return;
-    const t = setTimeout(() => void gl.compileAsync(scene, camera).catch(() => {}), 600);
+    const t = setTimeout(() => precompile(gl, scene, camera, [STREET_X, INSIDE_X]), 600);
     return () => clearTimeout(t);
   }, [venue, target, gl, scene, camera]);
   const red = useRef<THREE.PointLight>(null);

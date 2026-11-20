@@ -9,8 +9,9 @@ import * as THREE from "three";
 import { Crew } from "./Crew";
 import { Director, type Scene } from "./Director";
 import { Hideout, TABLE_H } from "./Hideout";
-import { Interior } from "./Interior";
-import { Street } from "./Street";
+import { INSIDE_X, Interior } from "./Interior";
+import { Region } from "./Region";
+import { STREET_X, Street } from "./Street";
 import { useProfile } from "../settings/store";
 import { useFilm } from "../shell/film";
 
@@ -68,16 +69,22 @@ export default function World() {
           <Environment files="/real/hdri/night_street_1k.hdr" environmentIntensity={0.55} />
         </Suspense>
         {/* one Suspense per set so a slow model never blanks the others */}
-        <Suspense fallback={null}>
-          <Hideout />
-          <Crew />
-        </Suspense>
-        <Suspense fallback={null}>
-          <Street />
-        </Suspense>
-        <Suspense fallback={null}>
-          <Interior />
-        </Suspense>
+        <Region x={0}>
+          <Suspense fallback={null}>
+            <Hideout />
+            <Crew />
+          </Suspense>
+        </Region>
+        <Region x={STREET_X}>
+          <Suspense fallback={null}>
+            <Street />
+          </Suspense>
+        </Region>
+        <Region x={INSIDE_X}>
+          <Suspense fallback={null}>
+            <Interior />
+          </Suspense>
+        </Region>
         <Suspense fallback={null}>
           <Preload all />
         </Suspense>
