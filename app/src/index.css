@@ -1,0 +1,158 @@
+@import "@fontsource-variable/archivo/wdth.css";
+@import "tailwindcss";
+
+/* 60 / 30 / 10: Jet Black, Royal Amethyst, Electric Cyan. Amethyst is too dark for text on
+   black, so lines and text use a brighter violet and lavender. Pink is for heat and police only. */
+@theme {
+  --color-ink: #050505;
+  --color-ink-raised: #0d0914;
+  --color-ink-edge: #160d24;
+  --color-line: #2a1845;
+  --color-amethyst: #3b0a6b;
+  --color-violet: #9d5cff;
+  --color-mist: #ece6f7;
+  --color-mist-dim: #a79cbd;
+  --color-mist-faint: #5f5673;
+  --color-cyan: #00e5ff;
+  --color-cyan-hot: #7df3ff;
+  --color-heat: #ff2d6f;
+
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-4xl: 3.052rem;
+  --text-5xl: 3.815rem;
+  --text-6xl: 4.768rem;
+  --text-7xl: 5.96rem;
+}
+
+@layer base {
+  html {
+    background: var(--color-ink);
+    color: var(--color-mist);
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    font-variation-settings: "wdth" 100;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior: none;
+  }
+  ::selection {
+    background: var(--color-cyan);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .display {
+    font-variation-settings: "wdth" 125;
+    font-weight: 850;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  .display-soft {
+    font-variation-settings: "wdth" 116;
+    font-weight: 650;
+    letter-spacing: -0.012em;
+    line-height: 1.08;
+  }
+  .num {
+    font-variation-settings: "wdth" 112;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .eyebrow {
+    font-variation-settings: "wdth" 112;
+    font-weight: 700;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .panel {
+    background:
+      radial-gradient(120% 90% at 15% 0%, rgb(157 92 255 / 0.14), transparent 60%),
+      linear-gradient(180deg, rgb(59 10 107 / 0.34), rgb(5 5 5 / 0.88));
+    border: 1px solid var(--color-line);
+    backdrop-filter: blur(14px);
+  }
+  .neon-cyan {
+    text-shadow:
+      0 0 18px rgb(0 229 255 / 0.55),
+      0 0 46px rgb(0 229 255 / 0.3);
+  }
+  .neon-violet {
+    text-shadow:
+      0 0 22px rgb(157 92 255 / 0.7),
+      0 0 60px rgb(59 10 107 / 0.9);
+  }
+  .scanlines::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background: repeating-linear-gradient(0deg, #fff 0 1px, transparent 1px 3px);
+  }
+}
+
+@keyframes flash-police {
+  0%, 100% { background: rgb(255 45 111 / 0.16); }
+  50% { background: rgb(0 120 255 / 0.16); }
+}
+.police-flash {
+  animation: flash-police 0.5s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Calm motion setting, same as prefers-reduced-motion. */
+.calm *,
+.calm *::before,
+.calm *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Centred but never clipped: taller content starts at the top and scrolls. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: grid;
+  place-items: safe center;
+  padding: max(1.5rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom));
+}
