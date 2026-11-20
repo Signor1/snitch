@@ -226,7 +226,10 @@ export const useSnitch = create<State>((set, get) => {
   const after = (next: Playing["next"]) => {
     if (next === "brief") set({ status: "brief", scene: undefined });
     else if (next === "scout") {
-      set({ status: "scout", scene: undefined, selected: [], tool: "team", plan: { choices: [] } });
+      // a new job, a change of clothes
+      const st = get();
+      const crew = st.chapter ? st.crew.map((m) => ({ ...m, outfit: outfitFor(st.chapter!.id, m.id, st.job) })) : st.crew;
+      set({ status: "scout", scene: undefined, selected: [], tool: "team", plan: { choices: [] }, crew });
       const s = get();
       if (s.chapter?.rules?.loyalty && s.loyalty < 40) {
         const pool = s.crew.map((m) => m.id).filter((id) => !s.out.includes(id) && !s.benched.includes(id));
